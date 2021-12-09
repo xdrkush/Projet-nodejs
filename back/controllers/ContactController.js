@@ -1,3 +1,5 @@
 exports.contactpage = (req, res) => {
-    res.render('contact')
+    res.render('contact',{
+        title: "SiteLand - Contact"
+      })
 }

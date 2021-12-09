@@ -1,9 +1,13 @@
-<h2>Home</h2>
-
-{{#if PageId}}
+{{!-- {{#if PageId}}
 <p>L'id est <strong>{{this.PageId}}</strong></p>
 {{else}}
 <p>Aucun id</p>
 
-{{/if}}
-{{> testpartial}}
+{{/if}} --}}
+
+{{> home/header}}
+{{> home/main}}
+
+{{> contact/form}}
+{{> contact/popup}}
+{{> contact/popup_err}}

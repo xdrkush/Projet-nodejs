@@ -11,23 +11,11 @@ app.engine('hbs', engine({
     defaultLayout: 'main'
 }))
 
-// Route par défaut
+// Router
 const ROUTER = require('./back/router')
 app.use('/', ROUTER)
-/*
 
-app.get('/', function (req, res) {
-    res.render('home')
-}) 
-// Route Bruno
-app.get('/bruno', function (req, res) {
-    res.send('<h2>Team Bruno</h2>>')
-})
-// Route Admin
-app.get('/admin', function (req, res) {
-    res.redirect('/')
-})
+app.use("/assets", express.static('public'));
 
- */
 // Lancement de l'app sur le port défini dans le .env
 app.listen(process.env.PORT)
