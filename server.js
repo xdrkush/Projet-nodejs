@@ -12,6 +12,10 @@ app.engine('hbs', engine({
 }))
 
 // Route par défaut
+const ROUTER = require('./back/router')
+app.use('/', ROUTER)
+/*
+
 app.get('/', function (req, res) {
     res.render('home')
 }) 
@@ -24,5 +28,6 @@ app.get('/admin', function (req, res) {
     res.redirect('/')
 })
 
+ */
 // Lancement de l'app sur le port défini dans le .env
 app.listen(process.env.PORT)
