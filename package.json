@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run server.js",
-    "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "chmod +x ./scripts/build.sh && ./scripts/build.sh",
+    "dev": "nodemon && npm run sass",
+    "sass": "sass --watch ./public/sass/index.sass:./public/css/style.css"
   },
   "keywords": [],
   "author": "",

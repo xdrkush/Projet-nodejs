@@ -1,0 +1,66 @@
+{{!-- <div class="tab-pane fade" id="com" role="tabpanel" aria-labelledby="blog-tab">
+
+    <div class="col-12 comlist">
+        <!-- USER -->
+        {{#each user as |item i|}}
+
+        <div class="row border-bottom">
+            <div class="col-2 my-3">
+                <div class="roundedImage"><img src="{{this.img}}" heigth="100%" width="100%"></div>
+            </div>
+            <div class="col-md-10 d-flex justify-content-center align-items-center mb-2">
+                <div class="col-8" id="user{{this.user.id}}">${data[0].user[i].prenom} ${data[0].user[i].nom}</div>
+                <div class="col-4 d-flex flex-row justify-content-center align-items-center">
+                    <div class="mx-3" data-bs-toggle="modal" data-bs-target="#modalblog{{this.id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-info-square" viewBox="0 0 16 16">
+                            <path
+                                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                            <path
+                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#each this.commentaire_attente}}
+        <!-- Modal blog -->
+        <div class="modal fade" id="modalblog{{i}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+            tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Voulez vous autorisez le commentaire
+                            suivant ?
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Commentaire:</label>
+                            <textarea class="form-control" id="message-text{{i}}" placeholder="{{this}}" disabled
+                                readonly></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#modaldel">Non</button>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                            onClick="ValidCom()">Oui</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        {{/if}}
+
+        {{/each}}
+    </div>
+</div> --}}
+
+<div class="tab-pane fade" id="com" role="tabpanel" aria-labelledby="blog-tab">
+    <div class="col-12 comlist">
+
+    </div>
+</div>

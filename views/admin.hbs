@@ -1,0 +1,61 @@
+{{> admin/main}}
+{{!-- {{#each user as |item i|}}
+{{#each this.commentaire_attente}}
+{{#if this}}
+
+{{this}} {{i.nom}}<br>
+{{else}}
+
+{{/if}}
+{{/each}}
+{{/each}} --}}
+
+{{!--
+<!-- Modal msg -->
+<div class="modal fade" id="modalmsg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Répondre à [user.name]</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Message reçu:</label>
+                        <textarea class="form-control" id="message-text0"
+                            placeholder="Nullam a viverra purus. Morbi in neque eu lorem ultrices congue id pharetra orci. Mauris interdum et ligula viverra rutrum. Mauris lacus elit, tristique vestibulum dui vitae, facilisis iaculis ante."
+                            disabled readonly></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text1" class="col-form-label">Message à envoyer:</label>
+                        <textarea class="form-control" id="message-text1"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    onClick="ReplyMsg()">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modaldel" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel2">Vous êtes sur de vouloir supprimer le
+                    commentaire suivant ?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    onClick="DeleteCom()">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div> --}}
