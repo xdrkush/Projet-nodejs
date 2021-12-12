@@ -13,9 +13,7 @@ exports.blogpage = (req, res) => {
 
 exports.blogID = (req, res) => {
   const fakedb = require('../../public/data/db.json');
-  console.log('db',fakedb.blog[0]);
-    console.log('params', req.params.id)
-    res.render("article",{
+  res.render("article",{
       BlogId: req.params.id,
       blogitem: fakedb.blog[req.params.id]
     });

@@ -14,7 +14,7 @@ const ArticleController = require('./controllers/BlogController')
 const AdminController = require('./controllers/AdminController')
 
 // Import Middleware
-const mdl = require('./middleware/admin')
+const mdl = require('./middleware/middleware')
 
 // Routes
 router.route('/')
@@ -24,13 +24,13 @@ router.route('/blog')
     .get(BlogController.blogpage)
 
 router.route("/blog/:id")
-    .get(ArticleController.blogID)
+    .get(mdl.articleID, ArticleController.blogID)
 
 router.route('/contact')
     .get(ContactController.contactpage)
 
 router.route('/admin')
-    .get(mdl.isAdmin,AdminController.adminpage)
+    .get(mdl.isAdmin, AdminController.adminpage)
 
 
 

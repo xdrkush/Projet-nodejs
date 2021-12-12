@@ -19,5 +19,13 @@ module.exports = {
         } else {
             res.redirect('/')
         }
+    },
+    articleID:(req, res, next) =>{
+      const fakedb = require('../../public/data/db.json');
+      if (fakedb.blog[req.params.id] === undefined) {
+        res.redirect('/blog')
+    } else {
+      next()
+    }
     }
 };
