@@ -1,17 +1,18 @@
-{{!-- <div class="tab-pane fade" id="com" role="tabpanel" aria-labelledby="blog-tab">
+<div class="tab-pane fade" id="com" role="tabpanel" aria-labelledby="blog-tab">
 
     <div class="col-12 comlist">
         <!-- USER -->
-        {{#each user as |item i|}}
-
+        {{#each user as |i|}}
+        {{#each this.commentaire_attente as |idd|}}
+        {{#if this}}
         <div class="row border-bottom">
             <div class="col-2 my-3">
-                <div class="roundedImage"><img src="{{this.img}}" heigth="100%" width="100%"></div>
+                <div class="roundedImage"><img src="{{i.img}}" heigth="100%" width="100%"></div>
             </div>
             <div class="col-md-10 d-flex justify-content-center align-items-center mb-2">
-                <div class="col-8" id="user{{this.user.id}}">${data[0].user[i].prenom} ${data[0].user[i].nom}</div>
+                <div class="col-8" id="user{{i.id}}">{{i.prenom}} {{i.nom}}</div>
                 <div class="col-4 d-flex flex-row justify-content-center align-items-center">
-                    <div class="mx-3" data-bs-toggle="modal" data-bs-target="#modalblog{{this.id}}">
+                    <div class="mx-3" data-bs-toggle="modal" data-bs-target="#modalblog{{i.id}}{{@key}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                             class="bi bi-info-square" viewBox="0 0 16 16">
                             <path
@@ -23,9 +24,9 @@
                 </div>
             </div>
         </div>
-        {{#each this.commentaire_attente}}
+
         <!-- Modal blog -->
-        <div class="modal fade" id="modalblog{{i}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+        <div class="modal fade" id="modalblog{{i.id}}{{@key}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
             tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -38,7 +39,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="disabledTextInput" class="form-label">Commentaire:</label>
-                            <textarea class="form-control" id="message-text{{i}}" placeholder="{{this}}" disabled
+                            <textarea class="form-control" id="message-text{{i.id}}" placeholder="{{this}}" disabled
                                 readonly></textarea>
                         </div>
                     </div>
@@ -51,16 +52,20 @@
                 </div>
             </div>
         </div>
-        {{/each}}
-        {{else}}
         {{/if}}
-
         {{/each}}
-    </div>
-</div> --}}
-
-<div class="tab-pane fade" id="com" role="tabpanel" aria-labelledby="blog-tab">
-    <div class="col-12 comlist">
-
+        {{/each}}
     </div>
 </div>
+
+{{!-- {{#each user as |i|}}
+{{#each this.commentaire_attente}}
+{{#if this}}
+
+If / {{this}} / i {{i.img}}<br>
+
+{{else}}
+Else / {{this}} / {{i.nom}}<br>
+{{/if}}
+{{/each}}
+{{/each}} --}}

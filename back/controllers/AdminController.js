@@ -11,6 +11,7 @@ exports.adminpage = (req, res) => {
   } else {
     var sess = true
   }
+
   res.render('admin', {
     title: "SiteLand - Admin",
     session: sess,
