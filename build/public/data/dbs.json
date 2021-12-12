@@ -3,24 +3,29 @@
         {
             "img": "https://images.unsplash.com/photo-1565380405453-a60d3941c3a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
             "desc": "Donec nec rhoncus nibh. Sed tincidunt suscipit sagittis.",
+            "nam": "Article tssext",
             "link_title": "Article 1",
-            "alt": "alt"
+            "alt": "alt",
+            "vie": false
         },
         {
             "img": "https://images.unsplash.com/photo-1562387729-4d71956ab564?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1027&q=80",
             "desc": "Maecenas pharetra et elit ac varius. Etiam accumsan cursus imperdiet. Duis sit amet auctor lacus.",
+            "article_txt": "Article texsst",
             "link_title": "Article 2",
             "alt": "alt"
         },
         {
             "img": "https://images.unsplash.com/photo-1565380405453-a60d3941c3a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
             "desc": "Cras vitae tellus leo. Ut eleifend congue faucibus. Aliquam interdum turpis quis nisl bibendum tempor. Vivamus ipsum nulla, rutrum eu lorem quis, tristique laoreet neque.",
+            "article_txt": "Articszdle text",
             "link_title": "Article 3",
             "alt": "alt"
         },
         {
             "img": "https://images.unsplash.com/photo-1562387729-4d71956ab564?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1027&q=80",
             "desc": "Ut dictum, dui vel faucibus iaculis, odio nisl iaculis odio, quis tempor neque ligula et orci.",
+            "article_txt": "Artisscle text",
             "link_title": "Article 4",
             "alt": "alt"
         }
