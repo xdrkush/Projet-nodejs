@@ -2,7 +2,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2>Contactez-moi</h2>
-                <div>
+                <form action="/contact" method="post">
                     <div class="row">
                         <div class="col-6">
                             <label for="">Nom</label>
@@ -20,14 +20,14 @@
                         </div>
                         <div class="">
                             <label for="">Message</label>
-                            <textarea style="width: 100%;" name="" id="message"></textarea>
+                            <textarea style="width: 100%;" name="message" id="message"></textarea>
                         </div>
                     </div>
                     <div class="btn-contact">
-                        <button type="button" class="btn btn-secondary" id="Btncontc">Envoyer</button>
+                        <button type="submit" class="btn btn-secondary" id="Btncontc">Envoyer</button>
                     </div>
 
-                </div>
+                </form>
             </div>
         </div>
     </div>

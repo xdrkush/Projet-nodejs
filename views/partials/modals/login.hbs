@@ -1,39 +1,42 @@
-<div class="modal fade" id="Modallogin" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+<form action="/" method="post">
 
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalToggleLabel">Se connecter</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+    <div class="modal fade" id="Modallogin" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
 
-            <div class="modal-body">
-                <div class="col-md-12">
-                    <div class="col-12">
-                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel">Se connecter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col-md-12">
                         <div class="col-12">
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="name@example.com">
+                            <label for="loginInput" class="form-label">Email</label>
+                            <div class="col-12">
+                                <input name="email" type="email" class="form-control" id="loginInput" placeholder="name@example.com">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <label for="inputPassword" class="col-sm-7 col-form-label">Mot de passe</label>
                         <div class="col-12">
-                            <input type="password" class="form-control" id="inputPassword">
+                            <label for="inputPassword" class="col-sm-7 col-form-label">Mot de passe</label>
+                            <div class="col-12">
+                                <input name="password" type="password" class="form-control" id="inputPassword">
+                            </div>
+                            <label data-bs-target="#modalForgotPwd" data-bs-toggle="modal">Mot de passe
+                                oublié</label>
                         </div>
-                        <label data-bs-target="#modalForgotPwd" data-bs-toggle="modal">Mot de passe
-                            oublié</label>
                     </div>
                 </div>
-            </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#confirm" data-bs-toggle="modal">Se
-                    connecter</button>
-                <button class="btn btn-primary" data-bs-target="#modalRegister"
-                    data-bs-toggle="modal">S'inscrire</button>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-target="#confirm" data-bs-toggle="modal">Se
+                        connecter</button>
+                    <button type="button" class="btn btn-primary" data-bs-target="#modalRegister"
+                        data-bs-toggle="modal">S'inscrire</button>
+                </div>
+
             </div>
-            
         </div>
     </div>
-</div>
+
+</form>

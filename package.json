@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run server.js",
-    "test": "chmod +x ./scripts/build.sh && ./scripts/build.sh",
+    "test": "chmod +x ./scripts/backup.sh && ./scripts/backup.sh",
     "dev": "nodemon && npm run sass",
     "sass": "sass --watch ./public/sass/index.sass:./public/css/style.css"
   },
@@ -13,8 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-handlebars": "^6.0.2"
+    "express-handlebars": "^6.0.2",
+    "method-override": "^3.0.0"
   }
 }

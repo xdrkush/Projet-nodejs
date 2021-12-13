@@ -12,35 +12,23 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Profil
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/blog">Blog</a></li>
-                        <li><a class="dropdown-item" href="/contact">Contact</a></li>
-                        {{#if session}}
-                            {{#if isAdmin}}
-                        <li><a class="dropdown-item" href="/admin">Admin</a></li>                        
-                                {{else}}
-                            {{/if}}
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li data-bs-toggle="modal"><a data-bs-toggle="modal" href="#Modallogout"
-                                class="dropdown-item">Logout</a></li>
-                        {{else}}
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li data-bs-toggle="modal"><a data-bs-toggle="modal" href="#Modallogin"
-                                class="dropdown-item">Login</a></li>
-                        {{/if}}
-                    </ul>
+                <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                {{#if session}}
+                {{#if isAdmin}}
+                <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+                {{else}}
+                {{/if}}
+                <li class="nav-item" data-bs-toggle="modal"><a class="nav-link" data-bs-toggle="modal" href="#Modallogout">Logout</a>
                 </li>
-                
+                {{else}}
+
+                <li class="nav-item" data-bs-toggle="modal"><a data-bs-toggle="modal" href="#Modallogin" class="nav-link">Login</a>
+                </li>
+                {{/if}}
+
+                </li>
+
             </ul>
         </div>
 
@@ -48,9 +36,9 @@
 </nav>
 
 {{#if session}}
-    {{> modals/logout}}
+{{> modals/logout}}
 {{else}}
-    {{> modals/login}}
-    {{> modals/register}}
-    {{> modals/forgot}}
+{{> modals/login}}
+{{> modals/register}}
+{{> modals/forgot}}
 {{/if}}
