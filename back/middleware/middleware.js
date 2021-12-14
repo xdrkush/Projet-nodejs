@@ -22,7 +22,11 @@ module.exports = {
   },
   articleID: (req, res, next) => {
     const fakedb = require('../../public/data/db.json');
-    if (fakedb.blog[req.params.id] === undefined) {
+
+    var nbr = Number(req.params.id)
+    nbr -= 1
+
+    if (fakedb.blog[nbr] === undefined) {
       res.redirect('/blog')
     } else {
       next()
@@ -30,7 +34,11 @@ module.exports = {
   },
   editArticleID:(req, res, next) => {
     const fakedb = require('../../public/data/db.json');
-    if (fakedb.blog[req.params.id] === undefined) {
+
+    var nbr = Number(req.params.id)
+    nbr -= 1
+
+    if (fakedb.blog[nbr] === undefined) {
       res.redirect('/admin')
     } else {
       next()
