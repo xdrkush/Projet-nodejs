@@ -61,13 +61,13 @@ exports.editArticle = (req, res) => {
   console.log("controller edit Article", req.params.id, req.body);
   
   let dbArticle = fakedb.blog
+  let dbUser = fakedb.user
   let index = 0
   console.log('id id id ', req.params.id);
 
   var nbr = Number(req.params.id)
   nbr -= 1
   
-  let d = fakedb.blog[nbr]
   const articleEdited = {
     id: Number(req.params.id),
     img: fakedb.blog[nbr].img,
@@ -87,7 +87,7 @@ exports.editArticle = (req, res) => {
   dbArticle.splice(index, index -1, articleEdited)
   dbArticle.slice(dbArticle.splice(index + 1, 1))
 
-  let data = JSON.stringify({ blog: dbArticle }, null, 2);
+  let data = JSON.stringify({ blog: dbArticle, user: dbUser }, null, 2);
   fs.writeFile("./public/data/db.json", data, (err) => {
     if (err) console.log(err);
   });
@@ -99,6 +99,7 @@ exports.deleteArticle = (req, res) => {
   console.log("controller delete Article", req.params.id, req.body);
 
   let dbArticle = fakedb.blog
+  let dbUser = fakedb.user
   let index = 0
 
   dbArticle.forEach(art => {
@@ -109,7 +110,7 @@ exports.deleteArticle = (req, res) => {
   })
   dbArticle.slice(dbArticle.splice(index, 1))
 
-  let data = JSON.stringify({ blog: dbArticle }, null, 2);
+  let data = JSON.stringify({ blog: dbArticle, user: dbUser }, null, 2);
   fs.writeFile("./public/data/db.json", data, (err) => {
     if (err) console.log(err);
   });
