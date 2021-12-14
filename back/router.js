@@ -18,35 +18,44 @@ const mdl = require('./middleware/middleware')
 
 // Routes
 router.route('/')
-    .get(HomeController.homepage)
+    .get(HomeController.homePage)
+
+router.route('/login')
     .post(AuthController.authLogin)
 
 router.route('/register') 
-    .get(AuthController.authRegister)
     .post(AuthController.authRegister)
 
+router.route('/forgot')
+    .post(AuthController.authForgot)
+
+router.route('/logout') 
+    .get(HomeController.homePage)
+    .post(AuthController.authLogout)
+
 router.route('/blog')
-    .get(BlogController.blogpage)
+    .get(BlogController.blogPage)
 
 router.route("/blog/article/:id")
     .get(mdl.articleID, BlogController.blogID)
-
-router.route("/blog/edit/:id")
-    .get(mdl.isAdmin, mdl.editArticleID, BlogController.editArticle)
     .put(mdl.isAdmin, mdl.editArticleID, BlogController.editArticle)
-
-router.route("/blog/delete/:id/")
-    .get(mdl.isAdmin, mdl.editArticleID, BlogController.deleteArticle)
     .delete(mdl.isAdmin, mdl.editArticleID, BlogController.deleteArticle)
 
 router.route('/contact')
-    .get(ContactController.contactpage)
+    .get(ContactController.contactPage)
     .post(ContactController.sendMessage)
     
 router.route('/admin')
-    .get(mdl.isAdmin, AdminController.adminpage)
+    .get(mdl.isAdmin, AdminController.adminPage)
 
+router.route('/ban/:id')
+    .put(mdl.isAdmin, AdminController.banUser)
 
+router.route('/editUser/:id')
+    .put(mdl.isAdmin, AdminController.editUser)
+
+router.route('/deleteCom/:id')
+    .delete(mdl.isAdmin, AdminController.deleteCom)
 
 // /Routes
 

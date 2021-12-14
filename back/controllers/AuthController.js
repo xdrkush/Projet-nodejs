@@ -1,27 +1,21 @@
 exports.authLogin = (req, res) => {
-    console.log("controller auth login", req.body);
+    console.log("controller auth Login", req.body);
     var link = req.headers.referer
-    //${link.slice(22)}
-    res.redirect(`/`)
+    res.redirect(`/${link.slice(22)}`)
 }
 
 exports.authRegister = (req, res) => {
-    if (process.env.ISADMIN == "false") {
-        var admin = false
-      } else {
-        var admin = true
-      }
-      if (process.env.ISCONNECT == "false") {
-        var sess = false
-      } else {
-        var sess = true
-      }
-      
-    console.log("controller auth register", req.body);
+    console.log("controller auth Register", req.body);
     var link = req.headers.referer
-    res.render('register', {
-        title: "SiteLand - Register",
-        session: sess,
-        isAdmin: admin
-      })
+    res.redirect(`/${link.slice(22)}`)
+}
+
+exports.authForgot = (req, res) => {
+  console.log("controller auth Forgot", req.body);
+  res.redirect('/')
+}
+
+exports.authLogout = (req, res) => {
+  console.log("controller auth Logout", req.body);
+  res.redirect('/')
 }

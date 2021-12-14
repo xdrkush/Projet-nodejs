@@ -1,4 +1,4 @@
-exports.adminpage = (req, res) => {
+exports.adminPage = (req, res) => {
   const fakedb = require('../../public/data/db.json');
 
   if (process.env.ISADMIN == "false") {
@@ -18,4 +18,32 @@ exports.adminpage = (req, res) => {
     isAdmin: admin,
     user: fakedb.user
   })
+}
+
+exports.banUser = (req, res) => {
+  console.log("controller ban User", req.params.id);
+  if (process.env.ISADMIN == "true" && process.env.ISCONNECT == "true") {
+    res.redirect('/admin')
+  } else {
+    res.redirect('/')
+  }
+}
+
+exports.editUser = (req, res) => {
+  console.log("controller edit User", req.params.id, req.body);
+  if (process.env.ISADMIN == "true" && process.env.ISCONNECT == "true") {
+    res.redirect('/admin')
+  } else {
+    res.redirect('/')
+  }
+}
+
+exports.deleteCom = (req, res) => {
+//  console.log(req);
+  console.log("controller delete Com", req.params.id, req.body);
+  if (process.env.ISADMIN == "true" && process.env.ISCONNECT == "true") {
+    res.redirect('/admin')
+  } else {
+    res.redirect('/')
+  }
 }

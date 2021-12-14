@@ -14,18 +14,18 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-                {{#if session}}
-                {{#if isAdmin}}
+                {{#if session }}
+                {{#if isAdmin }}
                 <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
-                {{else}}
-                {{/if}}
+                {{else }}
+                {{/if }}
                 <li class="nav-item" data-bs-toggle="modal"><a class="nav-link" data-bs-toggle="modal" href="#Modallogout">Logout</a>
                 </li>
-                {{else}}
+                {{else }}
 
                 <li class="nav-item" data-bs-toggle="modal"><a data-bs-toggle="modal" href="#Modallogin" class="nav-link">Login</a>
                 </li>
-                {{/if}}
+                {{/if }}
 
                 </li>
 

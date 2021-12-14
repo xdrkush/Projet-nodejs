@@ -1,4 +1,4 @@
-exports.contactpage = (req, res) => {
+exports.contactPage = (req, res) => {
   if (process.env.ISADMIN == "false") {
     var admin = false
   } else {

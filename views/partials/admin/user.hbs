@@ -1,102 +1,99 @@
 <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
 
-                <div class="col-12 uslist">
-                    <!-- USER -->
-                    {{!-- Permet d'obtenir tout les utilisateurs afin de les afficher --}}
-                    {{#each user}}
-                    <div id="USR" class="row border-bottom">
-                        <div class="col-md-2 my-3">
-                            <div class="roundedImage"><img src="{{this.img}}" heigth="100%" width="100%"></div>
-                        </div>
-                        <div class="col-md-10 d-flex flex-row justify-content-center align-items-center mb-2">
-                            <div id="user{{this.id}}" class="col-8">{{this.prenom}} {{this.nom}}</div>
-                            <div class="col-4 d-flex flex-row justify-content-center align-items-center">
-                                <div class="mx-3" data-bs-toggle="modal" data-bs-target="#edituser{{this.id}}"
-                                    data-bs-whatever="@fat">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                        class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                        <path
-                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                        <path fill-rule="evenodd"
-                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                    </svg>
-                                </div>
-
-                                <div class="mx-3" data-bs-toggle="modal" data-bs-target="#modalban{{this.id}}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                        class="bi bi-hammer" viewBox="0 0 16 16">
-                                        <path
-                                            d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- MOdal edit -->
-                    <div class="modal fade" id="edituser{{this.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edition du profil de {{this.prenom}}
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="recipient-name{{this.id}}" class="col-form-label">Prénom:</label>
-                                            <input type="text" class="form-control" id="recipient-name{{this.id}}"
-                                                value="{{this.prenom}}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="recipient-lastname{{this.id}}" class="col-form-label">Nom:</label>
-                                            <input type="text" class="form-control" id="recipient-lastname{{this.id}}"
-                                                value="{{this.nom}}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="email{{this.id}}" class="form-label">Email</label>
-                                            <div class="col-12">
-                                                <input type="email" class="form-control" id="email{{this.id}}"
-                                                    value="{{this.nom}}">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <input type="file" class="form-control" id="inputGroupFile{{this.id}}">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button type="button" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Annuler</button>
-                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                                        onClick="ValidEdit()">Confirmer</button>
-                                </div>
-                            </div>
-                        </div>
+    <div class="col-12 uslist">
+        <!-- USER -->
+        {{!-- Permet d'obtenir tout les utilisateurs afin de les afficher --}}
+        {{#each user }}
+        <div id="USR" class="row border-bottom">
+            <div class="col-md-2 my-3">
+                <div class="roundedImage"><img src="{{ this.img }}" heigth="100%" width="100%"></div>
+            </div>
+            <div class="col-md-10 d-flex flex-row justify-content-center align-items-center mb-2">
+                <div id="user{{ this.id }}" class="col-8">{{ this.prenom }} {{ this.nom }}</div>
+                <div class="col-4 d-flex flex-row justify-content-center align-items-center">
+                    <div class="mx-3" data-bs-toggle="modal" data-bs-target="#edituser{{ this.id }}"
+                        data-bs-whatever="@fat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                            <path fill-rule="evenodd"
+                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>
                     </div>
 
-                    <!-- Modal ban -->
-                    <div class="modal fade" id="modalban{{this.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <p class="modal-title" id="exampleModalLabel">Voulez vous bannir <b>{{this.prenom}} {{this.nom}}</b> ?</p>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button type="button" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Annuler</button>
-                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                                        onClick="ValidBan()">Confirmer</button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="mx-3" data-bs-toggle="modal" data-bs-target="#modalban{{this.id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-hammer" viewBox="0 0 16 16">
+                            <path
+                                d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z" />
+                        </svg>
                     </div>
-                    {{/each}}
                 </div>
             </div>
+        </div>
+        <!-- MOdal edit -->
+        <div class="modal fade" id="edituser{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="/editUser/{{ this.id }}?_method=PUT" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edition du profil de {{ this.prenom }}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="recipient-name{{ this.id }}" class="col-form-label">Prénom:</label>
+                                <input name="prenom" type="text" class="form-control" id="recipient-name{{ this.id }}"
+                                    value="{{ this.prenom }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-lastname{{ this.id }}" class="col-form-label">Nom:</label>
+                                <input name="nom" type="text" class="form-control" id="recipient-lastname{{ this.id }}"
+                                    value="{{ this.nom }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email{{ this.id }}" class="form-label">Email</label>
+                                <div class="col-12">
+                                    <input name="email" type="email" class="form-control" id="email{{ this.id }}"
+                                        value="{{ this.email }}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input email="file" type="file" class="form-control" id="inputGroupFile{{ this.id }}">
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal ban -->
+        <div class="modal fade" id="modalban{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="/ban/{{ this.id }}?_method=PUT" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p class="modal-title" id="exampleModalLabel">Voulez vous bannir <b>{{ this.prenom }} {{
+                                    this.nom }}</b> ?</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {{/each }}
+    </div>
+</div>

@@ -2,7 +2,7 @@
  * Controller: Home
  * **************** */
 
-exports.homepage = (req, res) => {
+exports.homePage = (req, res) => {
   const fakedb = require('../../public/data/db.json');
 
   if (process.env.ISADMIN == "false") {
