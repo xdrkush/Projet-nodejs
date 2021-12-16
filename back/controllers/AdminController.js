@@ -39,7 +39,7 @@ exports.editUser = (req, res) => {
 }
 
 exports.deleteCom = (req, res) => {
-//  console.log(req);
+  //  console.log(req);
   console.log("controller delete Com", req.params.id, req.body);
   if (process.env.ISADMIN == "true" && process.env.ISCONNECT == "true") {
     res.redirect('/admin')

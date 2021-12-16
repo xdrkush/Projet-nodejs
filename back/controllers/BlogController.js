@@ -87,6 +87,15 @@ exports.editArticle = (req, res) => {
   dbArticle.splice(index, index -1, articleEdited)
   dbArticle.slice(dbArticle.splice(index + 1, 1))
 
+  const artID = {
+    id: idArt,
+    img: fakedb.blog[idArt].img,
+    link_title: fakedb.blog[idArt].link_title,
+    desc: fakedb.blog[idArt].desc,
+    article: fakedb.blog[idArt].article,
+    alt: fakedb.blog[idArt].alt
+  }
+
   let data = JSON.stringify({ blog: dbArticle, user: dbUser }, null, 2);
   fs.writeFile("./public/data/db.json", data, (err) => {
     if (err) console.log(err);

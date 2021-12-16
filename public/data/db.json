@@ -1,14 +1,6 @@
 {
   "blog": [
     {
-      "id": 1,
-      "img": "https://images.unsplash.com/photo-1562387729-4d71956ab564?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1027&q=80",
-      "link_title": "sds",
-      "desc": "dzd",
-      "article_txt": "z",
-      "alt": "alt"
-    },
-    {
       "id": 2,
       "img": "https://images.unsplash.com/photo-1562387729-4d71956ab564?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1027&q=80",
       "link_title": "Article 2",
@@ -19,9 +11,9 @@
     {
       "id": 3,
       "img": "https://images.unsplash.com/photo-1565380405453-a60d3941c3a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-      "desc": "Cras vitae tellus leo. Ut eleifend congue faucibus. Aliquam interdum turpis quis nisl bibendum tempor. Vivamus ipsum nulla, rutrum eu lorem quis, tristique laoreet neque.",
-      "article_txt": "Vivamus quis augue eget ex lacinia laoreet a molestie nulla. Donec tempus magna eu tellus dignissim, feugiat pretium tellus sollicitudin. Morbi eu velit non orci efficitur dignissim. Integer a nunc eget velit sagittis maximus et non leo. Etiam ac nunc sit amet dolor ultrices convallis et vitae dolor. Mauris malesuada est at dolor ultrices rhoncus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus aliquet arcu sit amet arcu mattis aliquet. Cras ex neque, cursus eget odio vel, ornare maximus magna. Quisque mollis turpis nec erat accumsan, in imperdiet nisl ultricies. Pellentesque vitae iaculis ligula, id feugiat nisl. Praesent id est blandit, volutpat risus ut, vestibulum magna.",
-      "link_title": "Article 3",
+      "link_title": "Super titre",
+      "desc": "aaa",
+      "article_txt": "aaaa",
       "alt": "alt"
     }
   ],

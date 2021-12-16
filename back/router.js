@@ -5,6 +5,7 @@
 // Import de module
 const express = require('express')
 const router = express.Router()
+const upload  = require('./config/multer')
 
 // Import des controllers
 const HomeController = require('./controllers/HomeController')
@@ -56,6 +57,10 @@ router.route('/editUser/:id')
 
 router.route('/deleteCom/:id')
     .delete(mdl.isAdmin, AdminController.deleteCom)
+
+router.route('/test')
+    .get(BlogController.blogPage)
+    .post(upload.single('avatar'), BlogController.blogPage)
 
 // /Routes
 
