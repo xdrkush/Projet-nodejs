@@ -13,7 +13,7 @@ exports.adminPage = (req, res) => {
   }
 
   res.render('admin', {
-    title: "SiteLand - Admin",
+    title: `${process.env.ETP} - Administration`,
     session: sess,
     isAdmin: admin,
     user: fakedb.user

@@ -17,7 +17,7 @@ exports.homePage = (req, res) => {
   }
 
   res.render('home', {
-    title: "SiteLand - Home",
+    title: `${process.env.ETP} - Home`,
     session: sess,
     isAdmin: admin,
     blogitem: fakedb.blog

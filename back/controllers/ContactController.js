@@ -11,7 +11,7 @@ exports.contactPage = (req, res) => {
   }
 
   res.render('contact', {
-    title: "SiteLand - Contact",
+    title: `${process.env.ETP} - Contact`,
     session: sess,
     isAdmin: admin
   })

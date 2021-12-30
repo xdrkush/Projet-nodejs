@@ -2,7 +2,7 @@ const fakedb = require('../../public/data/db.json');
 const fs = require("fs");
 
 exports.blogPage = (req, res) => {
-  
+
 
   if (process.env.ISADMIN == "false") {
     var admin = false
@@ -16,7 +16,7 @@ exports.blogPage = (req, res) => {
   }
 
   res.render('blog', {
-    title: "SiteLand - Blog",
+    title: `${process.env.ETP} - Création`,
     session: sess,
     isAdmin: admin,
     blogitem: fakedb.blog
@@ -24,7 +24,7 @@ exports.blogPage = (req, res) => {
 }
 
 exports.blogID = (req, res) => {
- 
+
   if (process.env.ISADMIN == "false") {
     var admin = false
   } else {
@@ -48,7 +48,7 @@ exports.blogID = (req, res) => {
   nbr -= 1
 
   res.render("article", {
-    title: "SiteLand - Article",
+    title: `${process.env.ETP} - Articles`,
     session: sess,
     isAdmin: admin,
     BlogID: req.params.id,
@@ -59,7 +59,7 @@ exports.blogID = (req, res) => {
 
 exports.editArticle = (req, res) => {
   console.log("controller edit Article", req.params.id, req.body);
-  
+
   let dbArticle = fakedb.blog
   let dbUser = fakedb.user
   let index = 0
@@ -67,7 +67,7 @@ exports.editArticle = (req, res) => {
 
   var nbr = Number(req.params.id)
   nbr -= 1
-  
+
   const articleEdited = {
     id: Number(req.params.id),
     img: fakedb.blog[nbr].img,
@@ -79,20 +79,38 @@ exports.editArticle = (req, res) => {
 
   dbArticle.forEach(art => {
     if (art.id === Number(req.params.id)) {
-      console.log('indexof', dbArticle.indexOf(art))
+      //console.log('indexof', dbArticle.indexOf(art))
       index = dbArticle.indexOf(art)
     }
   })
 
-  dbArticle.splice(index, index -1, articleEdited)
+  dbArticle.splice(index, index - 1, articleEdited)
   dbArticle.slice(dbArticle.splice(index + 1, 1))
 
   let data = JSON.stringify({ blog: dbArticle, user: dbUser }, null, 2);
   fs.writeFile("./public/data/db.json", data, (err) => {
     if (err) console.log(err);
   });
+ res.redirect('/blog')
+ 
+  // for (i = 0; i < dbArticle.length; i++) {
+  //   const articleEdited = {
+  //     id: i,
+  //     img: dbArticle[i].img,
+  //     link_title: dbArticle[i].link_title,
+  //     desc: dbArticle[i].desc,
+  //     article_txt: dbArticle[i].article_txt,
+  //     alt: dbArticle[i].alt,
+  //   }
+  //   console.log(articleEdited);
+  //   dbArticle.push(articleEdited);
+  // }
+  // let data2 = JSON.stringify({ blog: dbArticle, user: dbUser }, null, 2);
 
-  res.redirect('/blog')
+  // fs.writeFile("./public/db.json", data2, (err) => {
+  //   if (err) console.log(err);
+  // });
+ 
 };
 
 exports.deleteArticle = (req, res) => {
