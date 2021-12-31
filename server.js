@@ -10,7 +10,8 @@ const
     env = require('dotenv').config(),
     app = express(),
     bodyParser = require('body-parser'),
-    methodOverride = require('method-override');
+    methodOverride = require('method-override'),
+    multer = require('multer');
     
 // Configuration Handlebars
 app.set('view engine', 'hbs')
