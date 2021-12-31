@@ -1,0 +1,69 @@
+<div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">
+
+    <div class="col-12 bloglist">
+        <!-- USER -->
+        {{!-- Permet d'obtenir tout mes items afin de les afficher --}}
+        {{#each blogitem }}
+        <div id="BLOG" class="row border-bottom">
+            <div class="col-md-2 my-3">
+                <div class="roundedImageBlog"><img src="{{ this.img }}" heigth="100%" width="100%"></div>
+            </div>
+            <div class="col-md-10 d-flex flex-row justify-content-center align-items-center mb-2">
+                <div id="user0" class="col-2">{{ this.link_title }}</div>
+                <div id="user0" class="col-3">{{ this.desc }}</div>
+                <div id="user0" class="col-3">{{ this.article_txt }}</div>
+                <div class="col-4 d-flex flex-row justify-content-center align-items-center">
+                    <div class="mx-3" data-bs-toggle="modal" data-bs-target="#editCreation{{this.id}}" data-bs-whatever="@fat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                            </path>
+                            <path fill-rule="evenodd"
+                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editCreation{{ this.id }}" aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Edition Creation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Titre:</label>
+                            <textarea class="form-control" id="message-title{{ i.id }}">{{ this.link_title }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Desciption:</label>
+                            <textarea class="form-control" id="message-desc{{ i.id }}">{{ this.desc }}</textarea>
+                        </div>
+                        <div id="psd" class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Paragraphe:</label>
+                            <textarea class="form-control" id="message-text{{ i.id }}">{{ this.article_txt }}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#modaldel{{ i.id }}{{ @key }}">Non</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Oui</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const zsd = document.getElementById("psd")
+            console.log(zsd.scrollHeight)
+        </script>
+
+        {{/each }}
+
+    </div>
+</div>

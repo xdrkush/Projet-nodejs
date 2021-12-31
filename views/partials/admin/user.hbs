@@ -4,9 +4,9 @@
         <!-- USER -->
         {{!-- Permet d'obtenir tout les utilisateurs afin de les afficher --}}
         {{#each user }}
-        <div id="USR" class="row border-bottom">
+        <div id="USR{{ this.id }}" class="row border-bottom">
             <div class="col-md-2 my-3">
-                <div class="roundedImage"><img src="{{ this.img }}" heigth="100%" width="100%"></div>
+                <div class="roundedImageUser"><img src="{{ this.img }}" heigth="100%" width="100%"></div>
             </div>
             <div class="col-md-10 d-flex flex-row justify-content-center align-items-center mb-2">
                 <div id="user{{ this.id }}" class="col-8">{{ this.prenom }} {{ this.nom }}</div>
@@ -31,9 +31,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- MOdal edit -->
-        <div class="modal fade" id="edituser{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <!-- MOdal edit -->
+        <div class="modal fade" id="edituser{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ this.id }}"
             aria-hidden="true">
             <div class="modal-dialog">
                 <form action="/editUser/{{ this.id }}?_method=PUT" method="post">
@@ -75,13 +74,13 @@
         </div>
 
         <!-- Modal ban -->
-        <div class="modal fade" id="modalban{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="modalban{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabe2{{ this.id }}"
             aria-hidden="true">
             <div class="modal-dialog">
                 <form action="/ban/{{ this.id }}?_method=PUT" method="post">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <p class="modal-title" id="exampleModalLabel">Voulez vous bannir <b>{{ this.prenom }} {{
+                            <p class="modal-title" id="exampleModalLabe2">Voulez vous bannir <b>{{ this.prenom }} {{
                                     this.nom }}</b> ?</p>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -94,6 +93,8 @@
                 </form>
             </div>
         </div>
+        </div>
+        
         {{/each }}
     </div>
 </div>

@@ -16,7 +16,8 @@ exports.adminPage = (req, res) => {
     title: `${process.env.ETP} - Administration`,
     session: sess,
     isAdmin: admin,
-    user: fakedb.user
+    user: fakedb.user,
+    blogitem: fakedb.blog
   })
 }
 
