@@ -7,8 +7,8 @@
                     role="tab" aria-controls="user" aria-selected="true">Utilisateur</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="blog-tab" data-bs-toggle="tab" data-bs-target="#blog" type="button"
-                    role="tab" aria-controls="blog" aria-selected="false">Blog</button>
+                <button class="nav-link" id="creations-tab" data-bs-toggle="tab" data-bs-target="#creations" type="button"
+                    role="tab" aria-controls="creations" aria-selected="false">Créations</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="com-tab" data-bs-toggle="tab" data-bs-target="#com" type="button"
@@ -23,8 +23,8 @@
         <div class="tab-content" id="myTabContent">
             <!-- USER TAB -->
             {{> admin/user }}
-            <!-- BLOG TAB -->
-            {{> admin/blog }}
+            <!-- Creations TAB -->
+            {{> admin/creations }}
             <!-- COM TAB -->
             {{> admin/comment }}
             <!-- MSG TAB -->

@@ -10,9 +10,10 @@ const upload  = require('./config/multer')
 // Import des controllers
 const HomeController = require('./controllers/HomeController')
 const ContactController = require('./controllers/ContactController')
-const BlogController = require('./controllers/BlogController')
+const CreationsController = require('./controllers/CreationsController')
 const AdminController = require('./controllers/AdminController')
 const AuthController = require('./controllers/AuthController')
+const UserEditProfil = require('./controllers/UserController')
 
 // Import Middleware
 const mdl = require('./middleware/middleware')
@@ -34,18 +35,27 @@ router.route('/logout')
     .get(HomeController.homePage)
     .post(AuthController.authLogout)
 
-router.route('/blog')
-    .get(BlogController.blogPage)
+router.route('/creations')
+    .get(CreationsController.creationsPage)
 
-router.route("/blog/article/:id")
-    .get(mdl.articleID, BlogController.blogID)
-    .put(mdl.isAdmin, mdl.editArticleID, BlogController.editArticle)
-    .delete(mdl.isAdmin, mdl.editArticleID, BlogController.deleteArticle)
+router.route("/creations/:id")
+    .get(mdl.articleID, CreationsController.creationsID)
+
+router.route("/creations/edit/:id")
+    .put(mdl.isAdmin, mdl.editArticleID, CreationsController.editArticle)
+
+router.route('/creations/delete/:id')
+    .delete(mdl.isAdmin, mdl.editArticleID, CreationsController.deleteArticle)
 
 router.route('/contact')
     .get(ContactController.contactPage)
     .post(ContactController.sendMessage)
     
+// Client
+router.route('/profil/edit/:id')
+    .put(upload.single('avatar'), UserEditProfil.editUserProfil)
+
+    // Administration   
 router.route('/admin')
     .get(mdl.isAdmin, AdminController.adminPage)
 
@@ -59,8 +69,8 @@ router.route('/deleteCom/:id')
     .delete(mdl.isAdmin, AdminController.deleteCom)
 
 router.route('/test')
-    .get(BlogController.blogPage)
-    .post(upload.single('avatar'), BlogController.blogPage)
+    .get(CreationsController.creationsPage)
+    .post(upload.single('avatar'), CreationsController.creationsPage)
 
 // /Routes
 

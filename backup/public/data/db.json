@@ -41,76 +41,24 @@
             "genre": "f",
             "age": 78,
             "email": "InesGendron@dayrep.com",
-            "img": "https://images.unsplash.com/photo-1589785157215-127232cf9dca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=663&q=80",
-            "commentaire2_attente": [
+            "password":"mypwsd",
+            "logo": "https://images.unsplash.com/photo-1589785157215-127232cf9dca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=663&q=80",
+            "com_attente": [
                 {
                     "content": "",
                     "date": ""
                 }
             ],
-            "commentaire2": [
+            "com_check": [
                 {
                     "content": "",
                     "date": ""
                 }
             ],
-            "commentaire_attente": [
-                "Vive roi",
-                "Oui david"
-            ],
-            "commentaire": [],
-            "message_send": [],
-            "blacklist": "non",
-            "role": "membre"
-        },
-        {
-            "id": 1,
-            "prenom": "Joy",
-            "nom": "Lachapelle",
-            "genre": "f",
-            "age": 34,
-            "email": "JoyLachapelle@dayrep.com",
-            "img": "https://images.unsplash.com/photo-1597995722639-b48ea7c50846?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-            "commentaire_attente": [
-                "Vive la vie",
-                "OUISDUSDFSD"
-            ],
-            "commentaire": [],
-            "message_send": [],
-            "blacklist": "non",
-            "role": "membre"
-        },
-        {
-            "id": 2,
-            "prenom": "David",
-            "nom": "Fétiche",
-            "genre": "h",
-            "age": 25,
-            "email": "DavidFrechette@dayrep.com",
-            "img": "https://images.unsplash.com/photo-1604871634690-e57d400acccf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=757&q=80",
-            "commentaire_attente": [
-                "Oui mdr"
-            ],
-            "commentaire": [],
-            "message_send": [
-                "sa"
-            ],
-            "blacklist": "non",
-            "role": "membre"
-        },
-        {
-            "id": 3,
-            "prenom": "Georges",
-            "nom": "Rochon",
-            "genre": "h",
-            "age": 44,
-            "email": "GeorgesRochon@jourrapide.com",
-            "img": "https://images.unsplash.com/photo-1603813425271-6ed9a5720f86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-            "commentaire_attente": [],
-            "commentaire": [],
-            "message_send": [],
-            "blacklist": "non",
-            "role": "membre"
+            "avis":[{"note":0, "content":"somethig in this"}],
+            "message_to_admin": [],
+            "ban": "non",
+            "role": "MEMBRE"
         }
     ]
 }

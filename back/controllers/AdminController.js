@@ -11,13 +11,12 @@ exports.adminPage = (req, res) => {
   } else {
     var sess = true
   }
-
   res.render('admin', {
     title: `${process.env.ETP} - Administration`,
     session: sess,
     isAdmin: admin,
     user: fakedb.user,
-    blogitem: fakedb.blog
+    blogitem: fakedb.blog,
   })
 }
 

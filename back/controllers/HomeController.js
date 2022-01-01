@@ -16,10 +16,14 @@ exports.homePage = (req, res) => {
     var sess = true
   }
 
+  var nbr = Number(process.env.SESSID)
+  nbr -= 1
+
   res.render('home', {
     title: `${process.env.ETP} - Home`,
     session: sess,
     isAdmin: admin,
-    blogitem: fakedb.blog
+    blogitem: fakedb.blog,
+    userLog: fakedb.user[nbr]
   })
 }
