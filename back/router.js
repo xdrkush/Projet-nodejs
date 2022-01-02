@@ -20,7 +20,9 @@ const mdl = require('./middleware/middleware')
 // Routes
 router.route('/')
     .get(HomeController.homePage)
-    .post(HomeController.sendMessage)
+    
+router.route('/contact')
+.post(HomeController.sendMessage)
 
 // Auth 
 router.route('/login')
