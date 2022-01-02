@@ -1,45 +1,47 @@
+const fakedb = require('../../public/data/db.json');
+const fs = require("fs");
+
 exports.editUserProfil = (req, res) => {
-    console.log("controller edit user profil", req.params.id, req.body);
-  
-    let dbArticle = fakedb.blog
-    let dbUser = fakedb.user
-    let index = 0
-  
-    var nbr = Number(req.params.id)
-    nbr -= 1
-  
-    const userEdited = {
-        id: Number(req.params.id),
-        prenom: (req.body.prenom === "") ? fakedb.user[nbr].prenom : req.body.prenom,
-        nom:(req.body.nom === "") ? fakedb.user[nbr].nom : req.body.nom,
-        genre: fakedb.user[nbr].genre,
-        age: fakedb.user[nbr].age,
-        email: (req.body.email === "") ? fakedb.user[nbr].email : req.body.email,
-        password: (req.body.password === "") ? fakedb.user[nbr].password : req.body.password,
-        fb_log: fakedb.user[nbr].fb_log,
-        logo: (req.body.logo === "") ? fakedb.user[nbr].logo : req.body.logo,
-        com_attente: fakedb.user[nbr].com_attente,
-        com_check: fakedb.user[nbr].com_check,
-        avis: fakedb.user[nbr].avis,
-        message_to_admin: fakedb.user[nbr].message_to_admin,
-        ban: fakedb.user[nbr].ban,
-        role: fakedb.user[nbr].role,
+
+
+
+  let dbArticle = fakedb.creations
+  let dbUser = fakedb.user
+  let index = 0
+
+  console.log("TEST AGE", typeof (fakedb.user[req.params.id].age));
+  console.log("controller edit user profil", req.params.id, req.body);
+
+  const userEdited = {
+    id: Number(req.params.id),
+    prenom: (req.body.prenom === "") ? fakedb.user[req.params.id].prenom : req.body.prenom,
+    nom: (req.body.nom === "") ? fakedb.user[req.params.id].nom : req.body.nom,
+    age: fakedb.user[req.params.id].age,
+    email: (req.body.email === "") ? fakedb.user[req.params.id].email : req.body.email,
+    password: fakedb.user[req.params.id].password,
+    fb_log: fakedb.user[req.params.id].fb_log,
+    logo: (req.body.avatar === "") ? fakedb.user[req.params.id].logo : req.body.avatar,
+    com_attente: fakedb.user[req.params.id].com_attente,
+    com_check: fakedb.user[req.params.id].com_check,
+    avis: fakedb.user[req.params.id].avis,
+    message_to_admin: fakedb.user[req.params.id].message_to_admin,
+    ban: fakedb.user[req.params.id].ban,
+    role: fakedb.user[req.params.id].role,
+  }
+
+  dbUser.forEach(art => {
+    if (art.id === Number(req.params.id)) {
+      index = dbUser.indexOf(art)
     }
-  
-    dbUser.forEach(art => {
-      if (art.id === Number(req.params.id)) {
-        index = dbUser.indexOf(art)
-      }
-    })
-  
-    dbUser.splice(index, index - 1, userEdited)
-    dbUser.slice(dbUser.splice(index + 1, 1))
-   
-    let data = JSON.stringify({ blog: dbArticle, user: dbUser }, null, 2);
-    fs.writeFile("./public/data/db.json", data, (err) => {
-      if (err) console.log(err);
-    });
-   res.redirect('/')
-   
-  };
-  
+  })
+
+  dbUser.splice(index, index - 1, userEdited)
+  dbUser.slice(dbUser.splice(index + 1, 1))
+
+  let data = JSON.stringify({ creations: dbArticle, user: dbUser }, null, 2);
+  fs.writeFile("./public/data/db.json", data, (err) => {
+    if (err) console.log(err);
+  });
+  res.redirect('back')
+
+};

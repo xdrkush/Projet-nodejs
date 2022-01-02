@@ -5,7 +5,7 @@
 // Import de module
 const express = require('express')
 const router = express.Router()
-const upload  = require('./config/multer')
+const upload = require('./config/multer')
 
 // Import des controllers
 const HomeController = require('./controllers/HomeController')
@@ -22,19 +22,21 @@ const mdl = require('./middleware/middleware')
 router.route('/')
     .get(HomeController.homePage)
 
+// Auth 
 router.route('/login')
     .post(AuthController.authLogin)
 
-router.route('/register') 
+router.route('/register')
     .post(AuthController.authRegister)
 
 router.route('/forgot')
     .post(AuthController.authForgot)
 
-router.route('/logout') 
+router.route('/logout')
     .get(HomeController.homePage)
     .post(AuthController.authLogout)
 
+// Créations
 router.route('/creations')
     .get(CreationsController.creationsPage)
 
@@ -47,15 +49,16 @@ router.route("/creations/edit/:id")
 router.route('/creations/delete/:id')
     .delete(mdl.isAdmin, mdl.editArticleID, CreationsController.deleteArticle)
 
+// Contact
 router.route('/contact')
     .get(ContactController.contactPage)
     .post(ContactController.sendMessage)
-    
+
 // Client
 router.route('/profil/edit/:id')
-    .put(upload.single('avatar'), UserEditProfil.editUserProfil)
+    .put(mdl.SessionsActive, upload.single('avatar'), UserEditProfil.editUserProfil)
 
-    // Administration   
+// Administration   
 router.route('/admin')
     .get(mdl.isAdmin, AdminController.adminPage)
 
@@ -68,6 +71,7 @@ router.route('/editUser/:id')
 router.route('/deleteCom/:id')
     .delete(mdl.isAdmin, AdminController.deleteCom)
 
+// Dev
 router.route('/test')
     .get(CreationsController.creationsPage)
     .post(upload.single('avatar'), CreationsController.creationsPage)

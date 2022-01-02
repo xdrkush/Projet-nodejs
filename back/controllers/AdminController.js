@@ -16,7 +16,7 @@ exports.adminPage = (req, res) => {
     session: sess,
     isAdmin: admin,
     user: fakedb.user,
-    blogitem: fakedb.blog,
+    creationsItem: fakedb.creations,
   })
 }
 

@@ -1,0 +1,92 @@
+{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="/">Mon super site</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/creations">Créations</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="/admin">Administration</a></li>
+                {{#if isAdmin }}
+                {{else }}
+                {{/if}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Espace client
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {{#if session }}
+                        <li><a class="dropdown-item" href="#">Vos commentaires</a></li>
+                        <li><a class="dropdown-item" data-bs-toggle="modal" href="#modalEditUser">Edition du profil</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" data-bs-toggle="modal" href="#Modallogout">Logout</a>
+                        </li>
+                        {{else }}
+                        <li><a data-bs-toggle="modal" href="#Modallogin" class="dropdown-item">Login</a>
+                        </li>
+                        {{/if }}
+                    </ul>
+                </li>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav> --}}
+
+
+
+
+<header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <a href="/" class="logo"><img src="/assets/images/all/logo.jpg" alt="Logo Etoile Services"></a>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                <li><a href="/creations">Créations</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li class="dropdown"><a href="#"><span>Espace client</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        {{#if isAdmin }}
+                        <li><a href="/admin">Administration</a></li>
+                        {{else }}
+                        {{/if}}
+                        {{#if session }}
+                        <li><a href="/">Vos commentaires</a></li>
+                        <li><a data-bs-toggle="modal" href="#">Edition du Profil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a data-bs-toggle="modal" href="#Modallogout">Déconnexion</a></li>
+                        {{else }}
+                        <li><a data-bs-toggle="modal" href="#Modallogin">Connexion <i style="font-size: 20px!important;" class="bi bi-box-arrow-in-right"></i></a></li>
+                        {{/if }}
+                    </ul>
+                </li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+            {{#if session}}
+            {{> modals/logout}}
+            {{> modals/editProfil}}
+            {{else}}
+            {{> modals/login}}
+            {{!-- {{> modals/register}}
+            {{> modals/forgot}} --}}
+            {{/if}}
+        </nav>
+    </div>
+</header>

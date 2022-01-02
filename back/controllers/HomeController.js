@@ -23,7 +23,7 @@ exports.homePage = (req, res) => {
     title: `${process.env.ETP} - Home`,
     session: sess,
     isAdmin: admin,
-    blogitem: fakedb.blog,
+    creationsItem: fakedb.creations,
     userLog: fakedb.user[nbr]
   })
 }

@@ -13,7 +13,7 @@
                     <div class="col-12">
                         <label name="prenom" for="text2" class="form-label">Votre Prénom</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="text1" value="{{userLog.prenom}}">
+                            <input type="text" name="prenom" class="form-control" id="text1" value="{{userLog.prenom}}">
                         </div>
                     </div>
                     <div class="col-12">
@@ -25,13 +25,14 @@
                     <div class="col-12">
                         <label for="registerInput" class="form-label">Votre Email</label>
                         <div class="col-12">
-                            <input name="email" type="email" class="form-control" id="registerInput" value="{{userLog.email}}">
+                            <input name="email" type="email" class="form-control" id="registerInput"
+                                value="{{userLog.email}}">
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="registerInput" class="form-label">Votre image de profil</label>
                         <div class="col-12">
-                            <input type="file" name="avatar"/>
+                            <input type="file" name="avatar" />
                         </div>
                     </div>
                 </div>

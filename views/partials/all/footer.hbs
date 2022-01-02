@@ -1,49 +1,75 @@
-<footer class="my-5">
+<footer id="footer">
+
+    {{!-- <div class="footer-newsletter">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row ftr">
-                        
-                        <div class="col-7">
-                            <h5>Lien rapide</h5>
-                            <ul class="nav flex-column">
-                                <li class="nav-item mb-2"><a href="/"
-                                        class="nav-link p-0 text-muted">Home</a></li>
-                                <li class="nav-item mb-2"><a href="/blog" class="nav-link p-0 text-muted">Blog</a>
-                                </li>
-                                <li class="nav-item mb-2"><a href="/contact"
-                                        class="nav-link p-0 text-muted">Contact</a></li>
-                                        {{#if session }}
-                            {{#if isAdmin }}
-                                <li class="nav-item mb-2"><a href="/admin"
-                                        class="nav-link p-0 text-muted">Admin</a></li>
-                                        {{/if }}
-                                        {{/if }}
-                            </ul>
-                        </div>
-
-                        <div class="col-5 w-100p">
-                            <form>
-                                <h5>Abonnez-vous à notre newsletter</h5>
-                                <p>Un condensé mensuel de ce qui est nouveau chez nous.</p>
-                                <div class="d-flex w-100 gap-2">
-                                    <label for="newsletter1" class="visually-hidden">Email</label>
-                                    <input id="newsletter1" type="text" class="form-control" placeholder="Email">
-                                    <button class="btn btn-primary" type="button">S'aboner</button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="d-flex justify-content-center py-4 my-4 border-top">
-                                <p>© Copyright 2021 - Axel Etoile - Tous droits réservés</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h4>Join Our Newsletter</h4>
+                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                    <form action="" method="post">
+                        <input type="email" name="email"><input type="submit" value="Subscribe">
+                    </form>
                 </div>
             </div>
         </div>
-    </footer>
+    </div> --}}
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Lien rapide</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/">Accueil</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/creations">Créations</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/cgu">Conditions générales d'utilisation</a>
+                        </li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/politique-de-confidentialite">Politique de
+                                confidentialité</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <a href="/"><img style="height: 70px;" src="/assets/images/all/logo.jpg"
+                            alt="Logo Etoile Services"></a>
+                    <p>
+                        <strong>Tel:</strong> <a href="tel:0783079445">+33 07 83 07 94 45</a><br>
+                        <strong>Email:</strong> <a
+                            href="mailto:aeetoileservices@gmail.com">aeetoileservices@gmail.com</a><br>
+                    </p>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                </div>
+
+                {{!-- <div class="col-lg-4 footer-newsletter">
+                    <h4>Join Our Newsletter</h4>
+                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                    <form action="/newsletters" method="post">
+                        <input type="email" name="email"><input type="submit" value="Subscribe">
+                    </form>
+                </div> --}}
+                
+
+                {{!-- <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Visiter ma page facebook</h4>
+                    <div class="social-links mt-3">
+                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    </div>
+                </div> --}}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Etoile Services</span></strong> - Tous droits réservés
+        </div>
+        <div class="credits">
+            Une création de <a href="https://axeletoile.fr/" style="color:#194699!important;">Axel Etoile</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->

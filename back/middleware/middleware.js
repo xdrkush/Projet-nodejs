@@ -26,23 +26,37 @@ module.exports = {
     var nbr = Number(req.params.id)
     nbr -= 1
 
-    if (fakedb.blog[nbr] === undefined) {
+    if (fakedb.creations[nbr] === undefined) {
       res.redirect('/blog')
     } else {
       next()
     }
   },
-  editArticleID:(req, res, next) => {
+  editArticleID: (req, res, next) => {
     const fakedb = require('../../public/data/db.json');
 
     var nbr = Number(req.params.id)
     nbr -= 1
 
-    if (fakedb.blog[nbr] === undefined) {
+    if (fakedb.creations[nbr] === undefined) {
       res.redirect('/admin')
     } else {
       next()
     }
-  }
+  },
+  SessionsActive: (req, res, next) => {
+    const fakedb = require('../../public/data/db.json');
+
+    var nbr = Number(process.env.SESSID)
+    nbr -= 1
+
+    if (fakedb.user[nbr] === undefined) {
+      res.redirect('/admin')
+    } else {
+      next()
+      const userLog = fakedb.user[nbr]
+    }
+  },
+
 
 };

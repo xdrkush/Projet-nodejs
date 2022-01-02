@@ -32,69 +32,72 @@
                 </div>
             </div>
             <!-- MOdal edit -->
-        <div class="modal fade" id="edituser{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ this.id }}"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <form action="/editUser/{{ this.id }}?_method=PUT" method="post">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edition du profil de {{ this.prenom }}
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="recipient-name{{ this.id }}" class="col-form-label">Prénom:</label>
-                                <input name="prenom" type="text" class="form-control" id="recipient-name{{ this.id }}"
-                                    value="{{ this.prenom }}">
+            <div class="modal fade" id="edituser{{ this.id }}" tabindex="-1"
+                aria-labelledby="exampleModalLabel{{ this.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="/editUser/{{ this.id }}?_method=PUT" method="post">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edition du profil de {{ this.prenom }}
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
-                            <div class="mb-3">
-                                <label for="recipient-lastname{{ this.id }}" class="col-form-label">Nom:</label>
-                                <input name="nom" type="text" class="form-control" id="recipient-lastname{{ this.id }}"
-                                    value="{{ this.nom }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email{{ this.id }}" class="form-label">Email</label>
-                                <div class="col-12">
-                                    <input name="email" type="email" class="form-control" id="email{{ this.id }}"
-                                        value="{{ this.email }}">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="recipient-name{{ this.id }}" class="col-form-label">Prénom:</label>
+                                    <input name="prenom" type="text" class="form-control"
+                                        id="recipient-name{{ this.id }}" value="{{ this.prenom }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-lastname{{ this.id }}" class="col-form-label">Nom:</label>
+                                    <input name="nom" type="text" class="form-control"
+                                        id="recipient-lastname{{ this.id }}" value="{{ this.nom }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email{{ this.id }}" class="form-label">Email</label>
+                                    <div class="col-12">
+                                        <input name="email" type="email" class="form-control" id="email{{ this.id }}"
+                                            value="{{ this.email }}">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <input email="file" type="file" class="form-control"
+                                        id="inputGroupFile{{ this.id }}">
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <input email="file" type="file" class="form-control" id="inputGroupFile{{ this.id }}">
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
                             </div>
                         </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal ban -->
+            <div class="modal fade" id="modalban{{ this.id }}" tabindex="-1"
+                aria-labelledby="exampleModalLabe2{{ this.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="/ban/{{ this.id }}?_method=PUT" method="post">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <p class="modal-title" id="exampleModalLabe2">Voulez vous bannir <b>{{ this.prenom }} {{
+                                        this.nom }}</b> ?</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <!-- Modal ban -->
-        <div class="modal fade" id="modalban{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabe2{{ this.id }}"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <form action="/ban/{{ this.id }}?_method=PUT" method="post">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <p class="modal-title" id="exampleModalLabe2">Voulez vous bannir <b>{{ this.prenom }} {{
-                                    this.nom }}</b> ?</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        </div>
-        
         {{/each }}
     </div>
 </div>

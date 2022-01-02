@@ -6,9 +6,8 @@
         <di class="col-md-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/creations">creations</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ creationsitem.link_title }}</li>
+                    <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="/creations">Créations</a></li>
                 </ol>
             </nav>
         </di>
@@ -16,24 +15,17 @@
             <div class="row">
                 <div class="col-xs-12 col-xm-12 col-md-4">
                     <div class="card">
-                        <img src="{{ creationsitem.img }}" class="card-img-top" alt="{{ creationsitem.alt }}">
+                        <img src="/assets/images/creations/{{ creationsItem.img }}" class="card-img-top"
+                            alt="{{ creationsItem.alt }}">
                         <div class="card-body">
-                            <p class="card-text">{{ creationsitem.desc }}</p>
+                            <p class="card-text"><i>Fait le : {{ creationsItem.date }}</i></p>
                         </div>
                     </div>
                 </div>
                 <div class="itemid col-xs-12 col-xm-12 col-md-8">
-                    <p>{{ creationsitem.article_txt }}</p>
+                    <h4>{{ creationsItem.desc }}</h4>
                 </div>
             </div>
         </div>
     </div>
-    {{#if isAdmin }}
-    <div class="col-md-12">
-        {{> admin/panel/deleteItem }}
-    </div>
-    {{/if }}
 </div>
-
-
-

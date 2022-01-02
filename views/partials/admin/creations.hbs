@@ -3,10 +3,11 @@
     <div class="col-12 creationslist">
         <!-- USER -->
         {{!-- Permet d'obtenir tout mes items afin de les afficher --}}
-        {{#each creationsitem }}
+        {{#each creationsItem }}
         <div id="creations" class="row border-bottom">
             <div class="col-md-2 my-3">
-                <div class="roundedImagecreations"><img src="{{ this.img }}" heigth="100%" width="100%"></div>
+                <div class="roundedImagecreations"><img src="/assets/images/creations/{{ this.img }}" heigth="100%"
+                        width="100%"></div>
             </div>
             <div class="col-md-10 d-flex flex-row justify-content-center align-items-center mb-2">
                 <div id="user0" class="col-2">{{ this.link_title }}</div>
@@ -43,7 +44,7 @@
                 </div>
             </div>
         </div>
-
+        {{!-- Modal edition --}}
         <div class="modal fade" id="editCreation{{ this.id }}" aria-hidden="true"
             aria-labelledby="exampleModalToggleLabel" tabindex="-1">
             <div class="modal-dialog">
@@ -64,11 +65,17 @@
                                 <textarea class="form-control" name="desc"
                                     id="message-desc{{ i.id }}">{{ this.desc }}</textarea>
                             </div>
-                            <div id="psd" class="mb-3">
+                            <div class="mb-3">
                                 <label for="disabledTextInput" class="form-label">Paragraphe:</label>
                                 <textarea class="form-control" name="article"
                                     id="message-text{{ i.id }}">{{ this.article_txt }}</textarea>
                             </div>
+                            <div class="mb-3">
+                                <label for="disabledTextInput" class="form-label">Lien image:</label>
+                                <textarea class="form-control" name="img"
+                                    id="message-img{{ i.id }}">{{ this.img }}</textarea>
+                            </div>
+
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"

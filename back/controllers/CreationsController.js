@@ -19,7 +19,7 @@ exports.creationsPage = (req, res) => {
     title: `${process.env.ETP} - Création`,
     session: sess,
     isAdmin: admin,
-    creationsitem: fakedb.creations
+    creationsItem: fakedb.creations
   })
 }
 
@@ -52,7 +52,7 @@ exports.creationsID = (req, res) => {
     session: sess,
     isAdmin: admin,
     creationsID: req.params.id,
-    creationsitem: fakedb.creations[nbr]
+    creationsItem: fakedb.creations[nbr]
   });
 
 };
@@ -63,14 +63,12 @@ exports.editArticle = (req, res) => {
   let dbArticle = fakedb.creations
   let dbUser = fakedb.user
   let index = 0
-  console.log('id id id ', req.params.id);
-
   var nbr = Number(req.params.id)
   nbr -= 1
 
   const articleEdited = {
     id: Number(req.params.id),
-    img: fakedb.creations[nbr].img,
+    img: (req.body.img === "") ? fakedb.creations[nbr].img : req.body.img,
     link_title: (req.body.title === "") ? fakedb.creations[nbr].link_title : req.body.title,
     desc: (req.body.desc === "") ? fakedb.creations[nbr].desc : req.body.desc,
     article_txt: (req.body.article === "") ? fakedb.creations[nbr].article_txt : req.body.article,
@@ -91,8 +89,8 @@ exports.editArticle = (req, res) => {
   fs.writeFile("./public/data/db.json", data, (err) => {
     if (err) console.log(err);
   });
- res.redirect('back')
- 
+  res.redirect('back')
+
 };
 
 exports.deleteArticle = (req, res) => {
