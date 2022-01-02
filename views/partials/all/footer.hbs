@@ -18,21 +18,27 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-4 col-md-6 footer-links">
+                <div class="col-lg-4 col-md-5 footer-links">
                     <h4>Lien rapide</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="/">Accueil</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="/creations">Créations</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="/cgu">Conditions générales d'utilisation</a>
-                        </li>
+                        {{#if session}}
+                        {{#if isAdmin}}
+                        <li><i class="bx bx-chevron-right"></i> <a href="/admin">Administration</a></li>
+                        {{else}}
+                        {{/if}}
+                        {{/if}}
                         <li><i class="bx bx-chevron-right"></i> <a href="/politique-de-confidentialite">Politique de
                                 confidentialité</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/cgu">Conditions générales d'utilisation</a>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 footer-contact">
-                    <a href="/"><img style="height: 70px;" src="/assets/images/all/logo.jpg"
+                <div class="col-lg-4 col-md-7 footer-contact d-flex justify-content-center align-items-center">
+                    <a href="/" class="me-3"><img style="height: 70px;" src="/assets/images/all/logo.jpg"
                             alt="Logo Etoile Services"></a>
                     <p>
                         <strong>Tel:</strong> <a href="tel:0783079445">+33 07 83 07 94 45</a><br>

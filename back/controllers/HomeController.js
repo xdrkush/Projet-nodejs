@@ -27,3 +27,7 @@ exports.homePage = (req, res) => {
     userLog: fakedb.user[nbr]
   })
 }
+exports.sendMessage = (req, res) => {
+  console.log("controller send Message", req.body);
+  res.redirect('/')
+}

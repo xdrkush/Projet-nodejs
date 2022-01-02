@@ -9,7 +9,6 @@ const upload = require('./config/multer')
 
 // Import des controllers
 const HomeController = require('./controllers/HomeController')
-const ContactController = require('./controllers/ContactController')
 const CreationsController = require('./controllers/CreationsController')
 const AdminController = require('./controllers/AdminController')
 const AuthController = require('./controllers/AuthController')
@@ -21,6 +20,7 @@ const mdl = require('./middleware/middleware')
 // Routes
 router.route('/')
     .get(HomeController.homePage)
+    .post(HomeController.sendMessage)
 
 // Auth 
 router.route('/login')
@@ -48,11 +48,6 @@ router.route("/creations/edit/:id")
 
 router.route('/creations/delete/:id')
     .delete(mdl.isAdmin, mdl.editArticleID, CreationsController.deleteArticle)
-
-// Contact
-router.route('/contact')
-    .get(ContactController.contactPage)
-    .post(ContactController.sendMessage)
 
 // Client
 router.route('/profil/edit/:id')

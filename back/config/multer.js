@@ -32,7 +32,6 @@ const upload = multer({
     if (
       file.mimetype === "image/png" ||
       file.mimetype === "image/jpg" ||
-      file.mimetype === "image/gif" ||
       file.mimetype === "image/jpeg"
     ) {
       cb(null, true)
