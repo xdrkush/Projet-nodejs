@@ -14,7 +14,7 @@ exports.creationsPage = (req, res) => {
   } else {
     var sess = true
   }
-  
+
   var nbr = Number(process.env.SESSID)
   nbr -= 1
 
@@ -118,4 +118,27 @@ exports.deleteArticle = (req, res) => {
   });
 
   res.redirect('back')
+};
+
+exports.createArticle = (req, res) => {
+ 
+
+  let dbArticle = fakedb.creations
+  let dbUser = fakedb.user
+  var nbr = fakedb.creations.length += 1
+
+  dbArticle.push({
+    id: nbr,
+    img: req.body.avatar,
+    desc: req.body.desc,
+    date: "date" 
+  })
+  console.log(dbArticle)
+  let data = JSON.stringify({ creations: dbArticle, user: dbUser }, null, 2);
+  fs.writeFile("./public/data/db.json", data, (err) => {
+    if (err) console.log(err);
+  });
+  console.log("controller create Article", nbr, req.body);
+  res.redirect('back')
+
 };

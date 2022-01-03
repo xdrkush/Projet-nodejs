@@ -68,6 +68,9 @@ router.route('/editUser/:id')
 router.route('/deleteCom/:id')
     .delete(mdl.isAdmin, AdminController.deleteCom)
 
+router.route('/article/create')
+    .post(mdl.isAdmin,CreationsController.createArticle)
+
 // Dev
 router.route('/test')
     .get(CreationsController.creationsPage)
