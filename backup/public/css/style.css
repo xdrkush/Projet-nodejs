@@ -4395,7 +4395,6 @@ textarea.form-control-lg {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
 .card > hr {
@@ -11108,7 +11107,7 @@ body {
 }
 
 header {
-  height: 83vh;
+  height: 57vh;
   background-position: center;
   background-image: url("https://images.unsplash.com/photo-1636576109679-6f23fdc040c8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1421&q=80");
   background-repeat: no-repeat;
@@ -11135,12 +11134,18 @@ header h1, header .h1 {
 }
 
 /* Admin page - user */
-.roundedImage {
+.roundedImageUser {
   overflow: hidden;
   border-radius: 50px;
   width: 90px;
   height: 90px;
-  background-color: blue;
+}
+
+/* Admin page - blog */
+.roundedImageBlog {
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
 }
 
 /* Card */
