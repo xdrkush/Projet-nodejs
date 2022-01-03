@@ -11,12 +11,17 @@ exports.adminPage = (req, res) => {
   } else {
     var sess = true
   }
+  
+  var nbr = Number(process.env.SESSID)
+  nbr -= 1
+
   res.render('admin', {
     title: `${process.env.ETP} - Administration`,
     session: sess,
     isAdmin: admin,
     user: fakedb.user,
     creationsItem: fakedb.creations,
+    userLog: fakedb.user[nbr]
   })
 }
 

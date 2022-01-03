@@ -14,12 +14,16 @@ exports.creationsPage = (req, res) => {
   } else {
     var sess = true
   }
+  
+  var nbr = Number(process.env.SESSID)
+  nbr -= 1
 
   res.render('creations', {
     title: `${process.env.ETP} - Création`,
     session: sess,
     isAdmin: admin,
-    creationsItem: fakedb.creations
+    creationsItem: fakedb.creations,
+    userLog: fakedb.user[nbr]
   })
 }
 
