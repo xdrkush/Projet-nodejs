@@ -1,4 +1,5 @@
 const fakedb = require('../../public/data/db.json');
+const dbArticles = require('../../public/data/db.json').creations;
 const fs = require("fs");
 
 exports.creationsPage = (req, res) => {
@@ -125,20 +126,44 @@ exports.createArticle = (req, res) => {
 
   let dbArticle = fakedb.creations
   let dbUser = fakedb.user
-  var nbr = fakedb.creations.length += 1
+  console.log("0",fakedb.creations)
 
-  dbArticle.push({
-    id: nbr,
-    img: req.body.avatar,
-    desc: req.body.desc,
-    date: "date" 
-  })
-  console.log(dbArticle)
+  const art = {
+    id:fakedb.creations.length += 1,
+    img:req.body.avatar,
+    desc:req.body.desc,
+    date: "sd"
+  };
+  
+  fakedb.creations.push(art)
+  console.log("1",dbArticle)
   let data = JSON.stringify({ creations: dbArticle, user: dbUser }, null, 2);
   fs.writeFile("./public/data/db.json", data, (err) => {
     if (err) console.log(err);
   });
-  console.log("controller create Article", nbr, req.body);
+  console.log("controller create Article", 0, req.body);
   res.redirect('back')
 
+};
+
+exports.createArticleFun = (req, res) => {
+  console.log("je suis le controller create Message", req.body);
+  let dbUser = fakedb.user
+  const art = {
+    id:fakedb.creations.length += 1,
+    img:req.body.avatar,
+    desc:req.body.desc,
+    date: "sd"
+  };
+
+  dbArticles.push(art);
+
+  let data = JSON.stringify({ creations: dbArticles, user: dbUser }, null, 2);
+
+  fs.writeFile("./public/data/db.json", data, (err) => {
+    if (err) console.log(err);
+    console.log("Fichier Json Créé");
+  });
+
+  res.redirect('back');
 };
