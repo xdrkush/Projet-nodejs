@@ -6,7 +6,7 @@
         {{#each user }}
         <div id="USR{{ this.id }}" class="row border-bottom">
             <div class="col-md-2 my-3">
-                <div class="roundedImageUser"><img src="{{ this.logo }}" heigth="100%" width="100%"></div>
+                <div class="roundedImageUser"><img src="/assets/images/user/{{ this.logo }}" heigth="100%" width="100%"></div>
             </div>
             <div class="col-md-10 d-flex flex-row justify-content-center align-items-center mb-2">
                 <div id="user{{ this.id }}" class="col-8">{{ this.prenom }} {{ this.nom }}</div>
