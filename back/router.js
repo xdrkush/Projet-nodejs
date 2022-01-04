@@ -69,7 +69,7 @@ router.route('/deleteCom/:id')
     .delete(mdl.isAdmin, AdminController.deleteCom)
 
 router.route('/article/create')
-    .post(mdl.isAdmin,CreationsController.createArticleFun)
+    .post(mdl.isAdmin, upload.single('avatar'), CreationsController.createArticleFun)
 
 // Dev
 router.route('/test')

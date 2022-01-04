@@ -27,7 +27,7 @@ module.exports = {
     nbr -= 1
 
     if (fakedb.creations[nbr] === undefined) {
-      res.redirect('/blog')
+      res.redirect('/creations')
     } else {
       next()
     }

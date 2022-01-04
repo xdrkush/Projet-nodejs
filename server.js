@@ -12,7 +12,8 @@ const
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     multer = require('multer'),
-    expressHbs =  require('express-handlebars');
+    expressHbs =  require('express-handlebars'),
+    Handlebars = require('handlebars');
     
 // Configuration Handlebars
 app.set('view engine', 'hbs')
@@ -29,6 +30,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+
+Handlebars.registerHelper('limit', function(ar, max){
+    var db = ar.slice(0,max);
+    return db;
+  });
 
 
 var hbs = expressHbs.create({});

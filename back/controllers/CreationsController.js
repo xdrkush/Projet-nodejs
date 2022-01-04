@@ -18,7 +18,6 @@ exports.creationsPage = (req, res) => {
 
   var nbr = Number(process.env.SESSID)
   nbr -= 1
-
   res.render('creations', {
     title: `${process.env.ETP} - Création`,
     session: sess,
@@ -74,10 +73,8 @@ exports.editArticle = (req, res) => {
   const articleEdited = {
     id: Number(req.params.id),
     img: (req.body.img === "") ? fakedb.creations[nbr].img : req.body.img,
-    link_title: (req.body.title === "") ? fakedb.creations[nbr].link_title : req.body.title,
     desc: (req.body.desc === "") ? fakedb.creations[nbr].desc : req.body.desc,
-    article_txt: (req.body.article === "") ? fakedb.creations[nbr].article_txt : req.body.article,
-    alt: fakedb.creations[nbr].alt,
+    date: fakedb.creations[nbr].date
   }
 
   dbArticle.forEach(art => {
@@ -124,9 +121,9 @@ exports.deleteArticle = (req, res) => {
 exports.createArticle = (req, res) => {
  
 
-  let dbArticle = fakedb.creations
-  let dbUser = fakedb.user
-  console.log("0",fakedb.creations)
+  let dbArticle = fakedb.creations;
+  let dbUser = fakedb.user;
+  console.log("0",fakedb.creations);
 
   const art = {
     id:fakedb.creations.length += 1,
@@ -135,27 +132,30 @@ exports.createArticle = (req, res) => {
     date: "sd"
   };
   
-  fakedb.creations.push(art)
-  console.log("1",dbArticle)
+  fakedb.creations.push(art);
+  console.log("1",dbArticle);
   let data = JSON.stringify({ creations: dbArticle, user: dbUser }, null, 2);
   fs.writeFile("./public/data/db.json", data, (err) => {
     if (err) console.log(err);
   });
   console.log("controller create Article", 0, req.body);
-  res.redirect('back')
+  res.redirect('back');
 
 };
 
 exports.createArticleFun = (req, res) => {
-  console.log("je suis le controller create Message", req.body);
-  let dbUser = fakedb.user
+
+console.log(dbArticles)
+  //
   const art = {
     id:fakedb.creations.length += 1,
-    img:req.body.avatar,
+    img:req.file.filename,
     desc:req.body.desc,
     date: "sd"
   };
 
+  let dbUser = fakedb.user;
+  //
   dbArticles.push(art);
 
   let data = JSON.stringify({ creations: dbArticles, user: dbUser }, null, 2);

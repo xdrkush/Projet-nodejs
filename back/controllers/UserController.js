@@ -3,13 +3,10 @@ const fs = require("fs");
 
 exports.editUserProfil = (req, res) => {
 
-
-
   let dbArticle = fakedb.creations
   let dbUser = fakedb.user
   let index = 0
 
-  console.log("TEST AGE", typeof (fakedb.user[req.params.id].age));
   console.log("controller edit user profil", req.params.id, req.body);
 
   const userEdited = {
@@ -19,8 +16,7 @@ exports.editUserProfil = (req, res) => {
     age: fakedb.user[req.params.id].age,
     email: (req.body.email === "") ? fakedb.user[req.params.id].email : req.body.email,
     password: fakedb.user[req.params.id].password,
-    fb_log: fakedb.user[req.params.id].fb_log,
-    logo: (req.body.avatar === "") ? fakedb.user[req.params.id].logo : req.body.avatar,
+    logo: fakedb.user[req.params.id].logo,
     com_attente: fakedb.user[req.params.id].com_attente,
     com_check: fakedb.user[req.params.id].com_check,
     avis: fakedb.user[req.params.id].avis,
@@ -28,6 +24,7 @@ exports.editUserProfil = (req, res) => {
     ban: fakedb.user[req.params.id].ban,
     role: fakedb.user[req.params.id].role,
   }
+  console.log("try",req.body.avatar)
 
   dbUser.forEach(art => {
     if (art.id === Number(req.params.id)) {
