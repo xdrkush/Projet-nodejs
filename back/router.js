@@ -13,6 +13,7 @@ const CreationsController = require('./controllers/CreationsController')
 const AdminController = require('./controllers/AdminController')
 const AuthController = require('./controllers/AuthController')
 const UserEditProfil = require('./controllers/UserController')
+const DevController = require('./controllers/DevController')
 
 // Import Middleware
 const mdl = require('./middleware/middleware')
@@ -76,7 +77,13 @@ router.route('/test')
     .get(CreationsController.creationsPage)
     .post(upload.single('avatar'), CreationsController.creationsPage)
 
-// /Routes
+router.route('/api')
+    .get(mdl.isAdmin,DevController.get)
+router.route('/api/post')
+    .get(HomeController.homePage)
+    .post(upload.single('avatar'), DevController.CreateUser)
+
+    // /Routes
 
 // Exports de notre router
 module.exports = router

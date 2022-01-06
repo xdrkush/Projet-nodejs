@@ -1,6 +1,6 @@
-<form action="/article/create" method="post" enctype="multipart/form-data">
+<form action="/api/post" method="post" enctype="multipart/form-data">
 
-    <div class="modal fade" id="createArticle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+    <div class="modal fade" id="createUser" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
         tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -11,29 +11,45 @@
 
                 <div class="modal-body">
                     <div class="col-12">
-                        <label name="prenom" for="text2" class="form-label">Votre Prénom</label>
+                        <label for="text2" class="form-label">Prénom</label>
                         <div class="col-12">
                             <input type="text" name="prenom" class="form-control" id="text1" placeholder="Prénom">
                         </div>
                     </div>
                     <div class="col-12">
-                        <label for="text2" class="form-label">Votre Nom</label>
+                        <label for="text2" class="form-label">Nom</label>
                         <div class="col-12">
                             <input name="nom" type="text" class="form-control" id="text2" placeholder="Nom">
                         </div>
                     </div>
                     <div class="col-12">
-                        <label for="registerInput" class="form-label">Votre Email</label>
+                        <label for="registerInput" class="form-label">Email</label>
                         <div class="col-12">
                             <input name="email" type="email" class="form-control" id="registerInput"
                                 placeholder="Email">
                         </div>
                     </div>
                     <div class="col-12">
-                        <label for="registerInput" class="form-label">Votre image de profil</label>
+                        <label for="text2" class="form-label">Mot de passe de l'utilisateur</label>
+                        <div class="col-12">
+                            <input name="password" type="text" class="form-control" id="text2" placeholder="Mot de passe">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="registerInput" class="form-label">Image de profil</label>
                         <div class="col-12">
                             <input type="file" name="avatar"/>
                         </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="text2" class="form-label">Role</label>
+                        <div class="col-12">
+                            <input name="role" type="text" class="form-control" id="text2" placeholder="Nom">
+                        </div>
+                        <select name="selectRole" id="">
+                            <option value="membre">Membre</option>
+                            <option value="admin">Admin</option>
+                        </select>
                     </div>
                 </div>
 

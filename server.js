@@ -13,8 +13,22 @@ const
     methodOverride = require('method-override'),
     multer = require('multer'),
     expressHbs =  require('express-handlebars'),
-    Handlebars = require('handlebars');
+    Handlebars = require('handlebars'),
+    mysql = require('mysql');
     
+// Configuration Mysql
+db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '1234',
+    database: 'projet_njs'
+});
+
+db.connect((err) => {
+    if (err) console.error('error connecting: ' + err.stack);
+    console.log('connected as id ' + db.threadId);
+});
+
 // Configuration Handlebars
 app.set('view engine', 'hbs')
 app.engine('hbs', engine({

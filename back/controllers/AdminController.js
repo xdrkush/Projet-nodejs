@@ -1,6 +1,6 @@
 exports.adminPage = (req, res) => {
   const fakedb = require('../../public/data/db.json');
-
+console.log(req.path)
   if (process.env.ISADMIN == "false") {
     var admin = false
   } else {
@@ -11,18 +11,26 @@ exports.adminPage = (req, res) => {
   } else {
     var sess = true
   }
-  
+
   var nbr = Number(process.env.SESSID)
   nbr -= 1
 
-  res.render('admin', {
-    title: `${process.env.ETP} - Administration`,
-    session: sess,
-    isAdmin: admin,
-    user: fakedb.user,
-    creationsItem: fakedb.creations,
-    userLog: fakedb.user[nbr]
+  // SQL récupération de tout les users
+  let sql = `SELECT * FROM user`;
+
+  db.query(sql, (error, data, fields) => {
+    if (error) throw error;
+    res.render('admin', {
+      title: `${process.env.ETP} - Administration`,
+      session: sess,
+      isAdmin: admin,
+      user: data,
+      creationsItem: fakedb.creations,
+      userLog: fakedb.user[nbr]
+    })
   })
+
+
 }
 
 exports.banUser = (req, res) => {
