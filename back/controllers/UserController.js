@@ -3,42 +3,32 @@ const fs = require("fs");
 
 exports.editUserProfil = (req, res) => {
 
-  let dbArticle = fakedb.creations
-  let dbUser = fakedb.user
-  let index = 0
+  let sqlGet = `SELECT * FROM user WHERE id = ${process.env.SESSID}`;
 
-  console.log("controller edit user profil", req.params.id, req.body);
+  db.query(sqlGet, (error, data, fields) => {
+    if (error) throw error;
+    let sql = `INSERT INTO user set nom=?, prenom=?, email=?, password=?, logo=?, ban=?, role=?`;
+    let values = [
+      (req.body.nom === "") ? data.nom : req.body.nom,
+      (req.body.prenom === "") ? data.prenom : req.body.prenom,
+      (req.body.email === "") ? data.email : req.body.email,
+      data.password,
+      data.logo,
+      false,
+      false
+    ];
+    db.query(sql, values, function (err, data, fields) {
 
-  const userEdited = {
-    id: Number(req.params.id),
-    prenom: (req.body.prenom === "") ? fakedb.user[req.params.id].prenom : req.body.prenom,
-    nom: (req.body.nom === "") ? fakedb.user[req.params.id].nom : req.body.nom,
-    age: fakedb.user[req.params.id].age,
-    email: (req.body.email === "") ? fakedb.user[req.params.id].email : req.body.email,
-    password: fakedb.user[req.params.id].password,
-    logo: fakedb.user[req.params.id].logo,
-    com_attente: fakedb.user[req.params.id].com_attente,
-    com_check: fakedb.user[req.params.id].com_check,
-    avis: fakedb.user[req.params.id].avis,
-    message_to_admin: fakedb.user[req.params.id].message_to_admin,
-    ban: fakedb.user[req.params.id].ban,
-    role: fakedb.user[req.params.id].role,
-  }
-  console.log("try",req.body.avatar)
+      if (err) throw err;
+      // SQL récupération de tout les users
+      let sql = `SELECT * FROM user`;
 
-  dbUser.forEach(art => {
-    if (art.id === Number(req.params.id)) {
-      index = dbUser.indexOf(art)
-    }
+      db.query(sql, (error, dataRes, fields) => {
+        if (error) throw error;
+        res.redirect('back')
+      })
+    })
   })
-
-  dbUser.splice(index, index - 1, userEdited)
-  dbUser.slice(dbUser.splice(index + 1, 1))
-
-  let data = JSON.stringify({ creations: dbArticle, user: dbUser }, null, 2);
-  fs.writeFile("./public/data/db.json", data, (err) => {
-    if (err) console.log(err);
-  });
-  res.redirect('back')
+  console.log("controller edit user profil", req.params.id, req.body);
 
 };

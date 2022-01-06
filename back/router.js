@@ -5,8 +5,8 @@
 // Import de module
 const express = require('express')
 const router = express.Router()
-const upload = require('./config/multer')
-
+const uploadUser = require('./config/multer_user')
+const uploadCreations = require('./config/multer_creations')
 // Import des controllers
 const HomeController = require('./controllers/HomeController')
 const CreationsController = require('./controllers/CreationsController')
@@ -54,7 +54,7 @@ router.route('/creations/delete/:id')
 
 // Client
 router.route('/profil/edit/:id')
-    .put(mdl.SessionsActive, upload.single('avatar'), UserEditProfil.editUserProfil)
+    .put(mdl.SessionsActive, uploadUser.single('avatar'), UserEditProfil.editUserProfil)
 
 // Administration   
 router.route('/admin')
@@ -70,18 +70,18 @@ router.route('/deleteCom/:id')
     .delete(mdl.isAdmin, AdminController.deleteCom)
 
 router.route('/article/create')
-    .post(mdl.isAdmin, upload.single('avatar'), CreationsController.createArticleFun)
+    .post(mdl.isAdmin, uploadCreations.single('avatar'), CreationsController.createArticle)
 
 // Dev
 router.route('/test')
     .get(CreationsController.creationsPage)
-    .post(upload.single('avatar'), CreationsController.creationsPage)
+    .post(uploadCreations.single('avatar'), CreationsController.creationsPage)
 
 router.route('/api')
     .get(mdl.isAdmin,DevController.get)
 router.route('/api/post')
     .get(HomeController.homePage)
-    .post(upload.single('avatar'), DevController.CreateUser)
+    .post(uploadUser.single('avatar'), DevController.CreateUser)
 
     // /Routes
 

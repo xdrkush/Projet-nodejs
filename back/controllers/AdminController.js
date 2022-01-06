@@ -16,7 +16,7 @@ console.log(req.path)
   nbr -= 1
 
   // SQL récupération de tout les users
-  let sql = `SELECT * FROM user`;
+  let sql = `SELECT * FROM user AND creations`;
 
   db.query(sql, (error, data, fields) => {
     if (error) throw error;
@@ -24,8 +24,8 @@ console.log(req.path)
       title: `${process.env.ETP} - Administration`,
       session: sess,
       isAdmin: admin,
-      user: data,
-      creationsItem: fakedb.creations,
+      user: data.user,
+      creationsItem: data.creations,
       userLog: fakedb.user[nbr]
     })
   })

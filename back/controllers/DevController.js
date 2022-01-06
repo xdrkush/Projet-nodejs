@@ -26,14 +26,7 @@ exports.CreateUser = async (req, res) => {
         req.body.selectRole
     ];
     db.query(sql, values, function (err, data, fields) {
-        
         if (err) throw err;
-        // SQL récupération de tout les users
-        let sql = `SELECT * FROM user`;
-        
-        db.query(sql, (error, dataRes, fields) => { 
-            if (error) throw error;
-            res.redirect('back')
-        })
+        res.redirect('back')
     })
 }

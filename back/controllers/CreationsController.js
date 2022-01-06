@@ -18,13 +18,21 @@ exports.creationsPage = (req, res) => {
 
   var nbr = Number(process.env.SESSID)
   nbr -= 1
-  res.render('creations', {
-    title: `${process.env.ETP} - Création`,
-    session: sess,
-    isAdmin: admin,
-    creationsItem: fakedb.creations,
-    userLog: fakedb.user[nbr]
+
+  let sql = `SELECT * FROM creations`;
+
+  db.query(sql, (error, data, fields) => {
+    if (error) throw error;
+    res.render('creations', {
+      title: `${process.env.ETP} - Création`,
+      session: sess,
+      isAdmin: admin,
+      creationsItem: data,
+      userLog: fakedb.user[nbr]
+    })
   })
+
+
 }
 
 exports.creationsID = (req, res) => {
@@ -119,51 +127,16 @@ exports.deleteArticle = (req, res) => {
 };
 
 exports.createArticle = (req, res) => {
- 
+  // SQL pour creer un users
+  let sql = `INSERT INTO creations set img=?, desc=?, date=?`;
+  let values = [
+    req.body.avatar,
+    req.body.desc,
+    Date.now(),
+  ];
+  db.query(sql, values, function (err, data, fields) {
+    if (err) throw err;
+    res.redirect('back')
 
-  let dbArticle = fakedb.creations;
-  let dbUser = fakedb.user;
-  console.log("0",fakedb.creations);
-
-  const art = {
-    id:fakedb.creations.length += 1,
-    img:req.body.avatar,
-    desc:req.body.desc,
-    date: "sd"
-  };
-  
-  fakedb.creations.push(art);
-  console.log("1",dbArticle);
-  let data = JSON.stringify({ creations: dbArticle, user: dbUser }, null, 2);
-  fs.writeFile("./public/data/db.json", data, (err) => {
-    if (err) console.log(err);
-  });
-  console.log("controller create Article", 0, req.body);
-  res.redirect('back');
-
-};
-
-exports.createArticleFun = (req, res) => {
-
-console.log(dbArticles)
-  //
-  const art = {
-    id:fakedb.creations.length += 1,
-    img:req.file.filename,
-    desc:req.body.desc,
-    date: "sd"
-  };
-
-  let dbUser = fakedb.user;
-  //
-  dbArticles.push(art);
-
-  let data = JSON.stringify({ creations: dbArticles, user: dbUser }, null, 2);
-
-  fs.writeFile("./public/data/db.json", data, (err) => {
-    if (err) console.log(err);
-    console.log("Fichier Json Créé");
-  });
-
-  res.redirect('back');
+  })
 };
