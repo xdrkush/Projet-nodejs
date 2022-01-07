@@ -16,14 +16,14 @@ const
     Handlebars = require('handlebars'),
     mysql = require('mysql');
     
-// Configuration Mysql
+// Configuration Mysql pour se connecter a la DB
 db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE
 });
-
+// Conexion à la DB
 db.connect((err) => {
     if (err) console.error('error connecting: ' + err.stack);
     console.log('connected as id ' + db.threadId);
@@ -45,20 +45,11 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-
+// Helper Limitation pour n'afficher que un certain nombre max d'item
 Handlebars.registerHelper('limit', function(ar, max){
     var db = ar.slice(0,max);
     return db;
   });
-
-
-var hbs = expressHbs.create({});
-hbs.handlebars.registerHelper('times', function(n, block) {
-    var accum = '';
-    for(var i = 0; i < n; ++i)
-        accum += block.fn(i);
-    return accum;
-});
 
 // Configuration de la route vers notre dossier static
 app.use("/assets", express.static('public'));
