@@ -1,6 +1,9 @@
 exports.adminPage = (req, res) => {
   const fakedb = require('../../public/data/db.json');
-  console.log(req.path)
+  const { Timestamp } = require("@sapphire/time-utilities");
+  const dateDay = `${new Timestamp("DD MMM YYY à HH %h mm")}`;
+  
+  console.log(dateDay.replace('January', 'Janvier'))
   if (process.env.ISADMIN == "false") {
     var admin = false
   } else {

@@ -29,3 +29,22 @@ exports.editUserProfil = (req, res) => {
   console.log("controller edit user profil", req.params.id, req.body);
 
 };
+
+exports.createUser = async (req, res) => {
+
+  // SQL pour creer un users
+  let sql = `INSERT INTO user set nom=?, prenom=?, email=?, password=?, logo=?, ban=?, role=?`;
+  let values = [
+      req.body.nom,
+      req.body.prenom,
+      req.body.email,
+      req.body.password,
+      req.file.filename,
+      true,
+      req.body.selectRole
+  ];
+  db.query(sql, values, function (err, data, fields) {
+      if (err) throw err;
+      res.redirect('back')
+  })
+}
