@@ -770,6 +770,7 @@ body {
 .contact .email-Form {
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.4);
   padding: 30px;
+  padding-bottom:47px ;
 }
 .contact .email-Form .error-message {
   display: none;
