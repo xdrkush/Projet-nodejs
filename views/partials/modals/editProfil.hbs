@@ -1,4 +1,4 @@
-<form action="/profil/edit/{{userLog.id}}?_method=PUT" method="post" enctype="multipart/form-data">
+<form action="/profil/edit/1{{userLog.id}}?_method=PUT" method="post" enctype="multipart/form-data">
 
     <div class="modal fade" id="modalEditUser" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
         tabindex="-1">
@@ -13,19 +13,19 @@
                     <div class="col-12">
                         <label for="text2" class="form-label">Votre Prénom</label>
                         <div class="col-12">
-                            <input type="text" name="prenom" class="form-control" id="text1" value="{{userLog.prenom}}">
+                            <input required type="text" name="prenom" class="form-control" id="text1" value="{{userLog.prenom}}">
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="text2" class="form-label">Votre Nom</label>
                         <div class="col-12">
-                            <input name="nom" type="text" class="form-control" id="text2" value="{{userLog.nom}}">
+                            <input required name="nom" type="text" class="form-control" id="text2" value="{{userLog.nom}}">
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="registerInput" class="form-label">Votre Email</label>
                         <div class="col-12">
-                            <input name="email" type="email" class="form-control" id="registerInput"
+                            <input required name="email" type="email" class="form-control" id="registerInput"
                                 value="{{userLog.email}}">
                         </div>
                     </div>
@@ -39,7 +39,7 @@
 
                 <div class="modal-footer d-flex justify-content-center">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                    <button type="submit" class="btn btn-success">Confirmer</button>
                 </div>
 
             </div>

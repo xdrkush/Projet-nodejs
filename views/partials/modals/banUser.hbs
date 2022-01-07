@@ -1,0 +1,19 @@
+<div class="modal fade" id="modalban{{ this.id }}" tabindex="-1" aria-labelledby="exampleModalLabe2{{ this.id }}"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="/ban/user/{{ this.id }}?_method=PUT" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="exampleModalLabe2">Voulez vous bannir <b>{{ this.prenom }} {{
+                            this.nom }}</b> ?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

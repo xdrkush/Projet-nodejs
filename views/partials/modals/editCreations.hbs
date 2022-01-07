@@ -1,0 +1,33 @@
+<div class="modal fade" id="editCreation{{ this.id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel">Edition Creation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/creations/edit/{{ this.id }}?_method=PUT" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Description:</label>
+                        <textarea required class="form-control" name="description"
+                            id="message-desc{{ i.id }}">{{ this.description }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Les images:</label>
+                        <textarea required class="form-control" name="img" id="message-img{{ i.id }}">{{ this.img }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="disabledTextInput" class="form-label">Date :</label>
+                        <textarea required class="form-control" name="date" id="date-{{ i.id }}">{{ this.date }}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#modaldel{{ i.id }}{{ @key }}">Non</button>
+                    <button type="submit" class="btn btn-success">Oui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

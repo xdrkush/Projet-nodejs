@@ -11,22 +11,28 @@
 
                 <div class="modal-body">
                     <div class="col-12">
+                        <label for="registerInput" class="form-label">Votre image de profil</label>
+                        <div class="col-12">
+                            <input type="file" name="logo_register" required />
+                        </div>
+                    </div>
+                    <div class="col-12">
                         <label name="prenom" for="text2" class="form-label">Prénom</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="text1" placeholder="Maxime">
+                            <input required type="text" class="form-control" id="text1" placeholder="Maxime">
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="text2" class="form-label">Nom</label>
                         <div class="col-12">
-                            <input name="nom" type="text" class="form-control" id="text2" placeholder="Jason">
+                            <input required name="nom" type="text" class="form-control" id="text2" placeholder="Jason">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="col-12">
                             <label for="registerInput" class="form-label">Email</label>
                             <div class="col-12">
-                                <input name="email" type="email" class="form-control" id="registerInput"
+                                <input required name="email" type="email" class="form-control" id="registerInput"
                                     placeholder="name@example.com">
                             </div>
                         </div>
@@ -34,22 +40,24 @@
                         <div class="col-12">
                             <label for="inputPassword" class="col-sm-7 col-form-label">Mot de passe</label>
                             <div class="col-12">
-                                <input name="password" type="password" class="form-control" id="inputPassword">
+                                <input required name="password" type="password" class="form-control" id="inputPassword">
                             </div>
                         </div>
 
                         <div class="col-12">
                             <label for="inputPassword" class="col-sm-7 col-form-label">Répéter le mot de passe</label>
                             <div class="col-12">
-                                <input name="password_confirm" type="password" class="form-control" id="inputPassword">
+                                <input required name="password_confirm" type="password" class="form-control"
+                                    id="inputPassword">
                             </div>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="modal-footer d-flex justify-content-center">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                    <button type="submit" class="btn btn-success">Confirmer</button>
                 </div>
 
             </div>

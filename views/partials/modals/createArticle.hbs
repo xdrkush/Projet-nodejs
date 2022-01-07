@@ -1,4 +1,4 @@
-<form action="/article/create" method="post" enctype="multipart/form-data">
+<form action="/create/article" method="post" enctype="multipart/form-data">
 
     <div class="modal fade" id="createArticle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
         tabindex="-1">
@@ -13,20 +13,20 @@
                     <div class="col-12">
                         <label for="registerInput" class="form-label">Les images</label>
                         <div class="col-12">
-                            <input type="file" name="avatar"/>
+                            <input type="file" name="avatar" required/>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="text2" class="form-label">Description</label>
                         <div class="col-12">
-                            <textarea name="desc" type="text" class="form-control" id="text" placeholder="La description des images"></textarea>
+                            <textarea name="desc" type="text" class="form-control" id="text" placeholder="La description des images" required></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer d-flex justify-content-center">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                    <button type="submit" class="btn btn-success">Confirmer</button>
                 </div>
 
             </div>

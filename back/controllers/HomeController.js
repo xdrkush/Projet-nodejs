@@ -30,7 +30,7 @@ exports.homePage = (req, res) => {
       session: sess,
       isAdmin: admin,
       creationsItem: data,
-      userLog: fakedb.user[nbr]
+      userLog: data[1]
     })
   })
 }

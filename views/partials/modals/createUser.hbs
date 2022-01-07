@@ -13,46 +13,46 @@
                     <div class="col-12">
                         <label for="text2" class="form-label">Prénom</label>
                         <div class="col-12">
-                            <input type="text" name="prenom" class="form-control" id="text1" placeholder="Prénom">
+                            <input type="text" name="prenom" class="form-control" id="text1" placeholder="Prénom" required>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="text2" class="form-label">Nom</label>
                         <div class="col-12">
-                            <input name="nom" type="text" class="form-control" id="text2" placeholder="Nom">
+                            <input name="nom" type="text" class="form-control" id="text2" placeholder="Nom" required>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="registerInput" class="form-label">Email</label>
                         <div class="col-12">
                             <input name="email" type="email" class="form-control" id="registerInput"
-                                placeholder="Email">
+                                placeholder="Email" required>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="text2" class="form-label">Mot de passe de l'utilisateur</label>
                         <div class="col-12">
-                            <input name="password" type="text" class="form-control" id="text2" placeholder="Mot de passe">
+                            <input name="password" type="text" class="form-control" id="text2" placeholder="Mot de passe" required>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="registerInput" class="form-label">Image de profil</label>
                         <div class="col-12">
-                            <input type="file" name="avatar"/>
+                            <input type="file" name="avatar" required/>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="text2" class="form-label">Role</label>
-                        <select name="selectRole" id="">
-                            <option value="membre">Membre</option>
-                            <option value="admin">Admin</option>
+                        <select name="selectRole" required>
+                            <option value="0">Membre</option>
+                            <option value="1">Admin</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="modal-footer d-flex justify-content-center">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+                    <button type="submit" class="btn btn-success">Confirmer</button>
                 </div>
 
             </div>

@@ -30,7 +30,7 @@ router.route('/login')
     .post(AuthController.authLogin)
 
 router.route('/register')
-    .post(AuthController.authRegister)
+    .post(uploadUser.single('logo_register'), AuthController.authRegister)
 
 router.route('/forgot')
     .post(AuthController.authForgot)
@@ -46,35 +46,41 @@ router.route('/creations')
 router.route("/creations/:id")
     .get(mdl.articleID, CreationsController.creationsID)
 
+
+
+// Client 
+router.route('/profil/edit/:id')
+    .put(mdl.SessionsActive, uploadUser.single('avatar'), UserEditProfil.editUserProfil)
+
+/////// Administration ///////
+router.route('/admin')
+    .get(mdl.isAdmin, AdminController.adminPage)
+
+// Créations
+router.route('/create/article')
+    .post(mdl.isAdmin, uploadCreations.single('avatar'), CreationsController.createArticle)
+
 router.route("/creations/edit/:id")
     .put(mdl.isAdmin, mdl.editArticleID, CreationsController.editArticle)
 
 router.route('/creations/delete/:id')
     .delete(mdl.isAdmin, mdl.editArticleID, CreationsController.deleteArticle)
 
-// Client
-router.route('/profil/edit/:id')
-    .put(mdl.SessionsActive, uploadUser.single('avatar'), UserEditProfil.editUserProfil)
-
-// Administration   
-router.route('/admin')
-    .get(mdl.isAdmin, AdminController.adminPage)
-
-router.route('/ban/:id')
-    .put(mdl.isAdmin, AdminController.banUser)
-
-router.route('/editUser/:id')
-    .put(mdl.isAdmin, AdminController.editUser)
-
-router.route('/deleteCom/:id')
-    .delete(mdl.isAdmin, AdminController.deleteCom)
-
-router.route('/article/create')
-    .post(mdl.isAdmin, uploadCreations.single('avatar'), CreationsController.createArticle)
+// Utilisateur
 router.route('/create/user')
     .post(mdl.isAdmin, uploadUser.single('avatar'), AdminController.createUser)
 
-// Dev
+router.route('/edit/user/:id')
+    .put(mdl.isAdmin, uploadUser.single('avatar'), AdminController.editUser)
+
+router.route('/ban/user/:id')
+    .put(mdl.isAdmin, AdminController.banUser)
+
+// Commentaire
+router.route('/deleteCom/:id')
+    .delete(mdl.isAdmin, AdminController.deleteCom)
+
+/////// Dev ///////
 router.route('/test')
     .get(CreationsController.creationsPage)
     .post(uploadCreations.single('avatar'), CreationsController.creationsPage)

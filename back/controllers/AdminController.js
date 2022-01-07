@@ -2,8 +2,8 @@ exports.adminPage = (req, res) => {
   const fakedb = require('../../public/data/db.json');
   const { Timestamp } = require("@sapphire/time-utilities");
   const dateDay = `${new Timestamp("DD MMM YYY à HH %h mm")}`;
-  
-  console.log(dateDay.replace('January', 'Janvier'))
+
+  // console.log(dateDay.replace('January', 'Janvier'))
   if (process.env.ISADMIN == "false") {
     var admin = false
   } else {
@@ -41,40 +41,59 @@ exports.adminPage = (req, res) => {
   })
 }
 exports.createUser = async (req, res) => {
-
+  console.log(req.body.selectRole)
   // SQL pour creer un users
   let sql = `INSERT INTO user set nom=?, prenom=?, email=?, password=?, logo=?, ban=?, role=?`;
   let values = [
-      req.body.nom,
-      req.body.prenom,
-      req.body.email,
-      req.body.password,
-      req.file.filename,
-      true,
-      req.body.selectRole
+    req.body.nom,
+    req.body.prenom,
+    req.body.email,
+    req.body.password,
+    req.file.filename,
+    false,
+    Number(req.body.selectRole)
   ];
   db.query(sql, values, function (err, data, fields) {
-      if (err) throw err;
-      res.redirect('back')
+    if (err) throw err;
+    res.redirect('back')
   })
 }
 
 exports.banUser = (req, res) => {
-  console.log("controller ban User", req.params.id);
-  if (process.env.ISADMIN == "true" && process.env.ISCONNECT == "true") {
-    res.redirect('/admin')
-  } else {
-    res.redirect('/')
-  }
+  let sqlGet = `SELECT * FROM user WHERE id = ${req.params.id}`;
+
+  db.query(sqlGet, (error, dataGet, fields) => {
+    if (error) throw error;
+
+    let sql = `UPDATE user SET ban=? WHERE id = ${req.params.id} `;
+
+    db.query(sql, true, function (err, data2, fields) {
+      if (err) throw err;
+      res.redirect('back')
+    })
+  })
 }
 
 exports.editUser = (req, res) => {
-  console.log("controller edit User", req.params.id, req.body);
-  if (process.env.ISADMIN == "true" && process.env.ISCONNECT == "true") {
-    res.redirect('/admin')
-  } else {
-    res.redirect('/')
-  }
+
+  let sqlGet = `SELECT * FROM user WHERE id = ${req.params.id}`;
+
+  db.query(sqlGet, (error, dataGet, fields) => {
+    if (error) throw error;
+
+    let values = [
+      req.body.nom,
+      req.body.prenom,
+      req.body.email
+    ];
+
+    let sql = `UPDATE user SET nom=?, prenom=?, email=? WHERE id = ${req.params.id} `;
+
+    db.query(sql, values, function (err, data2, fields) {
+      if (err) throw err;
+      res.redirect('back')
+    })
+  })
 }
 
 exports.deleteCom = (req, res) => {

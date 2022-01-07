@@ -5,10 +5,22 @@ exports.authLogin = (req, res) => {
 }
 
 exports.authRegister = (req, res) => {
-  console.log("controller auth Register", req.body);
-  var link = req.headers.referer
-  res.redirect(`/${link.slice(22)}`)
-}
+    let sql = `INSERT INTO user set nom=?, prenom=?, email=?, password=?, logo=?, ban=?, role=?`;
+console.log(req.file.filename)
+    let values = [
+        req.body.nom,
+        req.body.prenom,
+        req.body.email,
+        req.body.password,
+        req.file.filename,
+        false,
+        0
+    ];
+    db.query(sql, values, function (err, data, fields) {
+        if (err) throw err;
+        res.redirect('back')
+    })
+  }
 
 exports.authForgot = (req, res) => {
   console.log("controller auth Forgot", req.body);
