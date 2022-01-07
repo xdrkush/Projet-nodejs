@@ -24,7 +24,7 @@ exports.adminPage = (req, res) => {
   db.query(sql, (error, data, fields) => {
     if (error) throw error;
 
-    // SQL récupération de tout les users
+    // SQL récupération de tout les creations
     let sql2 = `SELECT * FROM creations`;
 
     db.query(sql2, (error, data2, fields) => {

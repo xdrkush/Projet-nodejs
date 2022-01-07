@@ -20,12 +20,18 @@ exports.homePage = (req, res) => {
   var nbr = Number(process.env.SESSID)
   nbr -= 1
 
-  res.render('home', {
-    title: `${process.env.ETP} - Home`,
-    session: sess,
-    isAdmin: admin,
-    creationsItem: fakedb.creations,
-    userLog: fakedb.user[nbr]
+  // SQL récupération de tout les creations
+  let sql = `SELECT * FROM creations`;
+
+  db.query(sql, (error, data, fields) => {
+    if (error) throw error;
+    res.render('home', {
+      title: `${process.env.ETP} - Accueil`,
+      session: sess,
+      isAdmin: admin,
+      creationsItem: data,
+      userLog: fakedb.user[nbr]
+    })
   })
 }
 exports.sendMessage = (req, res) => {
