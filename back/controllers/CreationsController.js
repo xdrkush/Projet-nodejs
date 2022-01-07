@@ -127,12 +127,15 @@ exports.deleteArticle = (req, res) => {
 };
 
 exports.createArticle = (req, res) => {
-  // SQL pour creer un users
-  let sql = `INSERT INTO creations set img=?, desc=?, date=?`;
+  const { Timestamp } = require("@sapphire/time-utilities");
+  const dateDay = `${new Timestamp("DD-MM-YYY à HH:mm")}`;
+
+  // SQL pour creer un article
+  let sql = `INSERT INTO creations set img=?, description=?, date=?`;
   let values = [
-    req.body.avatar,
+    req.file.filename,
     req.body.desc,
-    Date.now(),
+    dateDay
   ];
   db.query(sql, values, function (err, data, fields) {
     if (err) throw err;

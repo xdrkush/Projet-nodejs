@@ -1,13 +1,10 @@
-const fakedb = require('../../public/data/db.json');
-const fs = require("fs");
-
 exports.editUserProfil = (req, res) => {
 
   let sqlGet = `SELECT * FROM user WHERE id = ${process.env.SESSID}`;
 
   db.query(sqlGet, (error, data, fields) => {
     if (error) throw error;
-    let sql = `INSERT INTO user set nom=?, prenom=?, email=?, password=?, logo=?, ban=?, role=?`;
+    let sql = `INSERT INTO user values nom=?, prenom=?, email=?, password=?, logo=?, ban=?, role=?`;
     let values = [
       (req.body.nom === "") ? data.nom : req.body.nom,
       (req.body.prenom === "") ? data.prenom : req.body.prenom,
