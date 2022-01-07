@@ -71,6 +71,8 @@ router.route('/deleteCom/:id')
 
 router.route('/article/create')
     .post(mdl.isAdmin, uploadCreations.single('avatar'), CreationsController.createArticle)
+router.route('/create/user')
+    .post(mdl.isAdmin, uploadUser.single('avatar'), AdminController.createUser)
 
 // Dev
 router.route('/test')
@@ -79,9 +81,6 @@ router.route('/test')
 
 router.route('/api')
     .get(mdl.isAdmin,DevController.get)
-router.route('/api/post')
-    .get(HomeController.homePage)
-    .post(uploadUser.single('avatar'), DevController.CreateUser)
 
     // /Routes
 

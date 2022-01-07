@@ -1,6 +1,6 @@
 exports.adminPage = (req, res) => {
   const fakedb = require('../../public/data/db.json');
-console.log(req.path)
+  console.log(req.path)
   if (process.env.ISADMIN == "false") {
     var admin = false
   } else {
@@ -22,31 +22,38 @@ console.log(req.path)
     if (error) throw error;
 
     // SQL récupération de tout les users
-  let sql2 = `SELECT * FROM creations`;
+    let sql2 = `SELECT * FROM creations`;
 
-  db.query(sql2, (error, data2, fields) => {
-    if (error) throw error;
-    res.render('admin', {
-      title: `${process.env.ETP} - Administration`,
-      session: sess,
-      isAdmin: admin,
-      user: data,
-      creationsItem: data2,
-      userLog: fakedb.user[nbr]
+    db.query(sql2, (error, data2, fields) => {
+      if (error) throw error;
+      res.render('admin', {
+        title: `${process.env.ETP} - Administration`,
+        session: sess,
+        isAdmin: admin,
+        user: data,
+        creationsItem: data2,
+        userLog: fakedb.user[nbr]
+      })
     })
   })
+}
+exports.createUser = async (req, res) => {
 
-    // res.render('admin', {
-    //   title: `${process.env.ETP} - Administration`,
-    //   session: sess,
-    //   isAdmin: admin,
-    //   user: data,
-    //   creationsItem: data.creations,
-    //   userLog: fakedb.user[nbr]
-    // })
+  // SQL pour creer un users
+  let sql = `INSERT INTO user set nom=?, prenom=?, email=?, password=?, logo=?, ban=?, role=?`;
+  let values = [
+      req.body.nom,
+      req.body.prenom,
+      req.body.email,
+      req.body.password,
+      req.file.filename,
+      true,
+      req.body.selectRole
+  ];
+  db.query(sql, values, function (err, data, fields) {
+      if (err) throw err;
+      res.redirect('back')
   })
-
-
 }
 
 exports.banUser = (req, res) => {
