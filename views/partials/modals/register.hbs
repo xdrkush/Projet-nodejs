@@ -1,4 +1,4 @@
-<form action="/register" method="post">
+<form action="/register" method="post" enctype="multipart/form-data">
 
     <div class="modal fade" id="modalRegister" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
         tabindex="-1">
@@ -13,13 +13,13 @@
                     <div class="col-12">
                         <label for="registerInput" class="form-label">Votre image de profil</label>
                         <div class="col-12">
-                            <input type="file" name="logo_register" required />
+                            <input type="file" name="logo" required />
                         </div>
                     </div>
                     <div class="col-12">
-                        <label name="prenom" for="text2" class="form-label">Prénom</label>
+                        <label for="text2" class="form-label">Prénom</label>
                         <div class="col-12">
-                            <input required type="text" class="form-control" id="text1" placeholder="Maxime">
+                            <input required name="prenom"type="text" class="form-control" id="text1" placeholder="Maxime">
                         </div>
                     </div>
                     <div class="col-12">

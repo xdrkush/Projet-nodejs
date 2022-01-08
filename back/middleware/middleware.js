@@ -3,18 +3,7 @@
  * **************** */
 module.exports = {
   isAdmin: (req, res, next) => {
-
-    if (process.env.ISADMIN == "false") {
-      var isAdmin = false
-    } else {
-      var isAdmin = true
-    }
-    if (process.env.ISCONNECT == "false") {
-      var isConnect = false
-    } else {
-      var isConnect = true
-    }
-    if (isAdmin && isConnect === true) {
+    if (req.session.user.role === 1) {
       next()
     } else {
       res.redirect('/')

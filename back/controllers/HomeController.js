@@ -4,22 +4,6 @@
 const webhook = require("webhook-discord");
 
 exports.homePage = (req, res) => {
-  const fakedb = require('../../public/data/db.json');
-
-  if (process.env.ISADMIN == "false") {
-    var admin = false
-  } else {
-    var admin = true
-  }
-  if (process.env.ISCONNECT == "false") {
-    var sess = false
-  } else {
-    var sess = true
-  }
-
-  var nbr = Number(process.env.SESSID)
-  nbr -= 1
-
   // SQL récupération de tout les creations
   let sql = `SELECT * FROM creations`;
 
@@ -27,10 +11,7 @@ exports.homePage = (req, res) => {
     if (error) throw error;
     res.render('home', {
       title: `${process.env.ETP} - Accueil`,
-      session: sess,
-      isAdmin: admin,
-      creationsItem: data,
-      userLog: data[1]
+      creationsItem: data
     })
   })
 }

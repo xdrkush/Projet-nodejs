@@ -30,7 +30,7 @@ router.route('/login')
     .post(AuthController.authLogin)
 
 router.route('/register')
-    .post(uploadUser.single('logo_register'), AuthController.authRegister)
+    .post(uploadUser.single('logo'), AuthController.authRegister)
 
 router.route('/forgot')
     .post(AuthController.authForgot)

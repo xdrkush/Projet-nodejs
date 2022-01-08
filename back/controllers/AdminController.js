@@ -41,7 +41,6 @@ exports.adminPage = (req, res) => {
   })
 }
 exports.createUser = async (req, res) => {
-  console.log(req.body.selectRole)
   // SQL pour creer un users
   let sql = `INSERT INTO user set nom=?, prenom=?, email=?, password=?, logo=?, ban=?, role=?`;
   let values = [
