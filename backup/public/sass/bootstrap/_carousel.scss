@@ -116,11 +116,11 @@
   }
 }
 .carousel-control-prev {
-  left: 70px;
+  left: 0;
   background-image: if($enable-gradients, linear-gradient(90deg, rgba($black, .25), rgba($black, .001)), null);
 }
 .carousel-control-next {
-  right: 70px;
+  right: 0;
   background-image: if($enable-gradients, linear-gradient(270deg, rgba($black, .25), rgba($black, .001)), null);
 }
 
