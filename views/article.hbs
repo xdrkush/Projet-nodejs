@@ -12,21 +12,26 @@
             </nav>
         </di>
         <div class="container my-5">
+            {{#each data}}
             <div class="row">
-                {{#each data}}
                 <div class="col-xs-12 col-xm-12 col-md-4">
-                    <div class="card">
-                        <img src="/assets/images/creations/{{ this.img }}" class="card-img-top">
+                    <div class="card">{{/each}}
+                        {{#each data2}}
+
+                        <img src="/assets/images/creations/{{ this.img_url }}" class="card-img-top">
+                        {{/each}}
+                        {{#each data}}
                         <div class="card-body">
-                            <p class="card-text"><i>Fait le : {{ this.date }}</i></p>                            
+                            <p class="card-text"><i>Fait le : {{ this.date }}</i></p>
                         </div>
                     </div>
                 </div>
-                <div class="itemid col-xs-12 col-xm-12 col-md-8">
-                    <h4>{{ this.description }}</h4>
-                </div>
-                {{/each}}
             </div>
+            <div class="itemid col-xs-12 col-xm-12 col-md-8">
+                <h4>{{ this.description }}</h4>
+            </div>
+            {{/each}}
         </div>
     </div>
+</div>
 </div>

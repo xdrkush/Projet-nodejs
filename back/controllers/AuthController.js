@@ -4,12 +4,12 @@ const bcrypt = require('bcrypt'),
   bcrypt_text = 'imagination';
 
 exports.authLogin = (req, res) => {
-  let sql = `SELECT * FROM user WHERE (email= ?) AND ban=0`
+  let sql = `SELECT * FROM user WHERE (email= ?)`
 
   db.query(sql, req.body.email, function (err, data) {
     if (err) throw err;
-    if(data[0].ban === true) res.send('YOU AR BAN')
-    bcrypt.compare(req.body.password, data.password, function (err, result) {
+    if(data[0].ban === 1)return res.send('YOU AR BAN')
+    bcrypt.compare(req.body.password, data[0].password, function (err, result) {
       if (result === true) {
         req.session.user = {
           id: data[0].id,

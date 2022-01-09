@@ -58,7 +58,7 @@ router.route('/admin')
 
 // Créations
 router.route('/create/article')
-    .post(mdl.isAdmin, uploadCreations.single('avatar'), CreationsController.createArticle)
+    .post(mdl.isAdmin, uploadCreations.array('avatar'), CreationsController.createArticle)
 
 router.route("/creations/edit/:id")
     .put(mdl.isAdmin, mdl.editArticleID, CreationsController.editArticle)
@@ -82,8 +82,14 @@ router.route('/deleteCom/:id')
 
 /////// Dev ///////
 router.route('/test')
-    .get(CreationsController.creationsPage)
-    .post(uploadCreations.single('avatar'), CreationsController.creationsPage)
+    .get(mdl.isAdmin, CreationsController.creationsPage)
+    .post(mdl.isAdmin, uploadCreations.single('avatar'), CreationsController.creationsPage)
+
+router.route('/dev')
+    .get(mdl.isAdmin, DevController.multerGet)
+
+router.route('/dev/upload')
+    .post(uploadCreations.array('avatar'), mdl.isAdmin, DevController.multerPost)
 
 router.route('/api')
     .get(mdl.isAdmin,DevController.get)
