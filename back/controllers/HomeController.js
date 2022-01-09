@@ -11,7 +11,8 @@ exports.homePage = (req, res) => {
     if (error) throw error;
     res.render('home', {
       title: `${process.env.ETP} - Accueil`,
-      creationsItem: data
+      creationsItem: data,
+      creations: Number(data.length)
     })
   })
 }

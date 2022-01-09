@@ -18,7 +18,7 @@
                     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             {{#each data2}}
-                            <div id="it-{{this.id}}" class="carousel-item" style="background-image: url('/assets/images/creations/{{ this.img_url }}'); background-size: cover; background-position: center;" >
+                            <div id="it-{{this.id}}" class="carousel-item" style="background-image: url('/assets/images/creations/{{ this.img_url }}'); background-repeat:no-repeat;background-size:contain; background-position: center;" >
                                 <p style="height: 755px;"></p>
                             </div>
                             {{/each}}
@@ -40,6 +40,7 @@
                 {{#each data}}
                 <div class="itemid col-xs-12 col-xm-12 col-md-3">
                     <h4>{{ this.description }}</h4>
+                    <p><i>Fait le : {{ this.date }}</i></p>
                 </div>
                 {{/each}}
             </div>

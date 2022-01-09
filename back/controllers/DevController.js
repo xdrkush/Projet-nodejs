@@ -34,20 +34,6 @@ exports.CreateUser = (req, res) => {
 exports.multerPost = (req, res) => {
     console.log('LOG MULTER ',req.body)
     console.log('FILE ',req.files.length)
-    for(i =0; i < req.files.length; i++){
-    
-    let sql = `INSERT INTO test set img=?`;
-    
-    let values = [
-        req.files[i].filename,
-        data[0].id
-    ]
-
-    db.query(sql, values, function (err, data, fields) {
-        if (err) throw err;
-        res.redirect('back')
-    })
-    }
     res.redirect('back')
 }
 exports.multerGet = (req, res) => {
