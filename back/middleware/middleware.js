@@ -3,10 +3,14 @@
  * **************** */
 module.exports = {
   isAdmin: (req, res, next) => {
-    if (req.session.user.role === 1) {
-      next()
-    } else {
+    if(!req.session.user){
       res.redirect('/')
+    }else{
+      if (req.session.user.role === 1) {
+        next()
+      } else {
+        res.redirect('/')
+      }
     }
   },
   articleID: (req, res, next) => {
@@ -34,16 +38,10 @@ module.exports = {
     }
   },
   SessionsActive: (req, res, next) => {
-    const fakedb = require('../../public/data/db.json');
-
-    var nbr = Number(process.env.SESSID)
-    nbr -= 1
-
-    if (fakedb.user[nbr] === undefined) {
-      res.redirect('/admin')
-    } else {
+    if(!req.session.user){
+      res.redirect('/')
+    }else{
       next()
-      const userLog = fakedb.user[nbr]
     }
   },
 

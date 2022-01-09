@@ -5,28 +5,15 @@ const fs = require("fs");
 exports.creationsPage = (req, res) => {
 
 
-  if (process.env.ISADMIN == "false") {
-    var admin = false
-  } else {
-    var admin = true
-  }
-  if (process.env.ISCONNECT == "false") {
-    var sess = false
-  } else {
-    var sess = true
-  }
-
   var nbr = Number(process.env.SESSID)
   nbr -= 1
 
   let sql = `SELECT * FROM creations`;
 
   db.query(sql, (error, data, fields) => {
-    console.log(data)
-    let sqlGet = `SELECT * FROM images WHERE id = 1`;
+    let sqlGet = `SELECT * FROM images`;
 
     db.query(sqlGet, (error, data2, fields) => {
-      console.log(data2)
       if (error) throw error;
       res.render('creations', {
         title: `${process.env.ETP} - Création`,
@@ -47,12 +34,13 @@ exports.creationsID = (req, res) => {
     let sqlGet = `SELECT * FROM images WHERE img_id = ${req.params.id}`;
 
     db.query(sqlGet, (error, data2, fields) => {
-      console.log(data2)
+     
       if (error) throw error;
       res.render("article", {
         title: `${process.env.ETP} - Articles`,
         data,
-        data2
+        data2,
+        parms: data2[0].id
       });
     })
   })
@@ -96,7 +84,7 @@ exports.createArticle = async (req, res) => {
   const dateDay = `${new Timestamp("DD-MM-YYY à HH:mm")}`;
 
   // SQL pour creer un article
-  let sql = `INSERT INTO creations set description=?, img_admin=?, date=?, destroy=?`;
+  let sql = `INSERT INTO creations set description=?, img=?, date=?, destroy=?`;
   let values = [
     req.body.desc,
     req.files[0].filename,

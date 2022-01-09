@@ -31,11 +31,8 @@ exports.adminPage = (req, res) => {
       if (error) throw error;
       res.render('admin', {
         title: `${process.env.ETP} - Administration`,
-        session: sess,
-        isAdmin: admin,
         user: data,
-        creationsItem: data2,
-        userLog: fakedb.user[nbr]
+        creationsItem: data2
       })
     })
   })

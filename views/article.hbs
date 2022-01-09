@@ -11,27 +11,45 @@
                 </ol>
             </nav>
         </di>
-        <div class="container my-5">
-            {{#each data}}
-            <div class="row">
-                <div class="col-xs-12 col-xm-12 col-md-4">
-                    <div class="card">{{/each}}
-                        {{#each data2}}
 
-                        <img src="/assets/images/creations/{{ this.img_url }}" class="card-img-top">
-                        {{/each}}
-                        {{#each data}}
-                        <div class="card-body">
-                            <p class="card-text"><i>Fait le : {{ this.date }}</i></p>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-xs-12 col-xm-12 col-md-9">
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {{#each data2}}
+                            <div id="it-{{this.id}}" class="carousel-item" style="background-image: url('/assets/images/creations/{{ this.img_url }}'); background-size: cover; background-position: center;" >
+                                <p style="height: 755px;"></p>
+                            </div>
+                            {{/each}}
                         </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
+
+                   
                 </div>
+                {{#each data}}
+                <div class="itemid col-xs-12 col-xm-12 col-md-3">
+                    <h4>{{ this.description }}</h4>
+                </div>
+                {{/each}}
             </div>
-            <div class="itemid col-xs-12 col-xm-12 col-md-8">
-                <h4>{{ this.description }}</h4>
-            </div>
-            {{/each}}
         </div>
     </div>
 </div>
-</div>
+<script>
+    function ef (){
+        document.getElementById(`it-{{parms}}`).classList.add('active')
+    }
+    
+    ef()
+</script>
