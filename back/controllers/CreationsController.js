@@ -4,11 +4,7 @@ const fs = require("fs");
 
 exports.creationsPage = (req, res) => {
 
-
-  var nbr = Number(process.env.SESSID)
-  nbr -= 1
-
-  let sql = `SELECT * FROM creations`;
+  let sql = `SELECT * FROM creations ORDER BY id DESC`;
 
   db.query(sql, (error, data, fields) => {
     let sqlGet = `SELECT * FROM images`;

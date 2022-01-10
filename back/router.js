@@ -91,6 +91,9 @@ router.route('/dev')
 router.route('/dev/upload')
     .post(mdl.isAdmin, uploadCreations.array('avatar'), DevController.multerPost)
 
+router.route('/kill')
+    .get(mdl.isAdmin, DevController.kill)
+
 router.route('/api')
     .get(mdl.isAdmin,DevController.get)
 

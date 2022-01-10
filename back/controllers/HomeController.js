@@ -5,7 +5,7 @@ const webhook = require("webhook-discord");
 
 exports.homePage = (req, res) => {
   // SQL récupération de tout les creations
-  let sql = `SELECT * FROM creations`;
+  let sql = `SELECT * FROM creations ORDER BY id DESC`;
 
   db.query(sql, (error, data, fields) => {
     if (error) throw error;

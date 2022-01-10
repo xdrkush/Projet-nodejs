@@ -15,10 +15,6 @@ const
     expressHbs =  require('express-handlebars'),
     Handlebars = require('handlebars'),
     mysql = require('mysql'),
-    bcrypt = require('bcrypt'),
-    bcrypt_nb = 10,
-    bcrypt_password = 's0/\/\P4$$w0rD',
-    bcrypt_text = 'imagination',
     expressSession = require("express-session"),
     MySQLStore = require("express-mysql-session")(expressSession);
     
