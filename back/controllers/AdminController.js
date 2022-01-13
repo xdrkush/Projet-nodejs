@@ -1,6 +1,8 @@
 exports.adminPage = (req, res) => {
   const fakedb = require('../../public/data/db.json');
-  const { Timestamp } = require("@sapphire/time-utilities");
+  const {
+    Timestamp
+  } = require("@sapphire/time-utilities");
   const dateDay = `${new Timestamp("DD MMM YYY à HH %h mm")}`;
 
   // console.log(dateDay.replace('January', 'Janvier'))
@@ -65,7 +67,22 @@ exports.banUser = (req, res) => {
 
     db.query(sql, true, function (err, data2, fields) {
       if (err) throw err;
-      res.redirect('back')
+      
+      let sql = `SELECT * FROM sessions WHERE data LIKE '%"id":${req.params.id}%'`;
+
+      db.query(sql, (error, sess, fields) => {
+        if (error) throw error;
+        for (var sid in sess) {
+
+          let sql = `DELETE FROM sessions WHERE session_id = "${sess[sid].session_id}" `;
+
+          db.query(sql, function (err, data2, fields) {
+            if (err) throw err;
+            
+          })
+        }
+        res.redirect('back')
+      })
     })
   })
 }
