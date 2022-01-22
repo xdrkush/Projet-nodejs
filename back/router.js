@@ -86,7 +86,7 @@ router.route('/test')
     .post(mdl.isAdmin, uploadCreations.single('avatar'), CreationsController.creationsPage)
 
 router.route('/dev')
-    .get(mdl.isAdmin, DevController.multerGet)
+    .get(mdl.isAdmin, DevController.page)
 
 router.route('/dev/upload')
     .post(mdl.isAdmin, uploadCreations.array('avatar'), DevController.multerPost)

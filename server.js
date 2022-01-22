@@ -34,11 +34,19 @@ db.connect((err) => {
 });
 
 // Configuration Handlebars
+const { condIff, incUp, incDown, limite } = require('./back/helpers/hbs')
+
 app.set('view engine', 'hbs')
 app.engine('hbs', engine({
-    extname: 'hbs',
-    defaultLayout: 'main'
-}))
+  helpers: {
+      iff: condIff,
+      incUp: incUp,
+      incDown: incDown,
+      limit: limite
+  },
+  extname: 'hbs',
+  defaultLayout: 'main'
+}));
 
 // Configuration Express-Session
 var sessionStore = new MySQLStore(configDB);
@@ -67,12 +75,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
-// Helper Limitation pour n'afficher que un certain nombre max d'item
-Handlebars.registerHelper('limit', function(ar, max){
-    var db = ar.slice(0,max);
-    return db;
-  });
 
 // Configuration de la route vers notre dossier static
 app.use("/assets", express.static('public'));

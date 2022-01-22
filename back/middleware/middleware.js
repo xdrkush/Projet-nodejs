@@ -17,13 +17,15 @@ module.exports = {
     let sql = `SELECT * FROM user WHERE (email= ?)`
 
     db.query(sql, req.body.email, function (err, data) {
+      console.log(data[0].ban)
       if (err) throw err;
       if (data[0].ban === 1) {
        let sql = `SELECT * FROM creations ORDER BY id DESC`;
 
        db.query(sql, (error, data, fields) => {
+        
          if (error) throw error;
-         res.redirect('home', {
+         res.render('home', {
           title: `${process.env.ETP} - Accueil`,
           creationsItem: data,
           creations: Number(data.length),

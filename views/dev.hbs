@@ -1,4 +1,4 @@
-<form action="/dev/upload" method="post" enctype="multipart/form-data">
+{{!-- <form action="/dev/upload" method="post" enctype="multipart/form-data">
 
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -24,4 +24,112 @@
             </div>
         </div>
 
-</form>
+</form> --}}
+
+
+<div>
+    <div class="flx">
+        {{!-- Boucle Liste Article --}}
+        {{#each articles }}
+
+        {{!-- Item Article --}}
+        <div class="itm">
+            <h3>Titre: {{ this.title }}</h3>
+            <form action="/article/{{ this._id }}/?_method=DELETE" method="post">
+                <button type="submit">Effacer</button>
+            </form>
+        </div>
+
+        {{/each }}
+    </div>
+
+    <p>Page: {{ current }}</p>
+
+    <ul class="flx">
+        {{!-- Attention le #iff est un registerHelper --}}
+        {{!-- Previous --}}
+        {{#iff previous '>' 0}}
+        <li class="itm">
+            <a href="?page={{ ../previous }}">Previous</a>
+        </li>
+        {{/iff}}
+
+        {{!-- Page Min --}}
+        {{#iff current '>' 1}}
+        <li class="itm">
+            <a href="?page=1">1 ...</a>
+        </li>
+        {{/iff }}
+
+        {{!-- Pages before --}}
+        {{#iff current '>' 1 }}
+        <li class="itm">
+            <a class="page-link" href="?page={{incDown ../current }}"> {{incDown ../current }}</a>
+        </li>
+        {{/iff }}
+
+        {{!-- Pages --}}
+        <li class="itm">
+            <a class="page-link" href> {{ current }}</a>
+        </li>
+
+        {{!-- Pages after --}}
+        {{#iff current '<' pages}}
+        <li class="itm">
+            <a class="page-link" href="?page={{incUp ../current }}"> {{incUp ../current }}</a>
+        </li>
+        {{/iff }}
+
+        {{!-- Page Max --}}
+        {{#iff current '==' pages}}
+        {{else}}
+        <li class="itm">
+            <a href="?page={{ ../pages }}">... {{ ../pages }}</a>
+        </li>
+        {{/iff}}
+
+        {{!-- Next --}}
+        {{#iff next '>' pages}}
+        {{else}}
+        <li class="itm">
+            <a href="?page={{ ../next }}">Next</a>
+        </li>
+        {{/iff }}
+
+    </ul>
+
+{{!-- Pagination numero 2 --}}
+    <ul class="flx">
+
+        {{!-- Attention le #iff est un registerHelper --}}
+        {{!-- Previous --}}
+        {{#iff previous '>' 0}}
+        <li class="itm">
+            <a href="?page={{ ../previous }}">Previous</a>
+        </li>
+        {{/iff}}
+
+        {{!-- Toutes les pages --}}
+        {{#each arrayPage }}
+        <li class="itm">
+            <a class="page-link" href='?page={{ this }}'> {{ this }}</a>
+        </li>
+        {{/each }}
+
+        {{!-- Next --}}
+        {{#iff next '>' pages}}
+        {{else}}
+        <li class="itm">
+            <a href="?page={{ ../next }}">Next</a>
+        </li>
+        {{/iff }}
+
+    </ul>
+</div>
+
+<style>
+    li {
+        list-style: none;
+        margin-left: -15px;
+    }
+</style>
