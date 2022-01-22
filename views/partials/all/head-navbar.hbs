@@ -1,4 +1,4 @@
-{{#if error}}
+{{#if error_ban}}
 <div id="Banned"></div>
 <script>
     var alertPlaceholder = document.getElementById('Banned')
@@ -21,25 +21,25 @@
                 <li><a class="nav-link scrollto" href="/#services">Services</a></li>
                 <li><a href="/creations">Créations</a></li>
                 <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
+                {{#if user }}
                 <li class="dropdown"><a href="#"><span>Espace client</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         {{#if user.role }}
                         <li><a href="/admin">Administration</a></li>
-                        {{else }}
                         {{/if}}
-                        {{#if user }}
+
                         <li><a href="/">Vos commentaires</a></li>
                         <li><a data-bs-toggle="modal" href="/#modalEditUser">Edition du Profil</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a data-bs-toggle="modal" href="#Modallogout">Déconnexion</a></li>
-                        {{else }}
-                        <li><a data-bs-toggle="modal" href="#Modallogin">Connexion <i style="font-size: 20px!important;"
-                                    class="bi bi-box-arrow-in-right"></i></a></li>
-                        {{/if }}
                     </ul>
                 </li>
+                {{else }}
+                <li><a data-bs-toggle="modal" href="#Modallogin">Connexion <i style="font-size: 20px!important;"
+                            class="bi bi-box-arrow-in-right"></i></a></li>
+                {{/if }}
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

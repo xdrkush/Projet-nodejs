@@ -8,19 +8,19 @@ exports.authLogin = (req, res) => {
 
   db.query(sql, req.body.email, function (err, data) {
     if (err) throw err;
-    if (data[0].ban === 1) {
-      let sql = `SELECT * FROM creations ORDER BY id DESC`;
+    //if (data[0].ban === 1) {
+      // let sql = `SELECT * FROM creations ORDER BY id DESC`;
 
-      db.query(sql, (error, data, fields) => {
-        if (error) throw error;
-        res.render('home', {
-          title: `${process.env.ETP} - Accueil`,
-          creationsItem: data,
-          creations: Number(data.length),
-          error: 'Vous êtes ban'
-        })
-      })
-    } else {
+      // db.query(sql, (error, data, fields) => {
+      //   if (error) throw error;
+      //   res.render('home', {
+      //     title: `${process.env.ETP} - Accueil`,
+      //     creationsItem: data,
+      //     creations: Number(data.length),
+      //     error_ban: true
+      //   })
+      // })
+    //} else {
       bcrypt.compare(req.body.password, data[0].password, function (err, result) {
         if (result === true) {
           req.session.user = {
@@ -35,7 +35,7 @@ exports.authLogin = (req, res) => {
         } else return;
 
       });
-    }
+    //}
   })
 }
 
@@ -94,15 +94,12 @@ exports.authForgot = (req, res) => {
     if (err) throw err;
     if (data[0]) {
       bcrypt.genSalt(bcrypt_nb, function (err, salt) {
-        bcrypt.hash("1234", salt, function (err, hash) {
+        bcrypt.hash("azd8ef7sqd", salt, function (err, hash) {
 
           let sql = `UPDATE user SET password=? WHERE id=${data[0].id}`;
 
           db.query(sql, hash, function (err, data, fields) {
             if (err) throw err;
-
-            let sqlGet = `SELECT * FROM user WHERE (email= ?)`
-
             res.redirect('back')
           })
 
@@ -115,7 +112,7 @@ exports.authForgot = (req, res) => {
 exports.authLogout = (req, res) => {
   req.session.destroy(() => {
     res.clearCookie('htr');
-    console.log("Clear Cookie session :", req.session);
+    console.log("Clear Cookie session :", req.sessionID);
     res.redirect('/');
   })
 }

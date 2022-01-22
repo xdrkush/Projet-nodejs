@@ -27,7 +27,7 @@ router.route('/contact')
 
 // Auth 
 router.route('/login')
-    .post(AuthController.authLogin)
+    .post(mdl.isBan, AuthController.authLogin)
 
 router.route('/register')
     .post(uploadUser.single('logo'), AuthController.authRegister)
