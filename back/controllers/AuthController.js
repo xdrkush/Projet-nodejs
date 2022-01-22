@@ -8,23 +8,35 @@ exports.authLogin = (req, res) => {
 
   db.query(sql, req.body.email, function (err, data) {
     if (err) throw err;
-    if(data[0].ban === 1)return res.send('YOU AR BAN')
-    bcrypt.compare(req.body.password, data[0].password, function (err, result) {
-      if (result === true) {
-        req.session.user = {
-          id: data[0].id,
-          email: data[0].email,
-          avatar: data[0].logo,
-          nom: data[0].nom,
-          prenom: data[0].prenom,
-          role: data[0].role
-        };
-        res.redirect('back');
-      } else return;
+    if (data[0].ban === 1) {
+      let sql = `SELECT * FROM creations ORDER BY id DESC`;
 
-    });
+      db.query(sql, (error, data, fields) => {
+        if (error) throw error;
+        res.render('home', {
+          title: `${process.env.ETP} - Accueil`,
+          creationsItem: data,
+          creations: Number(data.length),
+          error: 'Vous êtes ban'
+        })
+      })
+    } else {
+      bcrypt.compare(req.body.password, data[0].password, function (err, result) {
+        if (result === true) {
+          req.session.user = {
+            id: data[0].id,
+            email: data[0].email,
+            avatar: data[0].logo,
+            nom: data[0].nom,
+            prenom: data[0].prenom,
+            role: data[0].role
+          };
+          res.redirect('back');
+        } else return;
+
+      });
+    }
   })
-
 }
 
 exports.authRegister = (req, res) => {
@@ -77,7 +89,7 @@ exports.authForgot = (req, res) => {
   let sql = `SELECT * FROM user WHERE email=?`;
 
   db.query(sql, req.body.email, function (err, data, fields) {
-    console.log('FORGOT ',data[0].id)
+    console.log('FORGOT ', data[0].id)
 
     if (err) throw err;
     if (data[0]) {
