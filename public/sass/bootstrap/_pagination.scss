@@ -1,6 +1,7 @@
 .pagination {
   display: flex;
   @include list-unstyled();
+  justify-content: center;
 }
 
 .page-link {
