@@ -137,27 +137,22 @@ exports.page = (req, res) => {
     // })
     var numRows;
     var queryPagination;
-    var numPerPage = parseInt(req.query.npp, 10) || 1;
+    var numPerPage = 6;
     var page = parseInt(req.query.page, 10) || 0;
     var numPages;
     var skip = page * numPerPage;
     // Here we compute the LIMIT parameter for MySQL query
     var limit = skip + ',' + numPerPage;
-    let configDB = {
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    }
-    var queryAsync = Promise.promisify(configDB.query.bind(configDB));
-    queryAsync('SELECT count(*) as numRows FROM wp_posts')
-        .then(function (results) {
-            numRows = results[0].numRows;
-            numPages = Math.ceil(numRows / numPerPage);
-            console.log('number of pages:', numPages);
-        })
-        .then(() => queryAsync('SELECT * FROM wp_posts ORDER BY ID DESC LIMIT ' + limit))
-        .then(function (results) {
+    let sql = `SELECT count(*) as numRows FROM creations`;
+    db.query(sql, (error, results, fields) => {
+        console.log(results[0])
+        numRows = results[0].numRows;
+        numPages = Math.ceil(numRows / numPerPage);
+        console.log('number of pages:', numPages);
+    })
+
+    let sqlget = `SELECT * FROM creations ORDER BY ID DESC LIMIT ${limit}`
+        db.query(sqlget, (error, results, fields) => {
             var responsePayload = {
                 results: results
             };
@@ -166,17 +161,15 @@ exports.page = (req, res) => {
                     current: page,
                     perPage: numPerPage,
                     previous: page > 0 ? page - 1 : undefined,
-                    next: page < numPages - 1 ? page + 1 : undefined
+                    previousbis: page > 0 ? page - 2 : undefined,
+                    next: page < numPages - 1 ? page + 1 : undefined,
+                    nextbis: page < numPages - 1 ? page + 2 : undefined
                 }
             } else responsePayload.pagination = {
                 err: 'queried page ' + page + ' is >= to maximum page number ' + numPages
             }
             res.json(responsePayload);
+
         })
-        .catch(function (err) {
-            console.error(err);
-            res.json({
-                err: err
-            });
-        });
+
 }

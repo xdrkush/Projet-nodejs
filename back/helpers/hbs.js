@@ -30,5 +30,12 @@ module.exports = {
     limite: function (ar, max){
         var db = ar.slice(0,max);
         return db;
+    },
+    iffpage: function(a, b, opts) {
+        if (a == b) {
+            return opts.fn(this);
+        } else {
+            return opts.inverse(this);
+        }
     }
 }

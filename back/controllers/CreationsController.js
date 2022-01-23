@@ -4,22 +4,59 @@ const fs = require("fs");
 
 exports.creationsPage = (req, res) => {
 
-  let sql = `SELECT * FROM creations ORDER BY id DESC`;
+  // let sql = `SELECT * FROM creations ORDER BY id DESC`;
 
-  db.query(sql, (error, data, fields) => {
-    let sqlGet = `SELECT * FROM images`;
+  // db.query(sql, (error, data, fields) => {
+  //   let sqlGet = `SELECT * FROM images`;
 
-    db.query(sqlGet, (error, data2, fields) => {
-      if (error) throw error;
-      res.render('creations', {
-        title: `${process.env.ETP} - Création`,
-        creationsItem: data,
-        images: data2
-      })
-    })
+  //   db.query(sqlGet, (error, data2, fields) => {
+  //     if (error) throw error;
+  //     res.render('creations', {
+  //       title: `${process.env.ETP} - Création`,
+  //       creationsItem: data,
+  //       images: data2
+  //     })
+  //   })
+  // })
+
+  var numRows;
+  var numPerPage = 6;
+  var page = parseInt(req.query.page, 10) || 0;
+  var numPages;
+  var skip = page * numPerPage;
+  var limit = skip + ',' + numPerPage;
+
+  let sql = `SELECT count(*) as numRows FROM creations`;
+  db.query(sql, (error, results, fields) => {
+      console.log(results[0])
+      numRows = results[0].numRows;
+      numPages = Math.ceil(numRows / numPerPage);
+      console.log('number of pages:', numPages);
   })
 
-
+  let sqlget = `SELECT * FROM creations ORDER BY ID DESC LIMIT ${limit}`
+      db.query(sqlget, (error, results, fields) => {
+          var responsePayload = {
+              results: results
+          };
+          if (page < numPages) {
+              responsePayload.pagination = {
+                  current: page,
+                  perPage: numPerPage,
+                  previous: page > 0 ? page - 1 : undefined,
+                  previousbis: page > 0 ? page - 2 : undefined,
+                  next: page < numPages - 1 ? page + 1 : undefined,
+                  nextbis: page < numPages - 1 ? page + 2 : undefined
+              }
+          } else responsePayload.pagination = {
+              err: 'queried page ' + page + ' is >= to maximum page number ' + numPages
+          }
+          res.render('creations', {
+            title: `${process.env.ETP} - Création`,
+            creationsItem: results,
+            page: responsePayload.pagination
+          })
+      })
 }
 
 exports.creationsID = (req, res) => {
