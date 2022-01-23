@@ -77,6 +77,11 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+//
+// app.use(function(req, res){
+//   res.status(404).redirect("/");
+// });
+
 // Configuration de la route vers notre dossier static
 app.use("/assets", express.static('public'));
 

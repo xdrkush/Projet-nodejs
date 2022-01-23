@@ -175,5 +175,17 @@
      window.addEventListener('load', toggleBacktotop)
      onscroll(document, toggleBacktotop)
    }
-   
+    /**
+   * slider carousel indicators
+   */
+  let sliderCarouselIndicators = select("#slider-carousel-indicators")
+  let sliderCarouselItems = select('#creations .carousel-item', true)
+
+  sliderCarouselItems.forEach((item, index) => {
+    (index === 0) ?
+    sliderCarouselIndicators.innerHTML += "<li data-bs-target='#creations' data-bs-slide-to='" + index + "' class='active'></li>":
+      sliderCarouselIndicators.innerHTML += "<li data-bs-target='#creations' data-bs-slide-to='" + index + "'></li>"
+  });
+
+
 })()

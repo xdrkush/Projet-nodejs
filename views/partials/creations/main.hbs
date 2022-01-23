@@ -4,7 +4,7 @@
         <div class="section-title">
             <h3><span>Mes Créations</span></h3>
         </div>
-
+        
         <div class="row" style="background-color: #f6f9fe;" data-aos="fade-right">
             {{!-- Permet d'obtenir tout mes items afin de les afficher --}}
             {{#each creationsItem }}
@@ -12,7 +12,7 @@
             <div class="my-5 col-xs-12 col-xm-12 col-md-6 col-lg-4 d-flex justify-content-center"
                 data-aos="zoom-out-down" data-aos-delay="{{this.id}}0">
 
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 22rem;">
                     <a href="/creations/{{ this.id }}">
                         <div
                             style="background-image: url('/assets/images/creations/{{ this.img }}'); background-size: cover; background-position:center;">
@@ -44,22 +44,26 @@
                                 </a>
                             </li>
                             {{/iffpage}}
+
                             {{#iffpage page.next undefined}}
                             <li class="page-item"><a class="page-link" href="?page={{page.previousbis}}">{{page.previousbis}}</a></li>
                             {{/iffpage}}
+
                             {{#iffpage page.current 0}}
                             {{else}}
                             <li class="page-item"><a class="page-link" href="?page={{page.previous}}">{{page.previous}}</a></li>
                             {{/iffpage}}
-                            <li class="page-item"><a class="page-link" href="?page={{page.current}}">{{page.current}}</a></li>
+
+                            <li class="page-item active" aria-current="page"><a style="color:white!important" class="page-link" href="?page={{page.current}}">{{page.current}}</a></li>
                             {{#iffpage page.next undefined}}
                             {{else}}
                             <li class="page-item"><a class="page-link" href="?page={{page.next}}">{{page.next}}</a></li>
                             {{/iffpage}}
+
                              {{#iffpage page.current 0}}
                             <li class="page-item"><a class="page-link" href="?page={{page.nextbis}}">{{page.nextbis}}</a></li>
-                            {{else}}
                             {{/iffpage}}
+
                             {{#iffpage page.next undefined}}
                             {{else}}
                             <li class="page-item">

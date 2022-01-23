@@ -28,10 +28,8 @@ exports.creationsPage = (req, res) => {
 
   let sql = `SELECT count(*) as numRows FROM creations`;
   db.query(sql, (error, results, fields) => {
-      console.log(results[0])
       numRows = results[0].numRows;
-      numPages = Math.ceil(numRows / numPerPage);
-      console.log('number of pages:', numPages);
+      numPages = Math.ceil(numRows / numPerPage);      
   })
 
   let sqlget = `SELECT * FROM creations ORDER BY ID DESC LIMIT ${limit}`
@@ -48,14 +46,14 @@ exports.creationsPage = (req, res) => {
                   next: page < numPages - 1 ? page + 1 : undefined,
                   nextbis: page < numPages - 1 ? page + 2 : undefined
               }
-          } else responsePayload.pagination = {
-              err: 'queried page ' + page + ' is >= to maximum page number ' + numPages
+              res.render('creations', {
+                title: `${process.env.ETP} - Création`,
+                creationsItem: results,
+                page: responsePayload.pagination
+              })
+          } else {
+            res.redirect('creations')
           }
-          res.render('creations', {
-            title: `${process.env.ETP} - Création`,
-            creationsItem: results,
-            page: responsePayload.pagination
-          })
       })
 }
 
