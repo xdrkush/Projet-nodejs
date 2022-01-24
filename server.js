@@ -77,9 +77,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-//
-// app.use(function(req, res){
-//   res.status(404).redirect("/");
+// Met le site en 404
+// app.use('*',function(req, res){
+//   res.status(404).render("error404", {layout: false});
 // });
 
 // Configuration de la route vers notre dossier static

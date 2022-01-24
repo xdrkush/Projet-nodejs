@@ -21,7 +21,7 @@ exports.creationsPage = (req, res) => {
 
   var numRows;
   var numPerPage = 6;
-  var page = parseInt(req.query.page, 10) || 0;
+  var page = parseInt(req.query.page, 10) || 1;
   var numPages;
   var skip = page * numPerPage;
   var limit = skip + ',' + numPerPage;

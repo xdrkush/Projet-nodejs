@@ -12,3 +12,8 @@ exports.editUserProfil = (req, res) => {
       res.redirect('back')
     })
 };
+
+exports.getUserProfil = (req, res) => {
+
+  res.send('this')
+};

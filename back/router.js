@@ -12,8 +12,7 @@ const HomeController = require('./controllers/HomeController')
 const CreationsController = require('./controllers/CreationsController')
 const AdminController = require('./controllers/AdminController')
 const AuthController = require('./controllers/AuthController')
-const UserEditProfil = require('./controllers/UserController')
-const DevController = require('./controllers/DevController')
+const UserController= require('./controllers/UserController')
 
 // Import Middleware
 const mdl = require('./middleware/middleware')
@@ -33,11 +32,11 @@ router.route('/register')
     .post(uploadUser.single('logo'), AuthController.authRegister)
 
 router.route('/forgot')
-    .post(AuthController.authForgot)
+    .post(mdl.isBan, AuthController.authForgot)
 
 router.route('/logout')
-    .get(HomeController.homePage)
-    .post(AuthController.authLogout)
+    // .get(HomeController.homePage)
+    .post(mdl.SessionsActive, AuthController.authLogout)
 
 // Créations
 router.route('/creations')
@@ -46,11 +45,11 @@ router.route('/creations')
 router.route("/creations/:id")
     .get(CreationsController.creationsID)
 
-
-
 // Client 
-router.route('/profil/edit/:id')
-    .put(mdl.SessionsActive, uploadUser.single('avatar'), UserEditProfil.editUserProfil)
+router.route('/profile')
+    .get(mdl.SessionsActive, UserController.getUserProfil)
+router.route('/profile/edit/:id')
+    .put(mdl.SessionsActive, uploadUser.single('avatar'), UserController.editUserProfil)
 
 /////// Administration ///////
 router.route('/admin')
@@ -67,9 +66,6 @@ router.route('/creations/delete/:id')
     .delete(mdl.isAdmin, CreationsController.deleteArticle)
 
 // Utilisateur
-router.route('/create/user')
-    .post(mdl.isAdmin, uploadUser.single('avatar'), AdminController.createUser)
-
 router.route('/edit/user/:id')
     .put(mdl.isAdmin, uploadUser.single('avatar'), AdminController.editUser)
 
@@ -79,24 +75,7 @@ router.route('/ban/user/:id')
 // Commentaire
 router.route('/deleteCom/:id')
     .delete(mdl.isAdmin, AdminController.deleteCom)
-
-/////// Dev ///////
-router.route('/test')
-    .get(mdl.isAdmin, CreationsController.creationsPage)
-    .post(mdl.isAdmin, uploadCreations.single('avatar'), CreationsController.creationsPage)
-
-router.route('/dev')
-    .get(mdl.isAdmin, DevController.page)
-
-router.route('/dev/upload')
-    .post(mdl.isAdmin, uploadCreations.array('avatar'), DevController.multerPost)
-
-router.route('/kill')
-    .get(mdl.isAdmin, DevController.kill)
-
-router.route('/api')
-    .get(mdl.isAdmin,DevController.get)
-
+    
     // /Routes
 
 // Exports de notre router

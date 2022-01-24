@@ -17,7 +17,6 @@ module.exports = {
     let sql = `SELECT * FROM user WHERE (email= ?)`
 
     db.query(sql, req.body.email, function (err, data) {
-      console.log(data[0].ban)
       if (err) throw err;
       if (data[0].ban === 1) {
        let sql = `SELECT * FROM creations ORDER BY id DESC`;
@@ -32,11 +31,6 @@ module.exports = {
            error_ban: true
          })
        })
-        // res.redirect('/', {
-        //   title: `${process.env.ETP} - Accueil`,
-        //   creationsItem: data,
-        //   error_ban: true
-        // })
       } else {
         next()
       }
