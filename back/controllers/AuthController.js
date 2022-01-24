@@ -1,3 +1,6 @@
+/*
+ * Controller: Auth
+ * **************** */
 const bcrypt = require('bcrypt'),
   bcrypt_nb = 10,
   bcrypt_password = 's0/\/\P4$$w0rD',
@@ -8,19 +11,6 @@ exports.authLogin = (req, res) => {
 
   db.query(sql, req.body.email, function (err, data) {
     if (err) throw err;
-    //if (data[0].ban === 1) {
-      // let sql = `SELECT * FROM creations ORDER BY id DESC`;
-
-      // db.query(sql, (error, data, fields) => {
-      //   if (error) throw error;
-      //   res.render('home', {
-      //     title: `${process.env.ETP} - Accueil`,
-      //     creationsItem: data,
-      //     creations: Number(data.length),
-      //     error_ban: true
-      //   })
-      // })
-    //} else {
       bcrypt.compare(req.body.password, data[0].password, function (err, result) {
         if (result === true) {
           req.session.user = {
@@ -33,9 +23,7 @@ exports.authLogin = (req, res) => {
           };
           res.redirect('back');
         } else return;
-
       });
-    //}
   })
 }
 

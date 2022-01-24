@@ -1,24 +1,9 @@
-const fakedb = require('../../public/data/db.json');
-const dbArticles = require('../../public/data/db.json').creations;
+/*
+ * Controller: Créations
+ * **************** */
 const fs = require("fs");
 
 exports.creationsPage = (req, res) => {
-
-  // let sql = `SELECT * FROM creations ORDER BY id DESC`;
-
-  // db.query(sql, (error, data, fields) => {
-  //   let sqlGet = `SELECT * FROM images`;
-
-  //   db.query(sqlGet, (error, data2, fields) => {
-  //     if (error) throw error;
-  //     res.render('creations', {
-  //       title: `${process.env.ETP} - Création`,
-  //       creationsItem: data,
-  //       images: data2
-  //     })
-  //   })
-  // })
-
   var numRows;
   var numPerPage = 6;
   var page = parseInt(req.query.page, 10) || 1;
@@ -60,10 +45,9 @@ exports.creationsPage = (req, res) => {
 exports.creationsID = (req, res) => {
 
   let sql = `SELECT * FROM creations WHERE id = ${req.params.id}`;
-
   db.query(sql, (error, data, fields) => {
-    let sqlGet = `SELECT * FROM images WHERE img_id = ${req.params.id}`;
 
+    let sqlGet = `SELECT * FROM images WHERE img_id = ${req.params.id}`;
     db.query(sqlGet, (error, data2, fields) => {
      
       if (error) throw error;
@@ -79,7 +63,6 @@ exports.creationsID = (req, res) => {
 
 exports.editArticle = (req, res) => {
   let sqlGet = `SELECT * FROM creations WHERE id = ${req.params.id}`;
-
   db.query(sqlGet, (error, dataGet, fields) => {
     if (error) throw error;
 
@@ -90,7 +73,6 @@ exports.editArticle = (req, res) => {
     ];
 
     let sql = `UPDATE creations SET img=?, description=?, date=? WHERE id = ${req.params.id} `;
-
     db.query(sql, values, function (err, data2, fields) {
       if (err) throw err;
       res.redirect('back')
@@ -101,7 +83,6 @@ exports.editArticle = (req, res) => {
 
 exports.deleteArticle = (req, res) => {
   let sql = `DELETE FROM creations WHERE id = ?`
-
   db.query(sql, req.params.id, (err) => {
     if (err) throw err
     res.redirect('back');

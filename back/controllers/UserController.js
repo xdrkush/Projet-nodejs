@@ -1,3 +1,6 @@
+/*
+ * Controller: User
+ * **************** */
 exports.editUserProfil = (req, res) => {
 
     let sql = `UPDATE user values nom=?, prenom=?, email=?, logo=?  WHERE id = ${req.params.id}`;

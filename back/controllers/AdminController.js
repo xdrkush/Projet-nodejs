@@ -1,3 +1,6 @@
+/*
+ * Controller: Admin
+ * **************** */
 exports.adminPage = (req, res) => {
   // SQL récupération de tout les users
   let sql = `SELECT * FROM user`;
