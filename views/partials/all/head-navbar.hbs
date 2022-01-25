@@ -11,7 +11,19 @@
     alert(`Vous êtes banni de ce site !<br>Si vous pensez qu'il sagit d'une erreur contactez l'administrateur`, 'danger')
 </script>
 {{/if}}
+{{#if error_compte}}
+<div id="Banned"></div>
+<script>
+    var alertPlaceholder = document.getElementById('Banned')
+    function alert(message, type) {
+        var wrapper = document.createElement('div')
+        wrapper.innerHTML = '<div style="color:#000!important" class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
 
+        alertPlaceholder.append(wrapper)
+    }
+    alert(`Cet email à déjà un compte !<br>Veuillez vous connecter`, 'danger')
+</script>
+{{/if}}
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
         <a href="/" class="logo"><img src="/assets/images/all/logo.jpg" alt="Logo Etoile Services"></a>
@@ -24,7 +36,7 @@
                 {{#if user }}
                 <li class="dropdown"><a href="#"><span>Espace client</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        {{#if user.role }}
+                        {{#if user.isAdmin }}
                         <li><a href="/admin">Administration</a></li>
                         {{/if}}
 

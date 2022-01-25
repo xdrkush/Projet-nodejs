@@ -26,13 +26,13 @@ router.route('/contact')
 
 // Auth 
 router.route('/login')
-    .post(mdl.isBan, AuthController.authLogin)
+    .post(mdl.isBan, mdl.isArchive, AuthController.authLogin)
 
 router.route('/register')
     .post(uploadUser.single('logo'), AuthController.authRegister)
 
 router.route('/forgot')
-    .post(mdl.isBan, AuthController.authForgot)
+    .post(mdl.isBan, mdl.isArchive, AuthController.authForgot)
 
 router.route('/logout')
     // .get(HomeController.homePage)

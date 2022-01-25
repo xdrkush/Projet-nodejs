@@ -11,7 +11,7 @@
                         <li><i class="bx bx-chevron-right"></i> <a href="/#services">Services</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="/creations">Créations</a></li>
                         {{#if user}}
-                        {{#if user.role}}
+                        {{#if user.isAdmin}}
                         <li><i class="bx bx-chevron-right"></i> <a href="/admin">Administration</a></li>
                         {{else}}
                         {{/if}}
