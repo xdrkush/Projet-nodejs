@@ -1,7 +1,7 @@
 {{!-- Page creations:ID --}}
 
 <section id="slider">
-    
+
     <div id="creations" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
         <ol class="carousel-indicators" id="slider-carousel-indicators"></ol>
@@ -38,17 +38,129 @@
                 </ol>
             </nav>
         </di>
-    <div class="container my-5">
+        <div class="container my-5">
             <div class="row">
                 {{#each data}}
-                <div class="itemid col-xs-12 col-xm-12 col-md-3">
-                    <h4>{{ this.description }}</h4>
+                <div class="itemid col-12">
+                    <p>{{ this.description }}</p>
                     <p><i>Fait le : {{ this.date }}</i></p>
                 </div>
                 {{/each}}
             </div>
         </div>
-        
+
+    </div>
+    <div class="row">
+        <div class="col-12 border-bottom">
+            <form action="/send/commentaire" method="post">
+                <textarea class="form-control" name="com" placeholder="Votre commentaire" required></textarea>
+                <button type="submit"></button>
+            </form>
+        </div>
+        <div class="col-12 d-flex align-content-center">
+            <div class="comments-container">
+                {{!-- <h1 class="border-bottom">Commentaires</h1> --}}
+                <ul id="comments-list" class="comments-list">
+                    <li>
+                        <div class="comment-main-level">
+
+
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <div class="comment-avatar"><img
+                                            src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
+                                            alt=""></div>
+                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin
+                                            Ortiz</a></h6>
+                                    <span>hace 20 minutos</span>
+                                    <i class="bi bi-heart"></i>
+                                    <i class="bi bi-exclamation-octagon"></i>
+                                    <i class="bi bi-reply-fill"></i>
+                                    
+                                </div>
+                                <div class="comment-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure
+                                    laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Respuestas de los comentarios -->
+                        <ul class="comments-list reply-list">
+                            <li>
+
+
+                                <!-- Contenedor del Comentario -->
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <div class="comment-avatar"><img
+                                                src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
+                                                alt=""></div>
+                                        <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a>
+                                        </h6>
+                                        <span>hace 10 minutos</span>
+                                    <i class="bi bi-heart"></i>
+                                    <i class="bi bi-exclamation-octagon"></i>
+                                    <i class="bi bi-reply-fill"></i>
+                                    </div>
+                                    <div class="comment-content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et
+                                        iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+
+
+                                <!-- Contenedor del Comentario -->
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <div class="comment-avatar"><img
+                                                src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
+                                                alt=""></div>
+                                        <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin
+                                                Ortiz</a></h6>
+                                        <span>hace 10 minutos</span>
+                                    <i class="bi bi-heart"></i>
+                                    <i class="bi bi-exclamation-octagon"></i>
+                                    <i class="bi bi-reply-fill"></i>
+                                    </div>
+                                    <div class="comment-content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et
+                                        iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <div class="comment-main-level">
+
+
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <div class="comment-avatar"><img
+                                            src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
+                                            alt=""></div>
+                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="bi bi-heart"></i>
+                                    <i class="bi bi-exclamation-octagon"></i>
+                                    <i class="bi bi-reply-fill"></i>
+                                </div>
+                                <div class="comment-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure
+                                    laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 

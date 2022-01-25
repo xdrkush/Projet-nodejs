@@ -20,3 +20,7 @@ exports.getUserProfil = (req, res) => {
 
   res.send('this')
 };
+exports.sendCom = (req, res) => {
+  console.log(req.body)
+  res.redirect('back')
+}

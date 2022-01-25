@@ -6,7 +6,7 @@ const fs = require("fs");
 exports.creationsPage = (req, res) => {
   var numRows;
   var numPerPage = 6;
-  var page = parseInt(req.query.page, 10) || 1;
+  var page = parseInt(req.query.page, 10) || 0;
   var numPages;
   var skip = page * numPerPage;
   var limit = skip + ',' + numPerPage;
@@ -14,7 +14,7 @@ exports.creationsPage = (req, res) => {
   let sql = `SELECT count(*) as numRows FROM creations`;
   db.query(sql, (error, results, fields) => {
       numRows = results[0].numRows;
-      numPages = Math.ceil(numRows / numPerPage);      
+      numPages = Math.ceil(numRows / numPerPage);  
   })
 
   let sqlget = `SELECT * FROM creations ORDER BY ID DESC LIMIT ${limit}`

@@ -37,7 +37,8 @@ router.route('/forgot')
 router.route('/logout')
     // .get(HomeController.homePage)
     .post(mdl.SessionsActive, AuthController.authLogout)
-
+router.route('/mention-legales')
+    .get(HomeController.mention)
 // Créations
 router.route('/creations')
     .get(CreationsController.creationsPage)
@@ -75,7 +76,9 @@ router.route('/ban/user/:id')
 // Commentaire
 router.route('/deleteCom/:id')
     .delete(mdl.isAdmin, AdminController.deleteCom)
-    
+
+router.route('/send/commentaire')
+    .post(mdl.isAdmin, UserController.sendCom)
     // /Routes
 
 // Exports de notre router

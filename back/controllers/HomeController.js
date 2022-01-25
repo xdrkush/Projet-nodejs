@@ -31,3 +31,6 @@ exports.sendMessage = (req, res) => {
 
   res.redirect('/')
 }
+exports.mention = (req, res) => {
+  res.render('mention')
+}

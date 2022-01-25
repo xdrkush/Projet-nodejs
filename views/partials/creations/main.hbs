@@ -36,7 +36,7 @@
                 <div class="col-md-4">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            {{#iffpage page.current 1}}
+                            {{#iffpage page.current 0}}
                             {{else}}
                             <li class="page-item">
                                 <a class="page-link" href="?page={{page.previous}}" aria-label="Previous">
@@ -49,7 +49,7 @@
                             <li class="page-item"><a class="page-link" href="?page={{page.previousbis}}">{{page.previousbis}}</a></li>
                             {{/iffpage}}
 
-                            {{#iffpage page.current 1}}
+                            {{#iffpage page.current 0}}
                             {{else}}
                             <li class="page-item"><a class="page-link" href="?page={{page.previous}}">{{page.previous}}</a></li>
                             {{/iffpage}}
@@ -60,7 +60,7 @@
                             <li class="page-item"><a class="page-link" href="?page={{page.next}}">{{page.next}}</a></li>
                             {{/iffpage}}
 
-                             {{#iffpage page.current 1}}
+                             {{#iffpage page.current 0}}
                             <li class="page-item"><a class="page-link" href="?page={{page.nextbis}}">{{page.nextbis}}</a></li>
                             {{/iffpage}}
 
