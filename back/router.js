@@ -8,77 +8,50 @@ const router = express.Router()
 const uploadUser = require('./config/multer_user')
 const uploadCreations = require('./config/multer_creations')
 // Import des controllers
-const HomeController = require('./controllers/HomeController')
-const CreationsController = require('./controllers/CreationsController')
-const AdminController = require('./controllers/AdminController')
-const AuthController = require('./controllers/AuthController')
-const UserController= require('./controllers/UserController')
+const { admin, banUser, editUser, deleteCom, login, logout, register, logout, creaPage, creaID, creaCreate, creaEdit, creaDelete, home, form, mention, editProfile, getProfile, sendCom} = require("./controllers");
 
 // Import Middleware
 const mdl = require('./middleware/middleware')
 
 // Routes
-router.route('/')
-    .get(HomeController.homePage)
+router.route('/').get(home)
+router.route('/contact').post(form)
+router.route('/mention-legales').get(mention)
 
-router.route('/contact')
-    .post(HomeController.sendMessage)
 
 // Auth 
-router.route('/login')
-    .post(mdl.isBan, mdl.isArchive, AuthController.authLogin)
+router.route('/login').post(mdl.isBan, mdl.isArchive, login)
+router.route('/register').post(uploadUser.single('logo'), register)
+router.route('/forgot').post(mdl.isBan, mdl.isArchive, forgot)
+router.route('/logout').post(mdl.SessionsActive, logout)
 
-router.route('/register')
-    .post(uploadUser.single('logo'), AuthController.authRegister)
 
-router.route('/forgot')
-    .post(mdl.isBan, mdl.isArchive, AuthController.authForgot)
-
-router.route('/logout')
-    // .get(HomeController.homePage)
-    .post(mdl.SessionsActive, AuthController.authLogout)
-router.route('/mention-legales')
-    .get(HomeController.mention)
 // Créations
-router.route('/creations')
-    .get(CreationsController.creationsPage)
+router.route('/creations').get(creaPage)
+router.route("/creations/:id").get(creaID)
 
-router.route("/creations/:id")
-    .get(CreationsController.creationsID)
 
 // Client 
-router.route('/profile')
-    .get(mdl.SessionsActive, UserController.getUserProfil)
-router.route('/profile/edit/:id')
-    .put(mdl.SessionsActive, uploadUser.single('avatar'), UserController.editUserProfil)
+router.route('/profile').get(mdl.SessionsActive, getProfile)
+router.route('/profile/edit/:id').put(mdl.SessionsActive, uploadUser.single('avatar'), editProfile)
+
 
 /////// Administration ///////
-router.route('/admin')
-    .get(mdl.isAdmin, AdminController.adminPage)
+router.route('/admin').get(mdl.isAdmin, admin)
 
 // Créations
-router.route('/create/article')
-    .post(mdl.isAdmin, uploadCreations.array('avatar'), CreationsController.createArticle)
-
-router.route("/creations/edit/:id")
-    .put(mdl.isAdmin, CreationsController.editArticle)
-
-router.route('/creations/delete/:id')
-    .delete(mdl.isAdmin, CreationsController.deleteArticle)
+router.route('/create/article').post(mdl.isAdmin, uploadCreations.array('avatar'), creaCreate)
+router.route("/creations/edit/:id").put(mdl.isAdmin, creaEdit)
+router.route('/creations/delete/:id').delete(mdl.isAdmin, creaDelete)
 
 // Utilisateur
-router.route('/edit/user/:id')
-    .put(mdl.isAdmin, uploadUser.single('avatar'), AdminController.editUser)
-
-router.route('/ban/user/:id')
-    .put(mdl.isAdmin, AdminController.banUser)
+router.route('/edit/user/:id').put(mdl.isAdmin, uploadUser.single('avatar'), editUser)
+router.route('/ban/user/:id').put(mdl.isAdmin, banUser)
 
 // Commentaire
-router.route('/deleteCom/:id')
-    .delete(mdl.isAdmin, AdminController.deleteCom)
+router.route('/deleteCom/:id').delete(mdl.isAdmin, deleteCom)
+router.route('/send/commentaire').post(mdl.isAdmin, sendCom)
 
-router.route('/send/commentaire')
-    .post(mdl.isAdmin, UserController.sendCom)
     // /Routes
 
 // Exports de notre router
