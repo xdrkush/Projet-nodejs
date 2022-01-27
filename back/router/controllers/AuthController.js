@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt'),
   bcrypt_text = 'imagination';
 
 exports.login = (req, res) => {
-  let sql = `SELECT * FROM user WHERE (email= ?)`
+  let sql = `SELECT * FROM users WHERE (email= ?)`
 
   db.query(sql, req.body.email, function (err, data) {
     if (err) throw err;
@@ -34,7 +34,7 @@ exports.login = (req, res) => {
 }
 
 exports.register = (req, res) => {
-  let sql = `SELECT * FROM user WHERE email=?`;
+  let sql = `SELECT * FROM users WHERE email=?`;
 
   db.query(sql, req.body.email, function (err, data, fields) {
     if (err) throw err;
@@ -42,7 +42,7 @@ exports.register = (req, res) => {
       bcrypt.genSalt(bcrypt_nb, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
 
-          let sql = `INSERT INTO user set nom=?, prenom=?, email=?, password=?, avatar_path=?`;
+          let sql = `INSERT INTO users set nom=?, prenom=?, email=?, password=?, avatar_path=?`;
 
           let values = [
             req.body.nom,
@@ -55,7 +55,7 @@ exports.register = (req, res) => {
           db.query(sql, values, function (err, data, fields) {
             if (err) throw err;
 
-            let sqlGet = `SELECT * FROM user WHERE (email= ?)`
+            let sqlGet = `SELECT * FROM users WHERE (email= ?)`
             db.query(sqlGet, req.body.email, function (err, data) {
 
               req.session.user = {

@@ -47,7 +47,7 @@ exports.creaID = (req, res) => {
   let sql = `SELECT * FROM creations WHERE id = ${req.params.id}`;
   db.query(sql, (error, data, fields) => {
 
-    let sqlGet = `SELECT * FROM images WHERE img_id = ${req.params.id}`;
+    let sqlGet = `SELECT * FROM images WHERE id_creations = ${req.params.id}`;
     db.query(sqlGet, (error, data2, fields) => {
      
       if (error) throw error;
@@ -67,12 +67,10 @@ exports.creaEdit = (req, res) => {
     if (error) throw error;
 
     let values = [
-      req.body.img,
       req.body.description,
-      req.body.date
     ];
 
-    let sql = `UPDATE creations SET img=?, description=?, date=? WHERE id = ${req.params.id} `;
+    let sql = `UPDATE creations SET description=? WHERE id = ${req.params.id} `;
     db.query(sql, values, function (err, data2, fields) {
       if (err) throw err;
       res.redirect('back')
@@ -82,36 +80,25 @@ exports.creaEdit = (req, res) => {
 };
 
 exports.creaDelete = (req, res) => {
-  let sql = `DELETE FROM creations WHERE id = ?`
+  let sql = `UPDATE creations SET isDelete=1 WHERE id = ?`
   db.query(sql, req.params.id, (err) => {
     if (err) throw err
     res.redirect('back');
   })
 };
 
-exports.creaCreate= async (req, res) => {
-  const {
-    Timestamp
-  } = require("@sapphire/time-utilities");
-  const dateDay = `${new Timestamp("DD-MM-YYY à HH:mm")}`;
+exports.creaCreate = async (req, res) => {
 
   // SQL pour creer un article
-  let sql = `INSERT INTO creations set description=?, img=?, date=?, destroy=?`;
-  let values = [
-    req.body.desc,
-    req.files[0].filename,
-    dateDay,
-    false
-  ];
-  db.query(sql, values, function (err, data1, fields) {
-    if (err) throw err;
-
+  const { desc } = req.body;  
+  const addCrea = await db.query(`INSERT INTO creations (description, isDelete) VALUES ( '${desc}', 0 );`);
+console.log(addCrea.insertId)
     let sqlGet = `SELECT * FROM creations ORDER BY ID DESC LIMIT 1;`;
-    db.query(sqlGet, values, async function (err, data2, fields) {
+    db.query(sqlGet, async function (err, data2, fields) {
       if (err) throw err;
 
       for (i = 0; i < req.files.length; i++) {
-        let sqlSet = `INSERT INTO images SET img_url=?, img_id=?`;
+        let sqlSet = `INSERT INTO images SET img_url=?, id_creations=?`;
 
         let values = [
           req.files[i].filename,
@@ -124,5 +111,4 @@ exports.creaCreate= async (req, res) => {
       }
       await res.redirect('back')
     })
-  })
 };

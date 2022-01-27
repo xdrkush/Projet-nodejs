@@ -3,7 +3,7 @@
  * **************** */
 exports.admin = (req, res) => {
   // SQL récupération de tout les users
-  let sql = `SELECT * FROM user`;
+  let sql = `SELECT * FROM users`;
 
   db.query(sql, (error, data, fields) => {
     if (error) throw error;
@@ -23,13 +23,13 @@ exports.admin = (req, res) => {
 }
 exports.banUser = (req, res) => {
   // Select de l'user avec id
-  let sqlGet = `SELECT * FROM user WHERE id = ${req.params.id}`;
+  let sqlGet = `SELECT * FROM users WHERE id = ${req.params.id}`;
 
   db.query(sqlGet, (error, dataGet, fields) => {
     if (error) throw error;
 
     // Update de l'user en mettant ban sur true 
-    let sql = `UPDATE user SET ban=? WHERE id = ${req.params.id} `;
+    let sql = `UPDATE users SET ban=? WHERE id = ${req.params.id} `;
     db.query(sql, true, function (err, data2, fields) {
       if (err) throw err;
       
@@ -54,7 +54,7 @@ exports.banUser = (req, res) => {
 
 exports.editUser = (req, res) => {
 
-  let sqlGet = `SELECT * FROM user WHERE id = ${req.params.id}`;
+  let sqlGet = `SELECT * FROM users WHERE id = ${req.params.id}`;
   db.query(sqlGet, (error, dataGet, fields) => {
     if (error) throw error;
 
@@ -64,7 +64,7 @@ exports.editUser = (req, res) => {
       req.body.email
     ];
 
-    let sql = `UPDATE user SET nom=?, prenom=?, email=? WHERE id = ${req.params.id} `;
+    let sql = `UPDATE users SET nom=?, prenom=?, email=? WHERE id = ${req.params.id} `;
     db.query(sql, values, function (err, data2, fields) {
       if (err) throw err;
       res.redirect('back')

@@ -15,7 +15,7 @@ module.exports = {
     }
   },
   isBan: (req, res, next) => {
-    let sql = `SELECT id FROM user WHERE (email= ?)`
+    let sql = `SELECT id FROM users WHERE (email= ?)`
     db.query(sql, req.body.email, function (err, data) {
       console.log('ml', data[0].id)
       let sqlGetBan = `SELECT isBan FROM role WHERE (id_user=${data[0].id})`
@@ -43,7 +43,7 @@ module.exports = {
     })
   },
   isArchive: (req, res, next) => {
-    let sql = `SELECT id FROM user WHERE (email= ?)`
+    let sql = `SELECT id FROM users WHERE (email= ?)`
     db.query(sql, req.body.email, function (err, data) {
 
       let sqlGetBan = `SELECT isArchive FROM role WHERE id_user=${data[0].id}`

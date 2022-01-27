@@ -20,7 +20,12 @@ exports.getProfile = (req, res) => {
 
   res.send('this')
 };
-exports.sendCom = (req, res) => {
-  console.log(req.body)
+exports.sendCom = async (req, res) => {
+  console.log(req.session.user.id)
+  const { com } = req.body;
+  var ref_com = req.params.id ? req.params.id : null
+  console.log(ref_com)
+  const user = await db.query(`INSERT INTO commentaires set id_user=${req.session.user.id}, content='${com}', id_com_parent=${ref_com};`);
+  console.log("ADD COM", req.body.com)
   res.redirect('back')
 }
