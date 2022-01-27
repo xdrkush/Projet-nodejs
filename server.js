@@ -14,6 +14,7 @@ const
     multer = require('multer'),
     expressHbs =  require('express-handlebars'),
     Handlebars = require('handlebars'),
+    flash = require('express-flash'),
     mysql = require('mysql'),
     expressSession = require("express-session"),
     MySQLStore = require("express-mysql-session")(expressSession);
@@ -28,6 +29,9 @@ let configDB = {
 
 // MYSQL
 db = mysql.createConnection(configDB);
+const util = require("util");
+db.query = util.promisify(db.query).bind(db);
+
 db.connect((err) => {
     if (err) console.error('error connecting: ' + err.stack);
     console.log('connected as id ' + db.threadId);
@@ -51,6 +55,8 @@ app.engine('hbs', engine({
 
 // Configuration Express-Session
 var sessionStore = new MySQLStore(configDB);
+
+app.use(flash())
 
 // Express-session
 app.use(
@@ -86,7 +92,7 @@ app.use(bodyParser.urlencoded({
 app.use("/assets", express.static('public'));
 
 // Import du Router
-const ROUTER = require('./back/router')
+const ROUTER = require('./back/router/router')
 app.use('/', ROUTER)
 
 // Lancement de l'app sur le port défini dans le .env

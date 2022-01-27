@@ -9,19 +9,17 @@ exports.home = (req, res) => {
 
   db.query(sql, (error, data, fields) => {
     if (error) throw error;
-    req.flash('success', 'Merci d avoir entrer un titre')
     res.render('home', {
       title: `${process.env.ETP} - Accueil`,
       creationsItem: data,
       creations: Number(data.length),
-      success: req.flash('success'),
     })
   })
 }
 
 exports.form = (req, res) => {
 
-  const Hook = new webhook.Webhook("https://discord.com/api/webhooks/927493486775791636/2wNULa7aRP5Sz2Bgv4i2vShNEuQBfI6SO7Iz9egfnP_95gxUf5qulIE0nZLoRorak7L9");
+  const Hook = new webhook.Webhook(process.env.WB);
   const msg = new webhook.MessageBuilder()
     .setName("Mail")
     .setColor("#aabbcc")

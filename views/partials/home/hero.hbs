@@ -9,24 +9,32 @@ Partial: Hero
 </section>
 
 {{#if errors }}
-    <h4 style='color: red'> {{ errors }} </h4>
+<h4 style='color: red'> {{ errors }} </h4>
 {{/if }}
 
 {{#if success }}
-  {{!-- <h4 style='color: green'> {{ success }} </h4> --}}
-  <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-  <div class="toast" style="position: absolute; top: 0; right: 0;">
-    <div class="toast-header">
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+<button type="button" class="btn btn-secondary" id="Btncontc">Envoyer</button>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="po" class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="width: auto;">
+        <div class="toast-header">
+            <strong class="me-auto">Message automatique</strong>
+            <small class="mx-2">A l'instant</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ success }}
+        </div>
     </div>
-    <div class="toast-body">
-      {{ success }}
-    </div>
-  </div>
 </div>
 <script>
-    $('.toast').toast(option)
+ var toastTrigger = document.getElementById('Btncontc')
+    var toastLiveExample = document.getElementById('po')
+    if (toastTrigger) {
+        toastTrigger.addEventListener('click', function () {
+            var toast = new bootstrap.Toast(toastLiveExample)
+
+            toast.show()
+        })
+    }
 </script>
 {{/if }}

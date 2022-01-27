@@ -5,13 +5,13 @@
 // Import de module
 const express = require('express')
 const router = express.Router()
-const uploadUser = require('./config/multer_user')
-const uploadCreations = require('./config/multer_creations')
+const uploadUser = require('../config/multer_user')
+const uploadCreations = require('../config/multer_creations')
 // Import des controllers
-const { admin, banUser, editUser, deleteCom, login, logout, register, logout, creaPage, creaID, creaCreate, creaEdit, creaDelete, home, form, mention, editProfile, getProfile, sendCom} = require("./controllers");
+const { admin, banUser, editUser, deleteCom, login, logout, register, forgot, creaPage, creaID, creaCreate, creaEdit, creaDelete, home, form, mention, editProfile, getProfile, sendCom} = require("./controllers");
 
 // Import Middleware
-const mdl = require('./middleware/middleware')
+const mdl = require('../middleware/middleware')
 
 // Routes
 router.route('/').get(home)
