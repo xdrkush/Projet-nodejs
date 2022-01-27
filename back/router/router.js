@@ -11,7 +11,8 @@ const uploadCreations = require('../config/multer_creations')
 const { admin, banUser, editUser, deleteCom, login, logout, register, forgot, creaPage, creaID, creaCreate, creaEdit, creaDelete, home, form, mention, editProfile, getProfile, sendCom} = require("./controllers");
 
 // Import Middleware
-const mdl = require('../middleware/middleware')
+const mdl = require('../middleware/middleware');
+const { Router } = require('express');
 
 // Routes
 router.route('/').get(home)
@@ -51,6 +52,7 @@ router.route('/ban/user/:id').put(mdl.isAdmin, banUser)
 // Commentaire
 router.route('/deleteCom/:id').delete(mdl.isAdmin, deleteCom)
 router.route('/send/commentaire').post(mdl.isAdmin, sendCom)
+router.route('/send/commentaire/:id').post(mdl.isAdmin, sendCom)
 
     // /Routes
 

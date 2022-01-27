@@ -72,10 +72,11 @@ exports.editUser = (req, res) => {
   })
 }
 
-exports.deleteCom = (req, res) => {
+exports.deleteCom = async (req, res) => {
   //  console.log(req);
   console.log("controller delete Com", req.params.id, req.body);
-  
+  const del = await db.query(`DELETE FROM commentaires WHERE id = ${req.params.id};`);
+
  res.redirect('back')
  
 }

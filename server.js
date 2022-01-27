@@ -47,7 +47,7 @@ app.engine('hbs', engine({
       incUp: incUp,
       incDown: incDown,
       limit: limite,
-      iffpage
+      ifCond: iffpage
   },
   extname: 'hbs',
   defaultLayout: 'main'
