@@ -27,7 +27,7 @@ exports.sendCom = async (req, res) => {
   const { id } = req.params
 
   const user = await db.query(`
-    INSERT INTO commentaires set id_user=${req.session.user.id}, content='${com}', id_com_parent=null, id_creations = ${ id };
+    INSERT INTO commentaires set id_user=${req.session.user.id}, content='${com}', id_com_parent=null, id_articles = ${ id };
   `);
   
   console.log("ADD COM", req.body.com)
@@ -42,7 +42,7 @@ exports.replyCom = async (req, res) => {
   console.log(ref_com)
 
   const user = await db.query(`
-    INSERT INTO commentaires set id_user=${req.session.user.id}, content='${com}', id_com_parent=${ref_com}, id_creations = null;
+    INSERT INTO commentaires set id_user=${req.session.user.id}, content='${com}', id_com_parent=${ref_com}, id_articles = null;
   `);
   
   console.log("ADD COM", req.body.com)

@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `projet_njs`.`commentaires` (
   `content` TEXT NOT NULL,
   `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_com_parent` INT NULL,
-  `id_creations` INT NOT NULL,
+  `id_articles` INT NOT NULL,
   INDEX `fk_com_list_1_idx` (`id_user` ASC) VISIBLE,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,

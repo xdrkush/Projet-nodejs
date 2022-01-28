@@ -52,29 +52,33 @@ exports.creaID = async (req, res) => {
 
   const getCreations = await db.query(`SELECT * FROM creations WHERE id = ${req.params.id}`);
   const GetImgCrea = await db.query(`SELECT * FROM images WHERE id_creations = ${req.params.id}`);
-  const listComment = await db.query(`SELECT * FROM commentaires WHERE id_creations = ${req.params.id}`);
+  const listComment = await db.query(`SELECT * FROM commentaires WHERE id_articles = ${req.params.id}`);
   let construct = []
+  
+  // console.log("listcom",listComment)
 
   listComment.map(async (el, index) => {
     const child = await db.query(`SELECT * FROM commentaires WHERE id_com_parent = '${el.id}';`)
+    console.log('child', child)
     el.child = child
     construct.push(el)
   });
+  console.log('constr',construct)
 
-  let ArticleID = {
-    getCreations: getCreations[0],
-    GetImgCrea,
-    parms: GetImgCrea[0].id,
-    comment: construct
-  }
+  // let ArticleID = {
+  //   getCreations: getCreations[0],
+  //   GetImgCrea,
+  //   parms: GetImgCrea[0].id,
+  //   comment: construct
+  // }
 
+  console.log(construct)
   res.render("article", {
     title: `${process.env.ETP} - Articles`,
     getCreations: getCreations[0],
     GetImgCrea,
     parms: GetImgCrea[0].id,
-    listComment: construct,
-    ArticleID
+    listComment: construct
   });
 
 }
