@@ -9,7 +9,7 @@
         <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            {{#each GetImgCrea}}
+            {{#each ArticleID.GetImgCrea}}
 
             <div id="it-{{this.id}}" class="carousel-item"
                 style="background-image: url('/assets/images/creations/{{ this.img_url }}');background-repeat:no-repeat;background-size:contain; background-position: center; ">
@@ -40,12 +40,10 @@
         </di>
         <div class="container my-5">
             <div class="row">
-                {{#each GetCreations}}
                 <div class="itemid col-12">
-                    <p>{{ this.description }}</p>
-                    <p><i>Fait le : {{ this.date }}</i></p>
+                    <p>{{ ArticleID.getCreations.description }}</p>
+                    <p><i>Fait le : {{{formatDate ArticleID.getCreations.date "DD MMMM YYYY"}}}</i></p>
                 </div>
-                {{/each}}
             </div>
         </div>
 
@@ -53,7 +51,7 @@
     <div class="row">
         {{#if user}}
         <div class="col-12 border-bottom">
-            <form action="/send/commentaire/{{ getCreations.id }}" method="post">
+            <form action="/send/commentaire/{{ ArticleID.getCreations.id }}" method="post">
                 <textarea class="form-control" name="com" placeholder="Votre commentaire" required></textarea>
                 <button type="submit">SEND</button>
             </form>
@@ -63,7 +61,7 @@
             <div class="comments-container">
                 <ul id="comments-list" class="comments-list">
                     <li>
-                        {{#each listComment}}
+                        {{#each ArticleID.comment}}
                             {{#if this.id_articles}}
                             <!-- -->
                                 {{> article/comment}}
