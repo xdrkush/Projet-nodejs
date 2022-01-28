@@ -21,9 +21,11 @@ exports.creaPage = (req, res) => {
                   FROM creations 
                   INNER JOIN images
                   ON images.id_creations = creations.id
+                  group by creations.id
                   ORDER BY ID DESC LIMIT ${limit}`
   db.query(sqlget, (error, results, fields) => {
     if (error) throw error;
+    console.log(results)
     var responsePayload = {
       results: results
     };
