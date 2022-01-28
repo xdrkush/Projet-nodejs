@@ -96,7 +96,6 @@
                             </div>
                         </div>
                         {{/if}}
-                        {{#ifCond this.id_articles undefined}}
                         {{#each this.child as |child|}}
                         {{#ifCond ../this.id child.id_com_parent}}
 
@@ -115,10 +114,10 @@
                                         <i class="bi bi-heart"></i>
                                         <i class="bi bi-exclamation-octagon"></i>
                                         <i class="bi bi-reply-fill"></i>
-                                        <form action="/reply/commentaire/{{child.id}}" method="post">
+                                        {{!-- <form action="/reply/commentaire/{{child.id}}" method="post">
                                             <input type="text" name="com" id="">
                                             <button type="submit">SEND</button>
-                                        </form>
+                                        </form> --}}
                                         <form action="/deleteCom/{{child.id}}?_method=DELETE" method="post">
                                             <button type="submit">DEL</button>
                                         </form>
@@ -134,18 +133,17 @@
                         {{/ifCond}}
                         {{/each}}
 
-                        {{/ifCond}}
                         {{/each}}
                     </li>
                 </ul>
             </div>
         </div>
-
+{{!-- 
         <div>
             <h1>test</h1>
             {{> testt data=kush}}
             {{> testt data=axel}}
-        </div>
+        </div> --}}
 
     </div>
 </div>
