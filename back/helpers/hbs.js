@@ -1,3 +1,6 @@
+const moment = require('moment');
+const frLocal = require('moment/locale/fr')
+
 module.exports = {
     condIff: (a, operator, b, opts) => {
         var bool = false;
@@ -37,5 +40,15 @@ module.exports = {
         } else {
             return opts.inverse(this);
         }
-    }
+    },
+    formatDate: function(datetime, format) {
+        if (moment) {
+            moment.locale('fr', frLocal);
+           var ds= moment(datetime).format("DD MMMM YYYY à HH:MM");
+           return ds
+        }
+        else {
+          return datetime;
+        }
+      }
 }

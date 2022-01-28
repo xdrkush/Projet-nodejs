@@ -8,7 +8,8 @@
         <div class="row" style="background-color: #f6f9fe;" data-aos="fade-right">
             {{!-- Permet d'obtenir tout mes items afin de les afficher --}}
             {{#each creationsItem }}
-
+            {{#if isDelete}}
+            {{else}}
             <div class="my-5 col-xs-12 col-xm-12 col-md-6 col-lg-4 d-flex justify-content-center"
                 data-aos="zoom-out-down" data-aos-delay="{{this.id}}0">
 
@@ -26,6 +27,7 @@
                 </div>
 
             </div>
+            {{/if}}
             {{/each }}
         </div>
 

@@ -1,8 +1,6 @@
 /*
  * Controller: Créations
  * **************** */
-const { log, Console } = require("console");
-const fs = require("fs");
 
 exports.creaPage = (req, res) => {
   var numRows;

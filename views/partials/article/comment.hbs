@@ -1,0 +1,21 @@
+<div class="comment-main-level">
+    <!-- -->
+
+    <div class="comment-box">
+        <div class="comment-head">
+            <div class="comment-avatar"><img
+                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+            <h6 class="comment-name by-author">Agustin Ortiz</h6>
+            <span>{{{formatDate this.date 'MM/DD/YYYY'}}}</span>
+            {{#if user}}
+            <i class="bi bi-heart"></i>
+            <i class="bi bi-exclamation-octagon"></i>
+            <i class="bi bi-reply-fill"></i>
+            {{>article/form}}
+            {{/if}}
+        </div>
+        <div class="comment-content">
+            {{this.content}}
+        </div>
+    </div>
+</div>

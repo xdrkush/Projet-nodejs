@@ -181,16 +181,13 @@ INSERT INTO users (prenom, nom, email, password, avatar_path)
 
 INSERT INTO creations (description, isDelete)
   VALUES
-   ('Ma super descr 1', "0"),
-   ('Ma super descr 2', "1"),
-   ('Ma super descr 3', "0")
+   ('Ma super descr 1', "0")
 ;
 
 INSERT INTO images (img_url, id_creations)
   VALUES
    ('1641736475301_1_a.jpg', "1"),
-   ('1641752074122_2b.jpg', "1"),
-   ('1641736475301_1_a.jpg', "2")
+   ('1641752074122_2b.jpg', "1")
 ;
 
 INSERT INTO role (id_user, isBan, isArchive, isAdmin)
