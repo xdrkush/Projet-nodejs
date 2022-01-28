@@ -44,7 +44,7 @@ module.exports = {
     formatDate: function(datetime, format) {
         if (moment) {
             moment.updateLocale('fr', frLocal);
-           var ds= moment(datetime).format("DD MMMM YYYY à HH:MM");
+           var ds= moment(datetime).format(format);
            return ds
         }
         else {

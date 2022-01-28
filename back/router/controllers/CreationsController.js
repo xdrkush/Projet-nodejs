@@ -4,7 +4,7 @@
 
 exports.creaPage = (req, res) => {
   var numRows;
-  var numPerPage = 6;
+  var numPerPage = 1;
   var page = parseInt(req.query.page, 10) || 0;
   var numPages;
   var skip = page * numPerPage;
@@ -17,7 +17,11 @@ exports.creaPage = (req, res) => {
     numPages = Math.ceil(numRows / numPerPage);
   })
 
-  let sqlget = `SELECT * FROM creations ORDER BY ID DESC LIMIT ${limit}`
+  let sqlget = `SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url
+                        FROM creations 
+                        INNER JOIN images
+                        ON images.id_creations = creations.id
+                        ORDER BY ID DESC LIMIT ${limit}`
   db.query(sqlget, (error, results, fields) => {
     if (error) throw error;
     var responsePayload = {
@@ -32,6 +36,7 @@ exports.creaPage = (req, res) => {
         next: page < numPages - 1 ? page + 1 : undefined,
         nextbis: page < numPages - 1 ? page + 2 : undefined
       }
+      console.log(responsePayload.pagination)
       res.render('creations', {
         title: `${process.env.ETP} - Création`,
         creationsItem: results,
@@ -62,7 +67,7 @@ exports.creaID = async (req, res) => {
     parms: GetImgCrea[0].id,
     comment: construct
   }
-  
+
   res.render("article", {
     title: `${process.env.ETP} - Articles`,
     getCreations: getCreations[0],

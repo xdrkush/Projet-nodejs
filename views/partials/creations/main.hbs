@@ -4,7 +4,7 @@
         <div class="section-title">
             <h3><span>Mes Créations</span></h3>
         </div>
-        
+
         <div class="row" style="background-color: #f6f9fe;" data-aos="fade-right">
             {{!-- Permet d'obtenir tout mes items afin de les afficher --}}
             {{#each creationsItem }}
@@ -16,13 +16,13 @@
                 <div class="card" style="width: 22rem;">
                     <a href="/creations/{{ this.id }}">
                         <div
-                            style="background-image: url('/assets/images/creations/{{ this.img }}'); background-size: cover; background-position:center;">
+                            style="background-image: url('/assets/images/creations/{{ this.img_url }}'); background-size: cover; background-position:center;">
                             <p style="height: 250px;"></p>
                         </div>
                     </a>
                     <div class="card-body">
                         <p class="card-text">{{ this.desc }}</p>
-                        <p class="card-text"><i>Fait le : {{ this.date }}</i></p>
+                        <p class="card-text"><i>Fait le : {{{formatDate this.date "DD MMMM YYYY"}}}</i></p>
                     </div>
                 </div>
 
@@ -37,44 +37,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            {{#ifCond page.current 0}}
-                            {{else}}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{page.previous}}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            {{/ifCond}}
-
-                            {{#ifCond page.next undefined}}
-                            <li class="page-item"><a class="page-link" href="?page={{page.previousbis}}">{{page.previousbis}}</a></li>
-                            {{/ifCond}}
-
-                            {{#ifCond page.current 0}}
-                            {{else}}
-                            <li class="page-item"><a class="page-link" href="?page={{page.previous}}">{{page.previous}}</a></li>
-                            {{/ifCond}}
-
-                            <li class="page-item active" aria-current="page"><a style="color:white!important" class="page-link" href="?page={{page.current}}">{{page.current}}</a></li>
-                            {{#ifCond page.next undefined}}
-                            {{else}}
-                            <li class="page-item"><a class="page-link" href="?page={{page.next}}">{{page.next}}</a></li>
-                            {{/ifCond}}
-
-                             {{#ifCond page.current 0}}
-                            <li class="page-item"><a class="page-link" href="?page={{page.nextbis}}">{{page.nextbis}}</a></li>
-                            {{/ifCond}}
-
-                            {{#ifCond page.next undefined}}
-                            {{else}}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{page.next}}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                            {{/ifCond}}
-                        </ul>
+                        {{> creations/paginations}}
                     </nav>
                 </div>
                 <div class="col-md-4"></div>

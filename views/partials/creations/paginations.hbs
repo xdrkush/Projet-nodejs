@@ -1,0 +1,52 @@
+<ul class="pagination">
+    {{!-- Si la page actuel est 0 alors ne rien afficher sinon affiche la page précédente --}}
+    {{#ifCond page.current 0}}
+    {{else}}
+    <li class="page-item">
+        <a class="page-link" href="?page=9{{page.previous}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    {{/ifCond}}
+
+    {{!-- Si la page next n'est pas défini & que la page actuel n'est pas 0 on affiche la page avant la précédente --}}
+    {{#ifCond page.next undefined}}
+    {{#ifCond page.current 0}}
+    {{else}}
+    <li class="page-item"><a class="page-link" href="?page=8{{page.previousbis}}">{{page.previousbis}}</a></li>
+    {{/ifCond}}
+    {{/ifCond}}
+
+    {{!-- Si la page actuel est n'est pas 0 on affiche la page précédente --}}
+    {{#ifCond page.current 0}}
+    {{else}}
+    <li class="page-item"><a class="page-link" href="?page=7{{page.previous}}">{{page.previous}}</a></li>
+    {{/ifCond}}
+
+    {{!-- Affichage de la page actuel ( par défault 0 ) --}}
+    <li class="page-item active" aria-current="page"><a style="color:white!important" class="page-link"
+            href="?page=6{{page.current}}">{{page.current}}</a></li>
+
+    {{!-- Si la page next est défini affiché la page suivante --}}
+    {{#ifCond page.next undefined}}
+    {{else}}
+    <li class="page-item"><a class="page-link" href="?page=5{{page.next}}">{{page.next}}</a></li>
+    {{/ifCond}}
+
+    {{!-- Si la page actuel est 0 & que la page suivante est défini on affiche la page deuxième page suivante --}}
+    {{#ifCond page.current 0}}
+    {{#ifCond page.next true}}
+    <li class="page-item"><a class="page-link" href="?page=4{{page.nextbis}}">{{page.nextbis}}</a></li>
+    {{/ifCond}}
+    {{/ifCond}}
+
+    {{!-- Si la page next n'est pas défini ne pas affiché la page suivante --}}
+    {{#ifCond page.next undefined}}
+    {{else}}
+    <li class="page-item">
+        <a class="page-link" href="?page=3{{page.next}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+    {{/ifCond}}
+</ul>
