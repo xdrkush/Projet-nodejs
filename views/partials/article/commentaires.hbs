@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <di class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="/creations">Créations</a></li>
+                </ol>
+            </nav>
+        </di>
+        <div class="container my-5">
+            <div class="row">
+                <div class="itemid col-12">
+                    <p>{{ ArticleID.getCreations.description }}</p>
+                    <p><i>Fait le : {{{formatDate ArticleID.getCreations.date "DD MMMM YYYY"}}}</i></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        {{#if user}}
+        <div class="col-12 border-bottom">
+            <form action="/send/commentaire/{{ ArticleID.getCreations.id }}" method="post">
+                <textarea class="form-control" name="com" placeholder="Votre commentaire" required></textarea>
+                <button type="submit">SEND</button>
+            </form>
+        </div>
+        {{/if}}
+        <div class="col-12 d-flex align-content-center">
+            <div class="comments-container">
+                <ul id="comments-list" class="comments-list">
+                    <li>
+                        {{#each ArticleID.comment}}
+                        {{#if this.id_articles}}
+                        <!-- -->
+                        {{> article/comment}}
+                        <!-- -->
+                        {{/if}}
+
+                        {{#each this.child as |child|}}
+                        {{#ifCond ../this.id child.id_com_parent}}
+                        <!-- -->
+                        {{> article/reply}}
+                        <!-- -->
+                        {{/ifCond}}
+                        {{/each}}
+                        {{/each}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

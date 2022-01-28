@@ -18,10 +18,10 @@ exports.creaPage = (req, res) => {
   })
 
   let sqlget = `SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url
-                        FROM creations 
-                        INNER JOIN images
-                        ON images.id_creations = creations.id
-                        ORDER BY ID DESC LIMIT ${limit}`
+                  FROM creations 
+                  INNER JOIN images
+                  ON images.id_creations = creations.id
+                  ORDER BY ID DESC LIMIT ${limit}`
   db.query(sqlget, (error, results, fields) => {
     if (error) throw error;
     var responsePayload = {
@@ -36,7 +36,7 @@ exports.creaPage = (req, res) => {
         next: page < numPages - 1 ? page + 1 : undefined,
         nextbis: page < numPages - 1 ? page + 2 : undefined
       }
-      console.log(responsePayload.pagination)
+      // console.log(responsePayload.pagination)
       res.render('creations', {
         title: `${process.env.ETP} - Création`,
         creationsItem: results,
@@ -49,7 +49,6 @@ exports.creaPage = (req, res) => {
 }
 
 exports.creaID = async (req, res) => {
-
   const getCreations = await db.query(`SELECT * FROM creations WHERE id = ${req.params.id}`);
   const GetImgCrea = await db.query(`SELECT * FROM images WHERE id_creations = ${req.params.id}`);
   const listComment = await db.query(`SELECT * FROM commentaires WHERE id_articles = ${req.params.id}`);
@@ -60,7 +59,7 @@ exports.creaID = async (req, res) => {
     el.child = child
     construct.push(el)
   });
-  
+
   let ArticleID = {
     getCreations: getCreations[0],
     GetImgCrea,
