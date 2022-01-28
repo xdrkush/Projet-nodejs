@@ -137,3 +137,18 @@ exports.logout = (req, res) => {
     res.redirect('/');
   })
 }
+
+
+// async function test() {
+//   const users = await db.query('select * from users')
+//   console.log('users', users)
+//   users.forEach( async el => {
+//     const hash = await bcrypt.hash(el.password, 10)
+//     console.log('hash', hash)
+//     let sql = `UPDATE users SET password="${ hash }" WHERE id = ${el.id} `;
+//     await db.query(sql)
+
+//   });
+// }
+
+// test()

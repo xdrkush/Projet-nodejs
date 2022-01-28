@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `projet_njs`.`commentaires` (
   `content` VARCHAR(5000) NOT NULL,
   `date` DATETIME NOT NULL DEFAULT current_timestamp,
   `id_com_parent` INT NULL,
+  `id_articles` INT NULL,
   INDEX `fk_com_list_1_idx` (`id_user` ASC) VISIBLE,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
@@ -170,3 +171,31 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO users (prenom, nom, email, password, avatar_path)
+  VALUES
+   ('axel', 'etoile', 'axel@fr.fre', '1234', '/fezrsf'),
+   ('axel1', 'etoile2', 'axel1@fr.fre', '1234', '/fezrsf'),
+   ('axel2', 'etoile1', 'axel2@fr.fre', '1234', '/fezrsf')
+;
+
+INSERT INTO creations (description, isDelete)
+  VALUES
+   ('Ma super descr 1', "0"),
+   ('Ma super descr 2', "1"),
+   ('Ma super descr 3', "0")
+;
+
+INSERT INTO images (img_url, id_creations)
+  VALUES
+   ('1641736475301_1_a.jpg', "1"),
+   ('1641752074122_2b.jpg', "1"),
+   ('1641736475301_1_a.jpg', "2")
+;
+
+INSERT INTO role (id_user, isBan, isArchive, isAdmin)
+  VALUES
+   ('1', '0', '0', '1'),
+   ('2', '0', '0', '0'),
+   ('3', '0', '0', '0')
+;

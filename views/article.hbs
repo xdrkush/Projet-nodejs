@@ -52,32 +52,25 @@
     </div>
     <div class="row">
         <div class="col-12 border-bottom">
-            <form action="/send/commentaire" method="post">
+            <form action="/send/commentaire/{{ getCreations.id }}" method="post">
                 <textarea class="form-control" name="com" placeholder="Votre commentaire" required></textarea>
                 <button type="submit">SEND</button>
             </form>
         </div>
         <div class="col-12">
-            {{#each listComment}}
-                ID {{this.id}} - {{id_com_parent}}<br>
-                
-                    {{#each id_com_parent}}
-                    {{this}}
-                        {{#ifCond id_com_parent}}
-                            IDP {{this}}<br>
-                        {{/ifCond}}
-                    {{/each}}
-                
-            {{/each}}
+
+
+
         </div>
         <div class="col-12 d-flex align-content-center">
             <div class="comments-container">
                 <ul id="comments-list" class="comments-list">
                     <li>
+                        {{#each listComment}}
+                        {{#if this.id_articles}}
                         <div class="comment-main-level">
-
-
                             <!-- Contenedor del Comentario -->
+
                             <div class="comment-box">
                                 <div class="comment-head">
                                     <div class="comment-avatar"><img
@@ -89,20 +82,28 @@
                                     <i class="bi bi-heart"></i>
                                     <i class="bi bi-exclamation-octagon"></i>
                                     <i class="bi bi-reply-fill"></i>
-                                    
+                                    <form action="/reply/commentaire/{{this.id}}" method="post">
+                                        <input type="text" name="com" id="">
+                                        <button type="submit">SEND</button>
+                                    </form>
+                                    <form action="/deleteCom/{{this.id}}?_method=DELETE" method="post">
+                                        <button type="submit">DEL</button>
+                                    </form>
                                 </div>
                                 <div class="comment-content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure
-                                    laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                    {{this.content}}
                                 </div>
                             </div>
                         </div>
-                        <!-- Respuestas de los comentarios -->
+                        {{/if}}
+                        {{#ifCond this.id_articles undefined}}
+                        {{#each this.child as |child|}}
+                        {{#ifCond ../this.id child.id_com_parent}}
+
+                        <!--  -->
                         <ul class="comments-list reply-list">
                             <li>
-
-
-                                <!-- Contenedor del Comentario -->
+                                <!--  -->
                                 <div class="comment-box">
                                     <div class="comment-head">
                                         <div class="comment-avatar"><img
@@ -111,69 +112,41 @@
                                         <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a>
                                         </h6>
                                         <span>hace 10 minutos</span>
-                                    <i class="bi bi-heart"></i>
-                                    <i class="bi bi-exclamation-octagon"></i>
-                                    <i class="bi bi-reply-fill"></i>
+                                        <i class="bi bi-heart"></i>
+                                        <i class="bi bi-exclamation-octagon"></i>
+                                        <i class="bi bi-reply-fill"></i>
+                                        <form action="/reply/commentaire/{{child.id}}" method="post">
+                                            <input type="text" name="com" id="">
+                                            <button type="submit">SEND</button>
+                                        </form>
+                                        <form action="/deleteCom/{{child.id}}?_method=DELETE" method="post">
+                                            <button type="submit">DEL</button>
+                                        </form>
                                     </div>
+
                                     <div class="comment-content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et
-                                        iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                        {{child.content}}
                                     </div>
-                                </div>
-                            </li>
 
-                            <li>
-
-
-                                <!-- Contenedor del Comentario -->
-                                <div class="comment-box">
-                                    <div class="comment-head">
-                                        <div class="comment-avatar"><img
-                                                src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-                                                alt=""></div>
-                                        <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin
-                                                Ortiz</a></h6>
-                                        <span>hace 10 minutos</span>
-                                    <i class="bi bi-heart"></i>
-                                    <i class="bi bi-exclamation-octagon"></i>
-                                    <i class="bi bi-reply-fill"></i>
-                                    </div>
-                                    <div class="comment-content">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et
-                                        iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                    </div>
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                        {{/ifCond}}
+                        {{/each}}
 
-                    <li>
-                        <div class="comment-main-level">
-
-
-                            <!-- Contenedor del Comentario -->
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <div class="comment-avatar"><img
-                                            src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
-                                            alt=""></div>
-                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                                    <span>hace 10 minutos</span>
-                                    <i class="bi bi-heart"></i>
-                                    <i class="bi bi-exclamation-octagon"></i>
-                                    <i class="bi bi-reply-fill"></i>
-                                </div>
-                                <div class="comment-content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure
-                                    laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                </div>
-                            </div>
-                        </div>
+                        {{/ifCond}}
+                        {{/each}}
                     </li>
                 </ul>
             </div>
         </div>
-        
+
+        <div>
+            <h1>test</h1>
+            {{> testt data=kush}}
+            {{> testt data=axel}}
+        </div>
+
     </div>
 </div>
 

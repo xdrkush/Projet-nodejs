@@ -8,7 +8,7 @@ const router = express.Router()
 const uploadUser = require('../config/multer_user')
 const uploadCreations = require('../config/multer_creations')
 // Import des controllers
-const { admin, banUser, editUser, deleteCom, login, logout, register, forgot, creaPage, creaID, creaCreate, creaEdit, creaDelete, home, form, mention, editProfile, getProfile, sendCom} = require("./controllers");
+const { admin, banUser, editUser, deleteCom, login, logout, register, forgot, creaPage, creaID, creaCreate, creaEdit, creaDelete, home, form, mention, editProfile, getProfile, sendCom, replyCom} = require("./controllers");
 
 // Import Middleware
 const mdl = require('../middleware/middleware');
@@ -50,9 +50,9 @@ router.route('/edit/user/:id').put(mdl.isAdmin, uploadUser.single('avatar'), edi
 router.route('/ban/user/:id').put(mdl.isAdmin, banUser)
 
 // Commentaire
-router.route('/deleteCom/:id').delete(mdl.isAdmin, deleteCom)
-router.route('/send/commentaire').post(mdl.isAdmin, sendCom)
-router.route('/send/commentaire/:id').post(mdl.isAdmin, sendCom)
+router.route('/deleteCom/:id').delete( deleteCom)
+router.route('/send/commentaire/:id').post( sendCom)
+router.route('/reply/commentaire/:id').post( replyCom)
 
     // /Routes
 
