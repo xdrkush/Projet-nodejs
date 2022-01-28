@@ -12209,6 +12209,167 @@ ul {
     padding: 2px 0;
   }
 }
+/*--------------------------------------------------------------
+# slider Section
+--------------------------------------------------------------*/
+#slider {
+  width: 100%;
+  height: 80vh;
+  background-color: rgba(22, 30, 56, 0.8);
+  overflow: hidden;
+  position: relative;
+}
+
+#slider .carousel,
+#slider .carousel-inner,
+#slider .carousel-item,
+#slider .carousel-item::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+#slider .carousel-item {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#slider .carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  top: 70px;
+  left: 50px;
+  right: 50px;
+}
+
+#slider .container {
+  text-align: center;
+}
+
+#slider h2, #slider .h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+#slider p {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+  margin: 0 auto 30px auto;
+  color: #fff;
+}
+
+#slider .carousel-inner .carousel-item {
+  transition-property: opacity;
+  background-position: center top;
+}
+
+#slider .carousel-inner .carousel-item,
+#slider .carousel-inner .active.carousel-item-start,
+#slider .carousel-inner .active.carousel-item-end {
+  opacity: 0;
+}
+
+#slider .carousel-inner .active,
+#slider .carousel-inner .carousel-item-next.carousel-item-start,
+#slider .carousel-inner .carousel-item-prev.carousel-item-end {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+#slider .carousel-control-next-icon,
+#slider .carousel-control-prev-icon {
+  background: none;
+  font-size: 30px;
+  line-height: 0;
+  width: auto;
+  height: auto;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  transition: 0.3s;
+  color: rgba(255, 255, 255, 0.5);
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#slider .carousel-control-next-icon:hover,
+#slider .carousel-control-prev-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#slider .carousel-indicators li {
+  cursor: pointer;
+  background: #fff;
+  overflow: hidden;
+  border: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+#slider .carousel-indicators li.active {
+  opacity: 1;
+  background: #006fbe;
+}
+
+#slider .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 4px;
+  transition: 0.5s;
+  line-height: 1;
+  color: #fff;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  background: #006fbe;
+}
+
+#slider .btn-get-started:hover {
+  background: #007ed8;
+}
+
+@media (max-width: 992px) {
+  #slider {
+    height: 100vh;
+  }
+
+  #slider .carousel-container {
+    top: 8px;
+  }
+}
+@media (max-width: 768px) {
+  #slider h2, #slider .h2 {
+    font-size: 28px;
+  }
+}
+@media (min-width: 1024px) {
+  #slider .carousel-control-prev,
+#slider .carousel-control-next {
+    width: 5%;
+  }
+}
+@media (max-height: 500px) {
+  #slider {
+    height: 120vh;
+  }
+}
 html,
 body {
   margin: 0;

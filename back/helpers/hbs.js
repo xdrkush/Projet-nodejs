@@ -43,7 +43,7 @@ module.exports = {
     },
     formatDate: function(datetime, format) {
         if (moment) {
-            moment.locale('fr', frLocal);
+            moment.updateLocale('fr', frLocal);
            var ds= moment(datetime).format("DD MMMM YYYY à HH:MM");
            return ds
         }

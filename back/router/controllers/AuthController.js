@@ -42,7 +42,7 @@ exports.register = (req, res) => {
       bcrypt.genSalt(bcrypt_nb, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
 
-          let sql = `INSERT INTO users set nom=?, prenom=?, email=?, password=?, avatar_path=?`;
+          let sql = `INSERT INTO users set nom=?, prenom=?, email=?, password=?, avatar=?`;
 
           let values = [
             req.body.nom,
