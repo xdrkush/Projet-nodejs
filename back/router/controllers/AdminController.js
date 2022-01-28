@@ -16,7 +16,8 @@ exports.admin = (req, res) => {
       res.render('admin', {
         title: `${process.env.ETP} - Administration`,
         user: data,
-        creationsItem: data2
+        creationsItem: data2,
+        layout: 'admin'
       })
     })
   })
