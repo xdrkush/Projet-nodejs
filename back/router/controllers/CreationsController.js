@@ -23,10 +23,9 @@ exports.creaPage = (req, res) => {
                   ON images.id_creations = creations.id 
                   GROUP BY creations.id
                   ORDER BY ID DESC LIMIT ${limit}
-                  `
-//                  
+                  `;
 
-                  db.query(sqlget, (error, results, fields) => {
+  db.query(sqlget, (error, results, fields) => {
     if (error) throw error;
     console.log(results[1])
     var responsePayload = {
@@ -43,7 +42,7 @@ exports.creaPage = (req, res) => {
       }
       // console.log(responsePayload.pagination)
       res.render('creations', {
-        title: `${process.env.ETP} - Création`,
+        title: `${process.env.ETP} - Créations`,
         creationsItem: results[1],
         page: responsePayload.pagination
       })
@@ -58,30 +57,28 @@ exports.creaID = async (req, res) => {
   const GetImgCrea = await db.query(`SELECT * FROM images WHERE id_creations = ${req.params.id}`);
   const listComment = await db.query(`SELECT * FROM commentaires WHERE id_articles = ${req.params.id}`);
   let construct = []
-  
-  listComment.map(async (el, index) => {
+
+  await listComment.map(async (el, index) => {
     const child = await db.query(`SELECT * FROM commentaires WHERE id_com_parent = '${el.id}';`)
     el.child = child
     const getUser = await db.query(`SELECT nom,prenom,avatar,id FROM users WHERE id = ${el.id_user}`)
-    el.userC = getUser
+    el.userCom = getUser
     construct.push(el)
+    // console.log("el",el.userCom[0])
   });
-// console.log(GetImgCrea[0])
+  // console.log(GetImgCrea[0])
   let ArticleID = {
     getCreations: getCreations[0],
     GetImgCrea,
     parms: GetImgCrea[0].id,
     comment: construct,
-    commentUser: construct.userC,
-    sesID: req.session?undefined:req.session.user.id,
-    sesActive: req.session.user?"1":"2"
+    sesID: req.session.user ? req.session.user.id : null
   }
-console.log(req.session.user)
+
   res.render("article", {
     title: `${process.env.ETP} - Articles`,
     ArticleID
   });
-console.log("ID SESS ",ArticleID.sesID)
 }
 exports.creaEdit = (req, res) => {
   let sqlGet = `SELECT * FROM creations WHERE id = ${req.params.id}`;

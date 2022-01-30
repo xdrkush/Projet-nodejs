@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment-timezone');
 const frLocal = require('moment/locale/fr')
 
 module.exports = {
@@ -44,11 +44,33 @@ module.exports = {
     formatDate: function(datetime, format) {
         if (moment) {
             moment.updateLocale('fr', frLocal);
-           var ds= moment(datetime).format(format);
-           return ds
+           var time1 = moment(datetime).tz("Europe/Paris").format(format)
+           return time1
         }
         else {
           return datetime;
         }
-      }
+      },
+    formatDateCom: function(datetime, format) {
+        if (moment) {
+            moment.updateLocale('fr', frLocal);
+           var time2 = moment(datetime).fromNow()
+           return time2
+        }
+        else {
+          return datetime;
+        }
+      },
+    maskNom: function(nom){
+        nom.split(' ')
+        return `${nom[0].toUpperCase()}.`
+    },
+    checkUser: function(a, b, opts) {
+        if (a == b) {
+            return opts.fn(this)
+        } else {
+            return false
+        }
+    }
+
 }

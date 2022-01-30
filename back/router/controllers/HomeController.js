@@ -6,17 +6,17 @@ const webhook = require("webhook-discord");
 exports.home = (req, res) => {
   // SQL récupération de tout les creations
   let sql = `SET sql_mode=""; SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url
-                  FROM creations 
-                  INNER JOIN images
-                  ON images.id_creations = creations.id
-                  GROUP by creations.id
-                  ORDER BY ID DESC`
+              FROM creations 
+              INNER JOIN images
+              ON images.id_creations = creations.id 
+              GROUP BY creations.id
+              ORDER BY ID DESC`
 //group by creations.id
   db.query(sql, (error, data, fields) => {
     if (error) throw error;
     res.render('home', {
       title: `${process.env.ETP} - Accueil`,
-      creationsItem: data,
+      creationsItem: data[1],
       creations: Number(data.length),
     })
   })
@@ -37,5 +37,7 @@ exports.form = (req, res) => {
   res.redirect('/')
 }
 exports.mention = (req, res) => {
-  res.render('mention')
+  res.render('mention', {
+    title: `${process.env.ETP} - Mentions Légales`
+  })
 }

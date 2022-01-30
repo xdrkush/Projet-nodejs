@@ -3,16 +3,18 @@
 
     <div class="comment-box">
         <div class="comment-head">
-            {{#each this.userC}}
+            {{#each this.userCom}}
             {{!-- <div class="comment-avatar"><img
                     src="/assets/images/user/{this.avatar}" alt=""></div> --}}
-            <h6 class="comment-name by-author"> {{this.prenom}} {{this.nom}}</h6>
+            <h6 class="comment-name by-author"> {{this.prenom}} {{{maskNom this.nom}}}</h6>
             {{/each}}
-            <span>{{{formatDate this.date "DD MMMM YYYY à HH:MM"}}}</span>
-            {{#if this.userC}}
+            <span>{{{formatDateCom this.date}}} (Le {{{formatDate this.date "DD MMMM YYYY à HH:mm"}}})</span>
+            {{#if user}}
             <i class="bi bi-heart"></i>
             <i class="bi bi-exclamation-octagon"></i>
             <i class="bi bi-reply-fill"></i>
+            {{/if}}
+            {{#if this.userCom}}
             {{>article/form}}
             {{/if}}
         </div>
