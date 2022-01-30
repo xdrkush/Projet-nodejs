@@ -5,13 +5,13 @@ const webhook = require("webhook-discord");
 
 exports.home = (req, res) => {
   // SQL récupération de tout les creations
-  let sql = `SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url
+  let sql = `SET sql_mode=""; SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url
                   FROM creations 
                   INNER JOIN images
                   ON images.id_creations = creations.id
-                  group by creations.id
+                  GROUP by creations.id
                   ORDER BY ID DESC`
-
+//group by creations.id
   db.query(sql, (error, data, fields) => {
     if (error) throw error;
     res.render('home', {

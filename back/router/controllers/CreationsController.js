@@ -4,7 +4,7 @@
 
 exports.creaPage = (req, res) => {
   var numRows;
-  var numPerPage = 1;
+  var numPerPage = 2;
   var page = parseInt(req.query.page, 10) || 0;
   var numPages;
   var skip = page * numPerPage;
@@ -17,15 +17,18 @@ exports.creaPage = (req, res) => {
     numPages = Math.ceil(numRows / numPerPage);
   })
 
-  let sqlget = `SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url
+  let sqlget = `SET sql_mode=""; SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url
                   FROM creations 
                   INNER JOIN images
-                  ON images.id_creations = creations.id
-                  group by creations.id
-                  ORDER BY ID DESC LIMIT ${limit}`
-  db.query(sqlget, (error, results, fields) => {
+                  ON images.id_creations = creations.id 
+                  GROUP BY creations.id
+                  ORDER BY ID DESC LIMIT ${limit}
+                  `
+//                  
+
+                  db.query(sqlget, (error, results, fields) => {
     if (error) throw error;
-    console.log(results)
+    console.log(results[1])
     var responsePayload = {
       results: results
     };
@@ -41,7 +44,7 @@ exports.creaPage = (req, res) => {
       // console.log(responsePayload.pagination)
       res.render('creations', {
         title: `${process.env.ETP} - Création`,
-        creationsItem: results,
+        creationsItem: results[1],
         page: responsePayload.pagination
       })
     } else {
@@ -59,21 +62,26 @@ exports.creaID = async (req, res) => {
   listComment.map(async (el, index) => {
     const child = await db.query(`SELECT * FROM commentaires WHERE id_com_parent = '${el.id}';`)
     el.child = child
+    const getUser = await db.query(`SELECT nom,prenom,avatar,id FROM users WHERE id = ${el.id_user}`)
+    el.userC = getUser
     construct.push(el)
   });
-
+// console.log(GetImgCrea[0])
   let ArticleID = {
     getCreations: getCreations[0],
     GetImgCrea,
     parms: GetImgCrea[0].id,
-    comment: construct
+    comment: construct,
+    commentUser: construct.userC,
+    sesID: req.session?undefined:req.session.user.id,
+    sesActive: req.session.user?"1":"2"
   }
-
+console.log(req.session.user)
   res.render("article", {
     title: `${process.env.ETP} - Articles`,
     ArticleID
   });
-
+console.log("ID SESS ",ArticleID.sesID)
 }
 exports.creaEdit = (req, res) => {
   let sqlGet = `SELECT * FROM creations WHERE id = ${req.params.id}`;
@@ -106,7 +114,7 @@ exports.creaCreate = async (req, res) => {
   // SQL pour creer un article
   const { desc } = req.body;
   const addCrea = await db.query(`INSERT INTO creations (description, isDelete) VALUES ( '${desc}', 0 );`);
-  console.log(addCrea.insertId)
+  // console.log(addCrea.insertId)
   let sqlGet = `SELECT * FROM creations ORDER BY ID DESC LIMIT 1;`;
   db.query(sqlGet, async function (err, data2, fields) {
     if (err) throw err;

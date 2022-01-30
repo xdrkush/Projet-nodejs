@@ -147,8 +147,8 @@ exports.logout = (req, res) => {
 //     console.log('hash', hash)
 //     let sql = `UPDATE users SET password="${ hash }" WHERE id = ${el.id} `;
 //     await db.query(sql)
-
+// 
 //   });
 // }
-
+// 
 // test()

@@ -175,15 +175,15 @@ INSERT INTO users (prenom, nom, email, password, avatar)
    ('axel', 'etoile', 'contact@axeletoile.fr', '1234', 'u_1.jpg')
 ;
 
-INSERT INTO creations (description, isDelete)
-  VALUES
-   ('Ma super descr 1', "0")
-;
+-- INSERT INTO creations (description, isDelete)
+--   VALUES
+--    ('Ma super descr 1', "0")
+-- ;
 
-INSERT INTO images (img_url, id_creations)
-  VALUES
-   ('000001.jpg', "1")
-;
+-- INSERT INTO images (img_url, id_creations)
+--   VALUES
+--    ('000001.jpg', "1")
+-- ;
 
 INSERT INTO role (id_user, isBan, isArchive, isAdmin)
   VALUES
