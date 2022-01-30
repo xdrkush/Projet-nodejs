@@ -24,7 +24,8 @@ let configDB = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE
+    database: process.env.DB_DATABASE,
+    multipleStatements: true
 }
 
 // MYSQL
@@ -84,7 +85,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-// Met le site en 404
+// Met tout le site en 404
 // app.use('*',function(req, res){
 //   res.status(404).render("error404", {layout: false});
 // });
@@ -95,6 +96,12 @@ app.use("/assets", express.static('public'));
 // Import du Router
 const ROUTER = require('./back/router/router')
 app.use('/', ROUTER)
-
+// Met toute les autres page non défini en 404
+app.use('*',function(req, res){
+  res.status(404).render("error404",{
+    title: `${process.env.ETP} - Error 404`,
+    layout: 'err'
+  });
+});
 // Lancement de l'app sur le port défini dans le .env
 app.listen(process.env.PORT)
