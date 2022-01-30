@@ -3,12 +3,6 @@
     <div class="col-12 uslist">
         <!-- USER -->
         {{!-- Permet d'obtenir tout les utilisateurs afin de les afficher --}}
-        <div class="col-md-12 d-flex justify-content-end pb-2 my-3 border-bottom">
-            <button type="button" class="btn txt-color-black" data-bs-toggle="modal" data-bs-target="#createUser">
-                <i class="bi bi-plus-square-fill"></i>
-            </button>
-        </div>
-        {{> modals/createUser}}
         {{#each user }}
         <div id="USR{{ this.id }}" class="row border-bottom">
             <div class="col-md-2 my-3">
