@@ -34,14 +34,14 @@
                         {{#each ArticleID.comment}}
                         {{#if this.id_articles}}
                         <!-- -->
-                        {{> article/comment}}
+                        {{> article/comment resp=true respUser=this.userCom}}
                         <!-- -->
                         {{/if}}
 
-                        {{#each this.child as |child|}}
+                        {{#each this.childs as |child|}}
                         {{#ifCond ../this.id child.id_com_parent}}
                         <!-- -->
-                        {{> article/reply}}
+                        {{> article/reply resp=false respUser=../childs.user}}
                         <!-- -->
                         {{/ifCond}}
                         {{/each}}

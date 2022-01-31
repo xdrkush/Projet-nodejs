@@ -25,9 +25,10 @@ exports.sendCom = async (req, res) => {
   console.log(req.session.user.id)
   const { com } = req.body;
   const { id } = req.params
+  var content = com.replace("'", "\\'")
 
   const user = await db.query(`
-    INSERT INTO commentaires set id_user=${req.session.user.id}, content='${com}', id_com_parent=null, id_articles = ${ id };
+    INSERT INTO commentaires set id_user=${req.session.user.id}, content='${content}', id_com_parent=null, id_articles = ${ id };
   `);
   
   console.log("ADD COM", req.body.com)
@@ -38,13 +39,20 @@ exports.replyCom = async (req, res) => {
   console.log(req.session.user.id)
   const { com } = req.body;
   var ref_com = req.params.id ? req.params.id : null
-
-  console.log(ref_com)
+  var content = com.replace("'", "\\'")
 
   const user = await db.query(`
-    INSERT INTO commentaires set id_user=${req.session.user.id}, content='${com}', id_com_parent=${ref_com}, id_articles = null;
+    INSERT INTO commentaires set id_user=${req.session.user.id}, content='${content}', id_com_parent=${ref_com}, id_articles = null;
   `);
   
-  console.log("ADD COM", req.body.com)
+  console.log("ADD REPLY", req.body.com)
   res.redirect('back')
+}
+exports.deleteCom = async (req, res) => {
+  //  console.log(req);
+  console.log("controller delete Com", req.params.id, req.body);
+  const del = await db.query(`DELETE FROM commentaires WHERE id = ${req.params.id};`);
+
+ res.redirect('back')
+ 
 }

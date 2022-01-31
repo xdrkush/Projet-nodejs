@@ -3,17 +3,21 @@
         <!--  -->
         <div class="comment-box">
             <div class="comment-head">
-                <div class="comment-avatar"><img
-                        src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                <h6 class="comment-name">Lorena Rojero</h6>
-                <span>{{{formatDate this.date "DD MMMM YYYY à HH:MM"}}}</span>
-                {{#if user}}
+                {{#each respUser}}
+                {{!-- <div class="comment-avatar"><img src="/assets/images/user/{this.avatar}" alt=""></div> --}}
+                <h6 class="comment-name by-author"> {{this.prenom}} {{{maskNom this.nom}}}</h6>
+                {{/each}}
+                <span>{{{formatDateCom this.date}}} (Le {{{formatDate this.date "DD MMMM YYYY à HH:mm"}}})</span>
+                {{#if @root.user}}
                 <i class="bi bi-heart"></i>
                 <i class="bi bi-exclamation-octagon"></i>
                 {{/if}}
             </div>
 
             <div class="comment-content">
+                <div class="d-flex col-12">
+                    {{>article/form}}
+                </div>
                 {{this.content}}
             </div>
 

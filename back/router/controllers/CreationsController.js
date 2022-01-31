@@ -14,7 +14,7 @@ exports.creaPage = (req, res) => {
   db.query(sql, (error, results, fields) => {
     if (error) throw error;
     numRows = results[0].numRows;
-    numPages = Math.ceil(numRows / numPerPage);
+    numPages = Math.ceil(1 / numPerPage);
   })
 
   let sqlget = `SET sql_mode=""; SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url
@@ -55,16 +55,24 @@ exports.creaPage = (req, res) => {
 exports.creaID = async (req, res) => {
   const getCreations = await db.query(`SELECT * FROM creations WHERE id = ${req.params.id}`);
   const GetImgCrea = await db.query(`SELECT * FROM images WHERE id_creations = ${req.params.id}`);
-  const listComment = await db.query(`SELECT * FROM commentaires WHERE id_articles = ${req.params.id}`);
+  const listComment = await db.query(`SELECT * FROM commentaires WHERE id_articles = ${req.params.id} ORDER BY id DESC`);
   let construct = []
 
-  await listComment.map(async (el, index) => {
-    const child = await db.query(`SELECT * FROM commentaires WHERE id_com_parent = '${el.id}';`)
-    el.child = child
-    const getUser = await db.query(`SELECT nom,prenom,avatar,id FROM users WHERE id = ${el.id_user}`)
+  listComment.map(async (el, index) => {
+    const child = await db.query(`SELECT * FROM commentaires WHERE id_com_parent = '${el.id}' ORDER BY id DESC;`)
+    el.childs = child
+
+    for (i = 0; i < el.childs.length; i++) {
+      // console.log('child id', el.childs[i].id_user)
+      const childUser = await db.query(`SELECT nom,prenom,id FROM users WHERE id = ${el.childs[i].id_user}`)
+      el.childs.user = childUser
+    }
+
+    const getUser = await db.query(`SELECT nom,prenom,id FROM users WHERE id = ${el.id_user}`)
     el.userCom = getUser
+
     construct.push(el)
-    // console.log("el",el.userCom[0])
+    // console.log("el", el.childs)
   });
   // console.log(GetImgCrea[0])
   let ArticleID = {
@@ -72,13 +80,15 @@ exports.creaID = async (req, res) => {
     GetImgCrea,
     parms: GetImgCrea[0].id,
     comment: construct,
-    sesID: req.session.user ? req.session.user.id : null
+    userChild: construct.child
   }
+  setTimeout(() => {
+    res.render("article", {
+      title: `${process.env.ETP} - Articles`,
+      ArticleID
+    });
+  }, 1000);
 
-  res.render("article", {
-    title: `${process.env.ETP} - Articles`,
-    ArticleID
-  });
 }
 exports.creaEdit = (req, res) => {
   let sqlGet = `SELECT * FROM creations WHERE id = ${req.params.id}`;
@@ -109,7 +119,9 @@ exports.creaDelete = (req, res) => {
 exports.creaCreate = async (req, res) => {
 
   // SQL pour creer un article
-  const { desc } = req.body;
+  const {
+    desc
+  } = req.body;
   const addCrea = await db.query(`INSERT INTO creations (description, isDelete) VALUES ( '${desc}', 0 );`);
   // console.log(addCrea.insertId)
   let sqlGet = `SELECT * FROM creations ORDER BY ID DESC LIMIT 1;`;

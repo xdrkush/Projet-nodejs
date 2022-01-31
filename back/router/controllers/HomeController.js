@@ -20,6 +20,7 @@ exports.home = (req, res) => {
       creations: Number(data.length),
     })
   })
+  console.log(req.session.user)
 }
 
 exports.form = (req, res) => {

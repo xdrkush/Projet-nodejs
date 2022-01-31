@@ -1,14 +1,16 @@
-
+{{#ifCond resp true}}
+{{#if @root.user}}
 <form action="/reply/commentaire/{{this.id}}" method="post">
     <input type="text" name="com" id="">
     <button type="submit">SEND</button>
 </form>
+{{/if}}
+{{/ifCond}}
 
-{{#each this.userCom}}
-{{../../../sesID}}
-{{#checkUser ../sesID this.id}}
+{{#each respUser}}
+{{#ifCond @root.user.id this.id}}
 <form action="/deleteCom/{{../this.id}}?_method=DELETE" method="post">
     <button type="submit">DEL</button>
 </form>
-{{/checkUser}}
+{{/ifCond}}
 {{/each}}

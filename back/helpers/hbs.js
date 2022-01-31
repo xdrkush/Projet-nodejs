@@ -34,7 +34,7 @@ module.exports = {
         var db = ar.slice(0,max);
         return db;
     },
-    iffpage: function(a, b, opts) {
+    ifCond: function(a, b, opts) {
         if (a == b) {
             return opts.fn(this);
         } else {
@@ -64,13 +64,6 @@ module.exports = {
     maskNom: function(nom){
         nom.split(' ')
         return `${nom[0].toUpperCase()}.`
-    },
-    checkUser: function(a, b, opts) {
-        if (a == b) {
-            return opts.fn(this)
-        } else {
-            return false
-        }
     }
 
 }
