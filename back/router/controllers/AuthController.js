@@ -58,14 +58,6 @@ exports.register = (req, res) => {
             let sqlGet = `SELECT * FROM users WHERE (email= ?)`
             db.query(sqlGet, req.body.email, function (err, data) {
 
-              req.session.user = {
-                id: data[0].id,
-                email: data[0].email,
-                avatar: data[0].avatar_path,
-                nom: data[0].nom,
-                prenom: data[0].prenom
-              };
-
               let sqlSetRole = `INSERT INTO role set id_user=?, isBan=?, isArchive=?, isAdmin=?`
               let valuesRole = [
                 data[0].id,
@@ -77,11 +69,17 @@ exports.register = (req, res) => {
                 if (err) throw err;
               })
 
-              let sqlGetRole = `SELECT isAdmin FROM role WHERE (id= ?)`
-              db.query(sqlGetRole, data[0].id, function (err, data2) {
+              let sqlGetRole = `SELECT isAdmin FROM role WHERE id_user= ${data[0].id}`
+              db.query(sqlGetRole, function (err, data2) {
+        
                 req.session.user = {
-                  isadmin: data2
-                }
+                    isadmin: data2[0].isAdmin,
+                    id: data[0].id,
+                    email: data[0].email,
+                    avatar: data[0].avatar_path,
+                    nom: data[0].nom,
+                    prenom: data[0].prenom
+                  };
                 res.redirect('back')
               })
 
