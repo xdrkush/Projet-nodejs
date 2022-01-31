@@ -9,7 +9,7 @@
 
 {{#each respUser}}
 {{#ifCond @root.user.id this.id}}
-<form action="/deleteCom/{{../this.id}}?_method=DELETE" method="post">
+<form action="/delete/commentaire/{{../this.id}}?_method=DELETE" method="post">
     <button type="submit">DEL</button>
 </form>
 {{/ifCond}}

@@ -56,3 +56,7 @@ exports.deleteCom = async (req, res) => {
  res.redirect('back')
  
 }
+exports.likeCom = async (req, res) => {
+  console.log('like ', req.params.id)
+  // res.redirect('back')
+}

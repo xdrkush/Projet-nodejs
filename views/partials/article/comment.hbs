@@ -9,9 +9,23 @@
             {{/each}}
             <span>{{{formatDateCom this.date}}} (Le {{{formatDate this.date "DD MMMM YYYY à HH:mm"}}})</span>
             {{#if @root.user}}
-            <i class="bi bi-heart"></i>
-            <i class="bi bi-exclamation-octagon"></i>
-            <i class="bi bi-reply-fill"></i>
+            <form action="/like/commentaire/{{this.id}}" method="post" target="iframe">
+                <button onclick="likeYes({{this.id}})" type="submit"class="btn-icon">
+                    <i id="heart-{{this.id}}"class="bi bi-heart"></i>
+                </button>
+            </form>
+           
+            <form action="/report/commentaire/{{this.id}}" method="post" target="iframe">
+                <button type="submit"class="btn-icon">
+                    <i class="bi bi-exclamation-octagon"></i>
+                </button>
+            </form>
+            <form target="iframe">
+                <button type="submit"class="btn-icon">
+                    <i class="bi bi-reply-fill"></i>
+                </button>
+            </form>
+            <iframe name="iframe" style="position: absolute; visibility: hidden"></iframe>
             {{/if}}
 
         </div>
@@ -23,3 +37,14 @@
         </div>
     </div>
 </div>
+
+<script>	
+
+    function likeYes (id){
+        console.log('true like', id)
+        var heart = document.getElementById(`heart-${id}`);
+        heart.classList.remove('bi-heart')
+        heart.classList.add('bi-heart-fill')        
+    }   
+
+</script>
