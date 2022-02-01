@@ -8,20 +8,36 @@
             <h6 class="comment-name by-author"> {{this.prenom}} {{{maskNom this.nom}}}</h6>
             {{/each}}
             <span>{{{formatDateCom this.date}}} (Le {{{formatDate this.date "DD MMMM YYYY à HH:mm"}}})</span>
+
+            {{this.liked}}
+
             {{#if @root.user}}
             <form action="/like/commentaire/{{this.id}}" method="post" target="iframe">
-                <button onclick="likeYes({{this.id}})" type="submit"class="btn-icon">
-                    <i id="heart-{{this.id}}"class="bi bi-heart"></i>
+                <button onclick="like({{this.id}})" type="submit" class="btn-icon">
+                    
+                        {{#each @root.ArticleID.checkLike as |FL|}}
+                        {{#ifCond FL.id_com ../this.id}}                        
+                            {{#ifCond FL.liked 1}}
+                                <i id="heart-{{../this.id}}" class="bi bi-heart-fill"></i>
+                            {{else}}
+                                <i id="heart-{{../this.id}}" class="bi bi-heart"></i>
+                            {{/ifCond}}
+                        {{else}}
+                       {{/ifCond}}
+                       {{/each}}
+                    
                 </button>
             </form>
-           
+
             <form action="/report/commentaire/{{this.id}}" method="post" target="iframe">
-                <button type="submit"class="btn-icon">
+                <button type="submit" class="btn-icon">
+
                     <i class="bi bi-exclamation-octagon"></i>
+
                 </button>
             </form>
             <form target="iframe">
-                <button type="submit"class="btn-icon">
+                <button type="submit" class="btn-icon">
                     <i class="bi bi-reply-fill"></i>
                 </button>
             </form>
@@ -38,13 +54,19 @@
     </div>
 </div>
 
-<script>	
+<script>
 
-    function likeYes (id){
-        console.log('true like', id)
+    function like(id) {
         var heart = document.getElementById(`heart-${id}`);
-        heart.classList.remove('bi-heart')
-        heart.classList.add('bi-heart-fill')        
-    }   
+
+        if (heart.classList.value.includes("bi-heart-fill")) {
+            heart.classList.remove('bi-heart-fill')
+            heart.classList.add('bi-heart')
+        } else {
+            heart.classList.remove('bi-heart')
+            heart.classList.add('bi-heart-fill')
+        }
+
+    }
 
 </script>

@@ -2,7 +2,7 @@ const {  admin, banUser, editUser } = require("./AdminController");
 const { login, logout, register, forgot } = require("./AuthController");
 const { creaPage, creaID, creaCreate, creaEdit, creaDelete, } = require("./CreationsController");
 const { home, form, mention } = require("./HomeController");
-const { editProfile, getProfile, sendCom, replyCom, deleteCom, likeCom} = require("./UserController");
+const { editProfile, getProfile, sendCom, replyCom, deleteCom, likeCom, reportCom} = require("./UserController");
 
 module.exports = {
     //Admin
@@ -18,5 +18,5 @@ module.exports = {
     home, form, mention,
 
     // User
-    editProfile, getProfile, sendCom, replyCom, deleteCom, likeCom
+    editProfile, getProfile, sendCom, replyCom, deleteCom, likeCom, reportCom
 }

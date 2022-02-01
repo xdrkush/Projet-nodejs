@@ -56,8 +56,11 @@ exports.creaID = async (req, res) => {
   const getCreations = await db.query(`SELECT * FROM creations WHERE id = ${req.params.id}`);
   const GetImgCrea = await db.query(`SELECT * FROM images WHERE id_creations = ${req.params.id}`);
   const listComment = await db.query(`SELECT * FROM commentaires WHERE id_articles = ${req.params.id} ORDER BY id DESC`);
+  var checkLike;
+  if(req.session.user){
+    var checkLike = await db.query(`SELECT * FROM com_list_likes WHERE id_user=${req.session.user.id}`);
+  }
   let construct = []
-
   listComment.map(async (el, index) => {
     const child = await db.query(`SELECT * FROM commentaires WHERE id_com_parent = '${el.id}' ORDER BY id DESC;`)
     el.childs = child
@@ -80,14 +83,16 @@ exports.creaID = async (req, res) => {
     GetImgCrea,
     parms: GetImgCrea[0].id,
     comment: construct,
-    userChild: construct.child
+    userChild: construct.child,
+    checkLike: checkLike
   }
+  // console.log(checkLike)
   setTimeout(() => {
     res.render("article", {
       title: `${process.env.ETP} - Articles`,
       ArticleID
     });
-  }, 1000);
+  }, 300);
 
 }
 exports.creaEdit = (req, res) => {

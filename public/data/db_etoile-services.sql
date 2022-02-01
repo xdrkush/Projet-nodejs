@@ -128,7 +128,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `projet_njs`.`com_list_likes` (
   `id_com` INT NOT NULL,
   `id_user` INT NOT NULL,
-  `liked` TINYINT NOT NULL,
+  `liked` TINYINT NULL,
   INDEX `fk_com_list_likes_1_idx` (`id_user` ASC) VISIBLE,
   INDEX `fk_com_list_likes_2_idx` (`id_com` ASC) VISIBLE,
   CONSTRAINT `fk_com_list_likes_1`
