@@ -14,9 +14,17 @@
             {{#if @root.user}}
             <form action="/like/commentaire/{{this.id}}" method="post" target="iframe">
                 <button onclick="like({{this.id}})" type="submit" class="btn-icon">
-                    {{#ifCond FL.id_com undefined}}
-                        <i id="heart-{{this.id}}" class="bi bi-heart"></i>
-                    {{/ifCond}}
+                        {{#each @root.ArticleID.checkLike as |Emo|}}
+                            {{#ifCond Emo.id_com undefined}}
+                            {{else}}
+                                {{#ifCond this.liked false }}
+                                
+                                {{else}}
+                                        <i id="heart-{{this.id}}" class="bi bi-heart"></i>
+                                {{/ifCond}}
+                            {{/ifCond}}
+                        {{/each}}
+                        
                         {{#each @root.ArticleID.checkLike as |FL|}}
                             {{#ifCond FL.id_com ../this.id}}
                                 {{#ifCond FL.liked 0 }}
