@@ -77,7 +77,10 @@ exports.creaID = async (req, res) => {
     construct.push(el)
     // console.log("el", el.childs)
   });
-  // console.log(GetImgCrea[0])
+  if(checkLike === "") {
+    var checkLike = undefined
+  }
+  console.log(checkLike)
   let ArticleID = {
     getCreations: getCreations[0],
     GetImgCrea,
