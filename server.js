@@ -39,7 +39,7 @@ db.connect((err) => {
 });
 
 // Configuration Handlebars
-const { condIff, incUp, incDown, limite, ifCond, formatDate, formatDateCom, maskNom } = require('./back/helpers/hbs')
+const { condIff, incUp, incDown, limite, ifCond, formatDate, formatDateCom, maskNom, checkIf } = require('./back/helpers/hbs')
 
 app.set('view engine', 'hbs')
 app.engine('hbs', engine({
@@ -51,7 +51,8 @@ app.engine('hbs', engine({
       ifCond,
       formatDate,
       formatDateCom,
-      maskNom
+      maskNom,
+      checkIf
   },
   extname: 'hbs',
   defaultLayout: 'main'

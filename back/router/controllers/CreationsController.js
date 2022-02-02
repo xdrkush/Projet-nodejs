@@ -77,7 +77,7 @@ exports.creaID = async (req, res) => {
     construct.push(el)
     // console.log("el", el.childs)
   });
-  if(checkLike === "") {
+  if(checkLike == "") {
     var checkLike = undefined
   }
   console.log(checkLike)
@@ -87,7 +87,8 @@ exports.creaID = async (req, res) => {
     parms: GetImgCrea[0].id,
     comment: construct,
     userChild: construct.child,
-    checkLike: checkLike
+    checkLike: checkLike,
+    lt: {like:0, id_com: 1}
   }
   // console.log(checkLike)
   setTimeout(() => {
