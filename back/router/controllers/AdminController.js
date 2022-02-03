@@ -1,26 +1,19 @@
 /*
  * Controller: Admin
  * **************** */
-exports.admin = (req, res) => {
-  // SQL récupération de tout les users
-  let sql = `SELECT * FROM users`;
-
-  db.query(sql, (error, data, fields) => {
-    if (error) throw error;
-
+exports.admin = async (req, res) => {
+    // SQL récupération de tout les users
+    const users = await db.query(`SELECT * FROM users`);
     // SQL récupération de tout les creations
-    let sql2 = `SELECT * FROM creations`;
-
-    db.query(sql2, (error, data2, fields) => {
-      if (error) throw error;
-      res.render('admin', {
+    const creations = await db.query(`SET sql_mode=""; SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url FROM creations INNER JOIN images ON images.id_creations = creations.id GROUP BY creations.id ORDER BY ID DESC`);
+    // console.log("user",users)      
+//     console.log("crea",creations)  
+    res.render('admin', {
         title: `${process.env.ETP} - Administration`,
-        user: data,
-        creationsItem: data2,
+        user: users,
+        creationsItem: creations[1],
         layout: 'admin'
       })
-    })
-  })
 }
 exports.banUser = (req, res) => {
   // Select de l'user avec id

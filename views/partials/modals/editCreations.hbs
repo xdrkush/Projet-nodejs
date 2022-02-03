@@ -14,12 +14,8 @@
                             id="message-desc{{ i.id }}">{{ this.description }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="disabledTextInput" class="form-label">Les images:</label>
-                        <textarea required class="form-control" name="img" id="message-img{{ i.id }}">{{ this.img }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="disabledTextInput" class="form-label">Date :</label>
-                        <textarea required class="form-control" name="date" id="date-{{ i.id }}">{{ this.date }}</textarea>
+                        <label for="creaDate">Date de réalisation:</label>
+                        <input required type="date" name="creaDate" id="creaDate" value="{{{formatDate this.date "YYYY-MM-DD"}}}">
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
