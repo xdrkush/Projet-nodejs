@@ -2,9 +2,7 @@
  * Controller: Auth
  * **************** */
 const bcrypt = require('bcrypt'),
-  bcrypt_nb = 10,
-  bcrypt_password = 's0/\/\P4$$w0rD',
-  bcrypt_text = 'imagination';
+  bcrypt_nb = 10;
 
 exports.login = (req, res) => {
   let sql = `SELECT * FROM users WHERE (email= ?)`
@@ -15,16 +13,18 @@ exports.login = (req, res) => {
       if (result === true) {
         
 
-        let sqlGetRole = `SELECT isAdmin FROM role WHERE (id_user= ${data[0].id})`
+        let sqlGetRole = `SELECT isAdmin, isArchive, isBan FROM role WHERE (id_user= ${data[0].id})`
         db.query(sqlGetRole, function (err, data2) {
-          console.log(data2[0].isAdmin)
+          console.log("dat2",data2)
           req.session.user = {
             id: data[0].id,
             email: data[0].email,
             avatar: data[0].logo,
             nom: data[0].nom,
             prenom: data[0].prenom,
-            isAdmin: data2[0].isAdmin
+            isAdmin: data2[0].isAdmin,
+            isArchive: data2[0].isArchive,
+            isBan: data2[0].isBan
           };
           res.redirect('back')
         })
