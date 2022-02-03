@@ -3,11 +3,10 @@
  * **************** */
 module.exports = {
   isAdmin: (req, res, next) => {
-    console.log(req.session)
     !req.session.user ? res.redirect('/') : (req.session.user.isAdmin == 0) ? res.redirect('/') : next();
   },
   isBan: (req, res, next) => {
-    !req.session.user ? res.redirect('/') : (req.session.user.isBan == 0) ? res.redirect('/') : next();
+    !req.session.user ? res.redirect('/') : (req.session.user.isBan == 1) ? res.redirect('/') : next();
   },
   isArchive: (req, res, next) => {
     (req.session.user.isArchive == 1) ? res.redirect('/') : next();

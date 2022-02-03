@@ -20,7 +20,7 @@ router.route('/contact').post(form)
 router.route('/mention-legales').get(mention)
 
 // Auth 
-router.route('/login').post( login)//mdl.isBan, mdl.isArchive
+router.route('/login').post(mdl.isBan, mdl.isArchive, login)
 router.route('/register').post(uploadUser.single('logo'), register)
 router.route('/forgot').post(mdl.isBan, mdl.isArchive, forgot)
 router.route('/logout').post(mdl.sessionsActive, logout)
