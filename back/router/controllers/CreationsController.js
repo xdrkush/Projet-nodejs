@@ -1,6 +1,8 @@
 /*
  * Controller: Créations
  * **************** */
+const path = require('path'),
+fs = require('fs');
 
 exports.creaPage = (req, res) => {
   var numRows;
@@ -57,7 +59,7 @@ exports.creaID = async (req, res) => {
   const GetImgCrea = await db.query(`SELECT * FROM images WHERE id_creations = ${req.params.id}`);
   const listComment = await db.query(`SELECT * FROM commentaires WHERE id_articles = ${req.params.id} ORDER BY id DESC`);
   var checkLike;
-  if(req.session.user){
+  if (req.session.user) {
     var checkLike = await db.query(`SELECT * FROM com_list_likes WHERE id_user=${req.session.user.id}`);
   }
   let construct = []
@@ -77,7 +79,7 @@ exports.creaID = async (req, res) => {
     construct.push(el)
     // console.log("el", el.childs)
   });
-  if(checkLike == "") {
+  if (checkLike == "") {
     var checkLike = undefined
   }
   console.log(checkLike)
@@ -88,7 +90,10 @@ exports.creaID = async (req, res) => {
     comment: construct,
     userChild: construct.child,
     checkLike: checkLike,
-    lt: {like:0, id_com: 1}
+    lt: {
+      like: 0,
+      id_com: 1
+    }
   }
   // console.log(checkLike)
   setTimeout(() => {
@@ -99,32 +104,53 @@ exports.creaID = async (req, res) => {
   }, 300);
 
 }
-exports.creaEdit = (req, res) => {
-  let sqlGet = `SELECT * FROM creations WHERE id = ${req.params.id}`;
-  db.query(sqlGet, (error, dataGet, fields) => {
-    if (error) throw error;
+exports.creaEdit = async (req, res) => {
+  const moment = require('moment-timezone');
+  const frLocal = require('moment/locale/fr')
 
-    let values = [
-      req.body.description,
-    ];
+  const {
+    creaDate,
+    description
+  } = req.body
 
-    let sql = `UPDATE creations SET description=? WHERE id = ${req.params.id} `;
-    db.query(sql, values, function (err, data2, fields) {
-      if (err) throw err;
-      res.redirect('back')
-    })
-  })
+  const {
+    id
+  } = req.params
+
+  moment.updateLocale('fr', frLocal);
+  var setDate = moment(creaDate).format("YYYY-MM-DD")
+
+  const creations = await db.query(`SET sql_mode=""; SELECT creations.id, creations.description, creations.date, creations.isDelete, images.img_url FROM creations INNER JOIN images ON images.id_creations = creations.id WHERE creations.id = ${id} GROUP BY creations.id`);
+  const updateDate = await db.query(`UPDATE creations SET description='${description}', date=CAST('${setDate}' AS DATETIME) WHERE id=${id} `);
+
+  res.redirect('back')
 
 };
 
-exports.creaDelete = (req, res) => {
+exports.creaArchive = (req, res) => {
   let sql = `UPDATE creations SET isDelete=1 WHERE id = ?`
   db.query(sql, req.params.id, (err) => {
     if (err) throw err
     res.redirect('back');
   })
 };
+exports.creaDelete = async (req, res) => {
+  const { id } = req.params
+ 
+  const files = await db.query(`SELECT * FROM images WHERE id_creations =${id}`)
+ 
+  const delImg = await db.query(`DELETE FROM images WHERE id_creations =${id}`)
+  const delCrea = await db.query(`DELETE FROM creations WHERE id =${id}`)
 
+  for (const file of files) {
+    pathImg = path.resolve("public/images/creations/" + file.img_url)
+    fs.unlink(pathImg, (err) => {
+      if (err) console.log(err)
+      else return
+    })
+  }
+res.redirect('back')
+}
 exports.creaCreate = async (req, res) => {
 
   // SQL pour creer un article
